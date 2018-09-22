@@ -1,0 +1,10 @@
+*bak
+*pyc
+.DS_Store
+__pycache__
+offtarget/offtarget
+crispr_sites2
+generated_files/untracked/*
+inputs/additional/offtargets/hg38.fa.gz
+gurobi.log
+offtarget/server.PID

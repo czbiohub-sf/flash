@@ -1,0 +1,19 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: crispr-search-deployment
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: crispr-offtarget-search
+    spec:
+      containers:
+      - name: crispr-offtarget
+        image: ryansking/crispr_offtarget:latest
+        env:
+          - name: HOST
+            value: "http://s3-us-west-2.amazonaws.com/czbiohub-flash/human_guides_v2.txt"
+        ports:
+        - containerPort: 8080

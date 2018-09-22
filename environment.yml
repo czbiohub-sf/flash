@@ -1,0 +1,15 @@
+name: flash
+channels:
+- bioconda
+- conda-forge
+- http://conda.anaconda.org/gurobi
+- defaults
+dependencies:
+- python=3.5
+- gurobi=7.0.2=py35_0
+- networkx=1.11=py35_0
+- biopython=1.69=np112py35_0
+- setuptools=33.1.1=py35_0
+- requests=2.14.2=py35_0
+- pip:
+  - ansicolors==1.1.8
