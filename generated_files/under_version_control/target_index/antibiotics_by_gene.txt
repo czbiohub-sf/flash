@@ -1059,7 +1059,7 @@ aac6p__DQ302723__aminoglycoside
 aac6p__EU912537__aminoglycoside
     aminoglycoside_resfinder
 
-aac6pIb-cr__EF636461__quinolone
+aac6pIb-cr__EF636461__aminoglycoside
     aminoglycoside_resfinder
     quinolone_resfinder
 
@@ -3049,7 +3049,7 @@ cfiA8__AB087233__beta_lactamase
 cfiA9__AB087234__beta_lactamase
     beta_lactamase_resfinder
 
-cfr__AJ879565__oxazolidinone
+cfr__AJ879565__macrolide
     macrolide_resfinder
     oxazolidinone_resfinder
     phenicol_resfinder

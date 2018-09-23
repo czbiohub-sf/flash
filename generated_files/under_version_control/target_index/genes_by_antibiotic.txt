@@ -1446,7 +1446,7 @@ aminoglycoside_resfinder                                                        
     aac6p__AY553333__aminoglycoside
     aac6p__DQ302723__aminoglycoside
     aac6p__EU912537__aminoglycoside
-    aac6pIb-cr__EF636461__quinolone
+    aac6pIb-cr__EF636461__aminoglycoside
     aac__AJ628983__aminoglycoside
     aacA29__AY139599__aminoglycoside
     aacA43__HQ247816__aminoglycoside
@@ -7514,7 +7514,7 @@ macrolide_antibiotic__tylosin                                                   
 
 macrolide_resfinder                                                                                                  131
     carA__M80346__ARO_3002817
-    cfr__AJ879565__oxazolidinone
+    cfr__AJ879565__macrolide
     cfrA__AM408573__ARO_3003441
     ereA__AF099140__macrolide
     ereA__AF326209__macrolide
@@ -7718,7 +7718,7 @@ oxazolidinone_antibiotic__linezolid                                             
     clbC__NC_006582__ARO_3002816
 
 oxazolidinone_resfinder                                                                                               12
-    cfr__AJ879565__oxazolidinone
+    cfr__AJ879565__macrolide
     cfrA__AM408573__ARO_3003441
     optrA__KP399637__oxazolidinone
     optrA__KT601170__oxazolidinone
@@ -8324,7 +8324,7 @@ phenicol_resfinder                                                              
     catpC233__AY355285__phenicol
     catQ__M55620__ARO_3002687
     catS__X74948__ARO_3002688
-    cfr__AJ879565__oxazolidinone
+    cfr__AJ879565__macrolide
     cfrA__AM408573__ARO_3003441
     cml__M22614__phenicol
     cmlA1__AB212941__phenicol
@@ -8421,7 +8421,7 @@ pyrazinamide                                                                    
 quinolone_resfinder                                                                                                  103
     AAC6p-Ib-cr__DQ303918__ARO_3002547
     AAC6p-Ib-Suzhou__EU085533__ARO_3002591
-    aac6pIb-cr__EF636461__quinolone
+    aac6pIb-cr__EF636461__aminoglycoside
     norA__M97169__quinolone
     oqxA__NC_010378.1__ARO_3003922
     oqxB__NC_010378.1__ARO_3003923
