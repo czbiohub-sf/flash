@@ -20,8 +20,8 @@ from gurobipy import (
 
 def set_required_value_for_guides(guide_vars, m, guides, value):
     for guide in guides:
-        guide_vars[guide] = m.addVar(vtype=GRB.BINARY, name=guide)
-        m.addConstr(guide_vars[guide], GRB.EQUAL, value)
+        if guide in guide_vars:
+            m.addConstr(guide_vars[guide], GRB.EQUAL, value)
 
 
 def optimize(genes, required_guides=[], excluded_guides=[], MIN_FRAGMENT_SIZE=200):
@@ -31,14 +31,14 @@ def optimize(genes, required_guides=[], excluded_guides=[], MIN_FRAGMENT_SIZE=20
 
     guide_vars = {}
 
-    # Set required and excluded guides.
-    set_required_value_for_guides(guide_vars, m, required_guides, 1)
-    set_required_value_for_guides(guide_vars, m, excluded_guides, 0)
-
     for g in genes:
         for t in g.targets:
             if t.guide not in guide_vars:
                 guide_vars[t.guide] = m.addVar(vtype=GRB.BINARY, name=t.guide)
+    
+    # Set required and excluded guides.
+    set_required_value_for_guides(guide_vars, m, required_guides, 1)
+    set_required_value_for_guides(guide_vars, m, excluded_guides, 0)
 
     impossible_snps = []
 
