@@ -113,7 +113,7 @@ class GeneRecord(object):
         elif 'inputs/additional' in input_path:
             self.parse_additional(str_desc)
         else:
-            self.parse_generic(str_desc, input_path)
+            self.parse_generic(str_desc)
 
     def parse_card(self, descr, input_path):
         self.origin = 'card'
@@ -230,7 +230,14 @@ def filename(gene, use_disambiguation=False):
 def read_file(sequences, aro_genes, input):
     for record in SeqIO.parse(input, "fasta"):
         str_desc = str(record.description)
-        str_seq = str(record.seq)
+        str_seq = str(record.seq).upper()
+
+        # Replace all ambiguous bases with N
+        for c in ['U', 'Y', 'R', 'S', 'W', 'K', 'M', 'B', 'D', 'H', 'V']:
+            str_seq = str_seq.replace(c, 'N')
+
+        # Remove '-', which indicates a deletion in an alignment
+        str_seq = str_seq.replace('-', '')
         gr = GeneRecord(str_seq, str_desc, input)
         if gr.aro:
             aro_genes["ARO:" + gr.aro] = True
@@ -453,6 +460,11 @@ def parse_args():
     parser.add_argument("--targets",
                         help="Fasta file containing target genes.",
                         type=str)
+    parser.add_argument("--disable-git",
+                        help="Do not add changed files to git.",
+                        action='store_true')
+
+
     return parser.parse_args()
 
 def make_genes_and_identify_all_targets():
@@ -507,12 +519,13 @@ def make_genes_and_identify_all_targets():
         return -3
     print("Moving {} to {}.".format(output_temp_dir, output_dir))
     subprocess.check_call(["/bin/mv", output_temp_dir, output_dir])
-    build.git_add_back_generated_file(build.ambiguous_targets_path)
-    build.git_add_back_generated_file(build.all_targets_path)
-    build.git_add_back_generated_file(build.antibiotics_by_gene_path)
-    build.git_add_back_generated_file(build.genes_by_antibiotic_path)
-    build.git_add_back_generated_file(build.antibiotics_path)
-    build.git_add_back_generated_folder(output_dir)
+    if not args.disable_git:
+        build.git_add_back_generated_file(build.ambiguous_targets_path)
+        build.git_add_back_generated_file(build.all_targets_path)
+        build.git_add_back_generated_file(build.antibiotics_by_gene_path)
+        build.git_add_back_generated_file(build.genes_by_antibiotic_path)
+        build.git_add_back_generated_file(build.antibiotics_path)
+        build.git_add_back_generated_folder(output_dir)
     print("Completed make_genes_and_identify_all_targets in {:3.1f} seconds".format(time.time() - t))
     return 0
 
