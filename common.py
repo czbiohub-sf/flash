@@ -102,7 +102,7 @@ class Gene(object):
                     self.resistance = part.split(':')[1].split(',')
                 if part.startswith("flash_mutation_ranges:"):
                     self.mutation_ranges = []
-                    for rstr in part.split(':')[1].split(','):
+                    for rstr in part.split('flash_mutation_ranges:')[1].split(','):
                         rrng = MutationIndex.parse_mutation(rstr)
                         if type(rrng) == range:
                             self.mutation_ranges.append((rstr, rrng))
@@ -353,7 +353,7 @@ class MutationIndex(object):
             # eg: nt420+2:GG
             s1 = re.search(r"^nt(\d+)\+(\d+)", m)
             if s1:
-                x = int(s1.group(1))
+                x = int(s1.group(1)) - 1
                 y = int(s1.group(2))
                 return range(x, x+y)
             else:
@@ -361,12 +361,12 @@ class MutationIndex(object):
                 s2 = re.search(r"^[A-Z-](\d+)(STOP|fs)", m)
                 if s2:
                     b = int(s2.group(1))
-                    return range(b*3, b*3+2)
+                    return range(b*3-3, b*3)                    
                 else:
                     # eg: +nt349:CACTG
                     s3 = re.search(r"^\+nt(\d+):([A-Z-]+)$", m)
                     if s3:
-                        b = int(s3.group(1))
+                        b = int(s3.group(1)) - 1
                         return range(b, b+2)
                     else:
                         print("Mutation not parsed: ", m)
