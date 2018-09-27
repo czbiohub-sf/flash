@@ -7,7 +7,7 @@ import subprocess
 import sys
 import time
 import threading
-import traceback
+import argparse
 from collections import defaultdict
 import json
 from Bio import SeqIO
@@ -102,6 +102,7 @@ class GeneRecord(object):
         self.resistances = None
         self.disambiguation = None
         self.key = None
+        self.origin = None
         # str_seq and str_desc are from fasta
         self.str_seq = str_seq
         self.str_desc = str_desc
@@ -110,9 +111,9 @@ class GeneRecord(object):
         elif 'inputs/resfinder' in input_path:
             self.parse_resfinder(str_desc, input_path)
         elif 'inputs/additional' in input_path:
-            self.parse_additional(str_desc, input_path)
+            self.parse_additional(str_desc)
         else:
-            raise RuntimeError("Unexpected input path {}".format(input_path))
+            self.parse_generic(str_desc, input_path)
 
     def parse_card(self, descr, input_path):
         self.origin = 'card'
@@ -152,7 +153,7 @@ class GeneRecord(object):
         self.resistances = [self.origin_short_filename + "_resfinder"]
         self.disambiguation = dl[1]
 
-    def parse_additional(self, descr, input_path):
+    def parse_additional(self, descr):
         self.origin='additional'
         dl = descr.split("|")
         self.resistances = []
@@ -180,10 +181,24 @@ class GeneRecord(object):
         if not any(self.origin_short_filename.startswith(r) for r in self.resistances):
             raise RuntimeError("Unconventional flash_resistance '{}' for flash_key '{}'".format(raw_resistance, self.key))
 
+    def parse_generic(self, descr):
+        self.origin = 'generic'
+        dl = descr.split("|")
+        self.key = None
+        for part in dl:
+            if part.startswith("flash_key"):
+                self.key = part.split(":", 1)[1]
+        if self.key is None:
+            self.key = sanitize(dl[0])
+        if sanitize(self.key) != self.key:
+            raise RuntimeError("flash_key '{}' contains disallowed characters".format(self.key))
+
+
 valid_chars = "-_.%s%s" % (string.ascii_letters, string.digits)
 
 def sanitize(filename):
-    f = filename.replace(' ','_').replace("'", "p").replace("[", "__").replace("]", "__").replace("___", "__").replace("___", "__").replace("___", "__")
+    f = filename.replace(' ', '_').replace("'", "p").replace("[", "__").replace("]", "__").replace("___", "__").replace(
+        "___", "__").replace("___", "__").replace("/", "-")
     if f.endswith("__"):
         f = f[:-2]
     return ''.join(c for c in f if c in valid_chars)
@@ -249,12 +264,12 @@ def output_unique_sequence(antibiotics_for_gene, genes_for_antibiotic, all_files
     canonical_key = filename(gene_records[0])
     inferred_aro = None
     inferred_resistances = set()
-    merged_descr = ""
     aliases = []
     for gr in gene_records:
         gr.ofn = filename(gr)
         aliases.append(gr.ofn)
-        inferred_resistances |= set(gr.resistances)
+        if gr.resistances:
+            inferred_resistances |= set(gr.resistances)
         if gr.aro:
             inferred_aro = gr.aro
             # We prefer the canonical key to include the ARO
@@ -430,16 +445,37 @@ def output_antibiotics(antibiotics_path, genes_for_antibiotic):
                 "\n\n"
             )
 
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--targets-dir",
+                        help="Directory containing input gene fastas.",
+                        type=str)
+    parser.add_argument("--targets",
+                        help="Fasta file containing target genes.",
+                        type=str)
+    return parser.parse_args()
+
 def make_genes_and_identify_all_targets():
     t = time.time()
-    input_files = (
-        glob.glob('inputs/card/*.fasta') +
-        glob.glob('inputs/resfinder/*.fsa') +
-        glob.glob('inputs/additional/*.fasta')
-    )
+
+    args = parse_args()
+
+    if args.targets_dir and args.targets:
+        raise RuntimeError("Use only one of --targets-dir and --targets.")
+    if args.targets_dir:
+        input_files = glob.glob(args.targets_dir + /*.fasta)
+    elif args.targets:
+        input_files = [args.targets]
+    else:
+        input_files = (
+            glob.glob('inputs/card/*.fasta') +
+            glob.glob('inputs/resfinder/*.fsa') +
+            glob.glob('inputs/additional/*.fasta')
+        )
     if not input_files:
         print("Could not find input files.")
         return -2
+
     output_dir = build.genes_dir
     output_temp_dir = build.genes_temp_dir
     # print("Deleting every file in {}.".format(output_temp_dir))
