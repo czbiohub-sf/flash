@@ -40,3 +40,6 @@ stop_offtarget_server:
 
 optimizer:
 	python optimizer.py $(ARGS)
+
+test:
+	cd tests && pytest

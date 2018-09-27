@@ -348,7 +348,7 @@ class MutationIndex(object):
         if s:
             # eg: E502Q
             b = int(s.group(1))
-            return range(b*3, b*3+3)
+            return range(b*3-3, b*3)
         else:
             # eg: nt420+2:GG
             s1 = re.search(r"^nt(\d+)\+(\d+)", m)
