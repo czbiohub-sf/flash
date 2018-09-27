@@ -41,15 +41,15 @@ This will produce 2 files in `generated_files/untracked`:
 
 2) Clone the FLASH repository from GitHub
 
-	git clone https://github.com/czbiohub/flash.git
+	`git clone https://github.com/czbiohub/flash.git`
 	
-	cd flash
+	`cd flash`
 
 3) Install the dependencies with conda.
 
-	conda env create -f environment.yml
+	`conda env create -f environment.yml`
 
-	source activate flash
+	`source activate flash`
 
 3) License the Gurobi optimizer.
 
@@ -64,7 +64,7 @@ If you wish to avoid the human genome as offtarget as in the paper, then
 5) Download [hg38.fa.gz](http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz)
 into `inputs/additional/offtargets/`.
 
-	curl http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz > inputs/additional/offtargets/hg38.fa.gz
+	`curl http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz > inputs/additional/offtargets/hg38.fa.gz`
 
 ## Build Stages
 
