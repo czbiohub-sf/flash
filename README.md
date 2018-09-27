@@ -42,6 +42,7 @@ This will produce 2 files in `generated_files/untracked`:
 2) Clone the FLASH repository from GitHub
 
 	git clone https://github.com/czbiohub/flash.git
+	
 	cd flash
 
 3) Install the dependencies with conda.
