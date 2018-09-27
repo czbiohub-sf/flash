@@ -18,22 +18,27 @@ from gurobipy import (
 )
 
 
-def optimize(genes, required_guides=[], MIN_FRAGMENT_SIZE=200):
+def set_required_value_for_guides(guide_vars, m, guides, value):
+    for guide in guides:
+        if guide in guide_vars:
+            m.addConstr(guide_vars[guide], GRB.EQUAL, value)
+
+
+def optimize(genes, required_guides=[], excluded_guides=[], MIN_FRAGMENT_SIZE=200):
     print("optimizing %d genes starting with %s" % (len(genes), genes[0].name))
 
     m = Model()
 
     guide_vars = {}
 
-    # Create variables and require any guides that are passed in as required.
-    for guide in required_guides:
-        guide_vars[guide] = m.addVar(vtype=GRB.BINARY, name=guide)
-        m.addConstr(guide_vars[guide], GRB.EQUAL, 1)
-
     for g in genes:
         for t in g.targets:
             if t.guide not in guide_vars:
                 guide_vars[t.guide] = m.addVar(vtype=GRB.BINARY, name=t.guide)
+    
+    # Set required and excluded guides.
+    set_required_value_for_guides(guide_vars, m, required_guides, 1)
+    set_required_value_for_guides(guide_vars, m, excluded_guides, 0)
 
     impossible_snps = []
 
@@ -132,9 +137,19 @@ def optimize(genes, required_guides=[], MIN_FRAGMENT_SIZE=200):
     return m, genes, library, impossible_snps
 
 
+def get_guides_from_file_or_empty(f):
+    if f:
+        return [e.strip() for e in f.readlines()]
+    else:
+        return []
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--extend',
+                        type=argparse.FileType('r'),
+                        metavar="file")
+    parser.add_argument('--exclude',
                         type=argparse.FileType('r'),
                         metavar="file")
     parser.add_argument('--output',
@@ -147,9 +162,8 @@ def main():
         'generated_files/under_version_control/genes/*.fasta')])
     genes = [Gene(name) for name in gene_names]
 
-    existing_guides = []
-    if args.extend:
-        existing_guides = [e.strip() for e in args.extend.readlines()]
+    existing_guides = get_guides_from_file_or_empty(args.extend)
+    excluded_guides = get_guides_from_file_or_empty(args.exclude)
 
     with open('inputs/additional/padding.json', 'r') as fp:
         padding_seqs = json.load(fp)
@@ -201,10 +215,17 @@ def main():
 
     for comp in components:
         m, genes, library, impossible_snps = optimize(
-            comp.genes, existing_guides)
+            comp.genes,
+            existing_guides,
+            excluded_guides
+        )
         if not library:
             m, genes, library, impossible_snps = optimize(
-                comp.genes, existing_guides, MIN_FRAGMENT_SIZE=178)
+                comp.genes,
+                existing_guides,
+                excluded_guides,
+                MIN_FRAGMENT_SIZE=178
+            )
         if library:
             solved_guides = solved_guides.union(set(library))
         else:
