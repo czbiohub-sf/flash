@@ -43,3 +43,9 @@ optimizer:
 
 test:
 	cd tests && pytest
+
+# make library TARGETS=inputs/additional/colistin.fasta OUTPUT=library.txt
+library:
+	python make_genes_and_identify_all_targets.py --targets=$(TARGETS) --disable-git
+	$(MAKE) build_indices
+	$(MAKE) optimizer ARGS="--output $(OUTPUT)"

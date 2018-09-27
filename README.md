@@ -25,6 +25,15 @@ The output is:
 
 * a list of RNA guides
 
+To generate a FLASH library targeting genes from a single `fasta` file and avoiding 
+the human genome and a reference _E. Coli_ strain, run
+
+`make library TARGETS=[input.fasta] OUTPUT=library.txt`.
+
+For example,
+
+`make library TARGETS=tests/inputs/colistin.fasta OUTPUT=colistin_library.txt`
+
 To reproduce the library construction from the paper, after installing the
 prerequisites below, run
 
