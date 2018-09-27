@@ -1,3 +1,6 @@
+_The code version associated with the [bioArxiv preprint](https://www.biorxiv.org/content/early/2018/09/27/426338)
+is [tag 1.0](https://github.com/czbiohub/flash/releases/tag/v1.0)_
+
 # FLASHit
 
 FLASH (Finding Low Abundance Sequences by Hybridization) is a method
