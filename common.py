@@ -361,7 +361,7 @@ class MutationIndex(object):
                 s2 = re.search(r"^[A-Z-](\d+)(STOP|fs)", m)
                 if s2:
                     b = int(s2.group(1))
-                    return range(b*3, b*3+2)
+                    return range(b*3-3, b*3)                    
                 else:
                     # eg: +nt349:CACTG
                     s3 = re.search(r"^\+nt(\d+):([A-Z-]+)$", m)

@@ -27,3 +27,11 @@ def test_nt_insert_are_in_correct_location():
     expected_mutation = [('+nt1:A', range(0, 2))]
 
     assert mutation_ranges == expected_mutation    
+
+def test_stop_codon_in_correct_location():
+    gene = Gene("test_gene_with_stop_codon")
+    mutation_ranges = gene.mutation_ranges
+    expected_mutation = [('Y151STOP', range(450, 453))]
+
+    assert mutation_ranges == expected_mutation    
+    
