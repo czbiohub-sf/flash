@@ -8,3 +8,4 @@ generated_files/untracked/*
 inputs/additional/offtargets/hg38.fa.gz
 gurobi.log
 offtarget/server.PID
+.pytest_cache
