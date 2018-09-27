@@ -385,8 +385,8 @@ def split_all(input_files, output_dir, all_targets_index_path, ambiguous_targets
         print("WARNING:  UNUSED PADDING SEQUENCES:  CHECK KEYS, FILENAMES MAY HAVE CHANGED:")
         print()
         print(json.dumps(padding_seq))
-        raise RuntimeError("Unused padding sequences: {}"
-            .format(", ".join(sorted(padding_seq.keys(), key=str.lower))))
+        # raise RuntimeError("Unused padding sequences: {}"
+        #     .format(", ".join(sorted(padding_seq.keys(), key=str.lower))))
     ambiguous_targets = {}
     ambiguous_genes = set()
     for target, gene_pos in all_targets.items():
@@ -463,7 +463,7 @@ def make_genes_and_identify_all_targets():
     if args.targets_dir and args.targets:
         raise RuntimeError("Use only one of --targets-dir and --targets.")
     if args.targets_dir:
-        input_files = glob.glob(args.targets_dir + /*.fasta)
+        input_files = glob.glob(args.targets_dir + '/*.fasta')
     elif args.targets:
         input_files = [args.targets]
     else:
