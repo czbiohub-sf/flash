@@ -452,17 +452,17 @@ def output_antibiotics(antibiotics_path, genes_for_antibiotic):
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--targets-dir",
+    input_group = parser.add_mutually_exclusive_group()
+    input_group.add_argument("--targets-dir",
                         help="Directory containing input gene fastas.",
                         type=str)
-    parser.add_argument("--targets",
+    input_group.add_argument("--targets",
                         help="Fasta file containing target genes.",
                         type=argparse.FileType("r"),
                         metavar="file")
     parser.add_argument("--disable-git",
                         help="Do not add changed files to git.",
                         action='store_true')
-
 
     return parser.parse_args()
 
@@ -471,8 +471,6 @@ def make_genes_and_identify_all_targets():
 
     args = parse_args()
 
-    if args.targets_dir and args.targets:
-        raise RuntimeError("Use only one of --targets-dir and --targets.")
     if args.targets_dir:
         input_files = glob.glob(args.targets_dir + '/*.fasta')
     elif args.targets:
