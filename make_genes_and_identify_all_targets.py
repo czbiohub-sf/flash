@@ -160,7 +160,7 @@ class GeneRecord(object):
         raw_resistance = ""
         for part in dl:
             if part.startswith("flash_key:"):
-                self.key = part.split(":", 1)[1]
+                self.key = part.split("flash_key:", 1)[1]
             if part.startswith("flash_resistance:"):
                 if raw_resistance:
                     raise RuntimeError("Multiple flash_resistance: fields per description.  Use comma separated values instead.")
@@ -198,7 +198,7 @@ valid_chars = "-_.%s%s" % (string.ascii_letters, string.digits)
 
 def sanitize(filename):
     f = filename.replace(' ', '_').replace("'", "p").replace("[", "__").replace("]", "__").replace("___", "__").replace(
-        "___", "__").replace("___", "__").replace("/", "-")
+        "___", "__").replace("___", "__").replace("/", "__").replace(":","__")
     if f.endswith("__"):
         f = f[:-2]
     return ''.join(c for c in f if c in valid_chars)
@@ -392,8 +392,6 @@ def split_all(input_files, output_dir, all_targets_index_path, ambiguous_targets
         print("WARNING:  UNUSED PADDING SEQUENCES:  CHECK KEYS, FILENAMES MAY HAVE CHANGED:")
         print()
         print(json.dumps(padding_seq))
-        # raise RuntimeError("Unused padding sequences: {}"
-        #     .format(", ".join(sorted(padding_seq.keys(), key=str.lower))))
     ambiguous_targets = {}
     ambiguous_genes = set()
     for target, gene_pos in all_targets.items():
@@ -459,7 +457,8 @@ def parse_args():
                         type=str)
     parser.add_argument("--targets",
                         help="Fasta file containing target genes.",
-                        type=str)
+                        type=argparse.FileType("r"),
+                        metavar="file")
     parser.add_argument("--disable-git",
                         help="Do not add changed files to git.",
                         action='store_true')
@@ -477,7 +476,7 @@ def make_genes_and_identify_all_targets():
     if args.targets_dir:
         input_files = glob.glob(args.targets_dir + '/*.fasta')
     elif args.targets:
-        input_files = [args.targets]
+        input_files = [args.targets.name]
     else:
         input_files = (
             glob.glob('inputs/card/*.fasta') +
