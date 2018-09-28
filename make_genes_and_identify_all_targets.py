@@ -7,7 +7,7 @@ import subprocess
 import sys
 import time
 import threading
-import traceback
+import argparse
 from collections import defaultdict
 import json
 from Bio import SeqIO
@@ -102,6 +102,7 @@ class GeneRecord(object):
         self.resistances = None
         self.disambiguation = None
         self.key = None
+        self.origin = None
         # str_seq and str_desc are from fasta
         self.str_seq = str_seq
         self.str_desc = str_desc
@@ -110,9 +111,9 @@ class GeneRecord(object):
         elif 'inputs/resfinder' in input_path:
             self.parse_resfinder(str_desc, input_path)
         elif 'inputs/additional' in input_path:
-            self.parse_additional(str_desc, input_path)
+            self.parse_additional(str_desc)
         else:
-            raise RuntimeError("Unexpected input path {}".format(input_path))
+            self.parse_generic(str_desc)
 
     def parse_card(self, descr, input_path):
         self.origin = 'card'
@@ -152,14 +153,14 @@ class GeneRecord(object):
         self.resistances = [self.origin_short_filename + "_resfinder"]
         self.disambiguation = dl[1]
 
-    def parse_additional(self, descr, input_path):
+    def parse_additional(self, descr):
         self.origin='additional'
         dl = descr.split("|")
         self.resistances = []
         raw_resistance = ""
         for part in dl:
             if part.startswith("flash_key:"):
-                self.key = part.split(":", 1)[1]
+                self.key = part.split("flash_key:", 1)[1]
             if part.startswith("flash_resistance:"):
                 if raw_resistance:
                     raise RuntimeError("Multiple flash_resistance: fields per description.  Use comma separated values instead.")
@@ -180,10 +181,24 @@ class GeneRecord(object):
         if not any(self.origin_short_filename.startswith(r) for r in self.resistances):
             raise RuntimeError("Unconventional flash_resistance '{}' for flash_key '{}'".format(raw_resistance, self.key))
 
+    def parse_generic(self, descr):
+        self.origin = 'generic'
+        dl = descr.split("|")
+        self.key = None
+        for part in dl:
+            if part.startswith("flash_key"):
+                self.key = part.split(":", 1)[1]
+        if self.key is None:
+            self.key = sanitize(dl[0])
+        if sanitize(self.key) != self.key:
+            raise RuntimeError("flash_key '{}' contains disallowed characters".format(self.key))
+
+
 valid_chars = "-_.%s%s" % (string.ascii_letters, string.digits)
 
 def sanitize(filename):
-    f = filename.replace(' ','_').replace("'", "p").replace("[", "__").replace("]", "__").replace("___", "__").replace("___", "__").replace("___", "__")
+    f = filename.replace(' ', '_').replace("'", "p").replace("[", "__").replace("]", "__").replace("___", "__").replace(
+        "___", "__").replace("___", "__").replace("/", "__").replace(":","__")
     if f.endswith("__"):
         f = f[:-2]
     return ''.join(c for c in f if c in valid_chars)
@@ -215,7 +230,14 @@ def filename(gene, use_disambiguation=False):
 def read_file(sequences, aro_genes, input):
     for record in SeqIO.parse(input, "fasta"):
         str_desc = str(record.description)
-        str_seq = str(record.seq)
+        str_seq = str(record.seq).upper()
+
+        # Replace all ambiguous bases with N
+        for c in ['U', 'Y', 'R', 'S', 'W', 'K', 'M', 'B', 'D', 'H', 'V']:
+            str_seq = str_seq.replace(c, 'N')
+
+        # Remove '-', which indicates a deletion in an alignment
+        str_seq = str_seq.replace('-', '')
         gr = GeneRecord(str_seq, str_desc, input)
         if gr.aro:
             aro_genes["ARO:" + gr.aro] = True
@@ -249,12 +271,12 @@ def output_unique_sequence(antibiotics_for_gene, genes_for_antibiotic, all_files
     canonical_key = filename(gene_records[0])
     inferred_aro = None
     inferred_resistances = set()
-    merged_descr = ""
     aliases = []
     for gr in gene_records:
         gr.ofn = filename(gr)
         aliases.append(gr.ofn)
-        inferred_resistances |= set(gr.resistances)
+        if gr.resistances:
+            inferred_resistances |= set(gr.resistances)
         if gr.aro:
             inferred_aro = gr.aro
             # We prefer the canonical key to include the ARO
@@ -370,8 +392,6 @@ def split_all(input_files, output_dir, all_targets_index_path, ambiguous_targets
         print("WARNING:  UNUSED PADDING SEQUENCES:  CHECK KEYS, FILENAMES MAY HAVE CHANGED:")
         print()
         print(json.dumps(padding_seq))
-        raise RuntimeError("Unused padding sequences: {}"
-            .format(", ".join(sorted(padding_seq.keys(), key=str.lower))))
     ambiguous_targets = {}
     ambiguous_genes = set()
     for target, gene_pos in all_targets.items():
@@ -430,16 +450,41 @@ def output_antibiotics(antibiotics_path, genes_for_antibiotic):
                 "\n\n"
             )
 
+def parse_args():
+    parser = argparse.ArgumentParser()
+    input_group = parser.add_mutually_exclusive_group()
+    input_group.add_argument("--targets-dir",
+                        help="Directory containing input gene fastas.",
+                        type=str)
+    input_group.add_argument("--targets",
+                        help="Fasta file containing target genes.",
+                        type=argparse.FileType("r"),
+                        metavar="file")
+    parser.add_argument("--disable-git",
+                        help="Do not add changed files to git.",
+                        action='store_true')
+
+    return parser.parse_args()
+
 def make_genes_and_identify_all_targets():
     t = time.time()
-    input_files = (
-        glob.glob('inputs/card/*.fasta') +
-        glob.glob('inputs/resfinder/*.fsa') +
-        glob.glob('inputs/additional/*.fasta')
-    )
+
+    args = parse_args()
+
+    if args.targets_dir:
+        input_files = glob.glob(args.targets_dir + '/*.fasta')
+    elif args.targets:
+        input_files = [args.targets.name]
+    else:
+        input_files = (
+            glob.glob('inputs/card/*.fasta') +
+            glob.glob('inputs/resfinder/*.fsa') +
+            glob.glob('inputs/additional/*.fasta')
+        )
     if not input_files:
         print("Could not find input files.")
         return -2
+
     output_dir = build.genes_dir
     output_temp_dir = build.genes_temp_dir
     # print("Deleting every file in {}.".format(output_temp_dir))
@@ -471,12 +516,13 @@ def make_genes_and_identify_all_targets():
         return -3
     print("Moving {} to {}.".format(output_temp_dir, output_dir))
     subprocess.check_call(["/bin/mv", output_temp_dir, output_dir])
-    build.git_add_back_generated_file(build.ambiguous_targets_path)
-    build.git_add_back_generated_file(build.all_targets_path)
-    build.git_add_back_generated_file(build.antibiotics_by_gene_path)
-    build.git_add_back_generated_file(build.genes_by_antibiotic_path)
-    build.git_add_back_generated_file(build.antibiotics_path)
-    build.git_add_back_generated_folder(output_dir)
+    if not args.disable_git:
+        build.git_add_back_generated_file(build.ambiguous_targets_path)
+        build.git_add_back_generated_file(build.all_targets_path)
+        build.git_add_back_generated_file(build.antibiotics_by_gene_path)
+        build.git_add_back_generated_file(build.genes_by_antibiotic_path)
+        build.git_add_back_generated_file(build.antibiotics_path)
+        build.git_add_back_generated_folder(output_dir)
     print("Completed make_genes_and_identify_all_targets in {:3.1f} seconds".format(time.time() - t))
     return 0
 
