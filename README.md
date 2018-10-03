@@ -142,7 +142,7 @@ run `git checkout -b BRANCHNAME`).
 
 ## Gene formatting
 
-Input genes to FLASHit should be placed in one more more fasta files. If multiple
+Input genes to FLASHit should be placed in one or more fasta files. If multiple
 fasta files are used, they should be in a single subdirectory of `inputs`.
 
 The header of each gene can contain arbitrary key:value pairs separated by pipes (|).
