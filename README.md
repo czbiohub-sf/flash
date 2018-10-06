@@ -114,9 +114,10 @@ This step finds the optimal library of guides for targeting the input genes.
 
 `make optimizer'
 
-To search for guides extending a a given library, include that library as an additional input.
+To search for guides extending a given library, include that library as an additional input.
+To ensure that certain guides are not included in your library, include a list of those guides as an additional input.
 
-`python optimizer.py --extend [library.txt] --output [extended_library.txt]`
+`python optimizer.py --extend [library.txt] --exclude [badguides.txt] --output [extended_library.txt]`
 
 ### Extract guides for a certain set of genes
 
