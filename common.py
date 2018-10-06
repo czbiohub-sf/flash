@@ -130,7 +130,7 @@ class Gene(object):
                 i = int(i)
                 kmer = flash.forward_20mer_at(self.seq, i, d)
                 self.targets.append(Target(kmer, flash.cut_location((i, d))))
-
+            self.targets.sort(key=lambda item: item.cut)
         except FileNotFoundError:
             print(self.name, " is missing a target index file.")
 
