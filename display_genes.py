@@ -1,53 +1,64 @@
-#!/usr/bin/env python3
-
-import json
+import argparse
 import sys
-
+import json
 from common import *
 
 
-#  Usage:
-#
-#      python3 display_genes.py < genes.txt
-#      echo 'nalC__NC_002516__ARO_3000818' | python3 display_genes.py
-#
-#  Displays the sequence of a gene. Cyan bars represent cut sites from potential CRISPR targets.
-#  Yellow x's represent SNPs.
-#  Magenta bars represent CRISPR targets overlapping with SNPs.
+def parse_args():
+    parser = argparse.ArgumentParser("Tool for visualizing CRISPR targets and"
+    "cut sites in a gene. Sample command-line:\n\n"
+    "python display_genes.py nalC__NC_002516__ARO_3000818 mecA__AB033763__beta_lactamase --library library.txt")
+    parser.add_argument("genes",
+                        help="flash_key of gene to be displayed.",
+                        type=str,
+                        nargs='+',)
+
+    parser.add_argument("--library",
+                        metavar="file",
+                        type=argparse.FileType("r"),
+                        required=False)
+
+    return parser.parse_args()
 
 
-def printf(*args, **kwargs):
-    print(*args, flush=True, **kwargs)
+def main():
+    args = parse_args()
 
+    library = None
+    if args.library:
+        def read_file(f): return [e.strip() for e in f.readlines()]
+        library = read_file(args.library)
 
-def main(argv):
-    retcode = -999
+    for gene_key in args.genes:
+        g = Gene(gene_key)
 
-    printf("Reading gene names from stdin.\n")
-    input_gene_names = set(s.strip() for s in sys.stdin.read().split()) - set([""])
+        if g.padding:
+            with open('inputs/additional/padding.json', 'r') as fp:
+                padding_seqs = json.load(fp)
+            if g.name in padding_seqs:
+                g.verify_padding(padding_seqs[g.name])
 
-    genes = [Gene(name) for name in input_gene_names]
-
-    with open('inputs/additional/padding.json', 'r') as fp:
-        padding_seqs = json.load(fp)
-
-    for g in genes:
         g.load_targets("dna_good_5_9_18.txt")
-        if g.name in padding_seqs:
-            g.verify_padding(padding_seqs[g.name])
-        else:
-            assert g.padding == None
 
-    for g in genes:
-        printf(g.name)
+        if library:
+            g.cut_with_library(library)
+
+        print("--------------------------------------")
+        print("Displaying CRISPR targets for " + g.name + ":\n")
+
+        print("Cut sites of potential guides are denoted by pipes (|). "
+        "Mutation ranges are denoted by a yellow x. "
+        "Color of | indicates state of the corresponding guide: pink if it "
+        "would cover a mutation, red if it is in the library, and cyan otherwise.")
         g.display_gene_targets()
-        printf("")
+        print("")
 
-        retcode = 1
-
-    return retcode
-
+        if library:
+            print("Cut sites from the library are in red. "
+            "Bases contained in expected paired-end 150 bp reads are green.")
+            g.display_gene_cuts()
+            print("")
 
 if __name__ == "__main__":
-    retcode = main(sys.argv)
+    retcode = main()
     sys.exit(retcode)

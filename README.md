@@ -148,7 +148,7 @@ To inspect a given gene--its list of potential
 CRISPR cut sites, its SNPs, and the cuts made by a given library--run the
 `display_genes.py` script:
 
-`echo 'nalC__NC_002516__ARO_3000818' | python display_genes.py`
+`python display_genes.py nalC__NC_002516__ARO_3000818 mecA__AB033763__beta_lactamase [--library library.txt]`
 
 ## Additional details about the build stages
 

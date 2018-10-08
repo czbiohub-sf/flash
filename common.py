@@ -259,19 +259,21 @@ class Gene(object):
 
         # Reverse order so that the indices of already-inserted cuts don't push the later indices to
         # the wrong place.
+
+        library_guides = {} if self.cuts is None else {cut.guide for cut in self.cuts}
+
         for target in self.targets[::-1]:
             if self.target_overlaps_mutation(target):
-                arr.insert(target.cut, ['magenta', '|'])
+                arr.insert(target.cut, [170, '|'])
+            elif target.guide in library_guides:
+                arr.insert(target.cut, ['red', '|'])
             else:
                 arr.insert(target.cut, ['cyan', '|'])
-
-            #arr[target.cut][0] = 'cyan'
-            #arr[target.cut][1] = arr[target.cut][1].tolower()
 
         for (i, (col, char)) in enumerate(arr):
             if i % 100 == 0:
                 sys.stdout.write("\n")
-            sys.stdout.write(color(char, bg=col))
+            sys.stdout.write(color(char, bg = col))
         sys.stdout.flush()
         print()
         return 1
@@ -295,7 +297,7 @@ class Gene(object):
 
         for _, snp_range in self.get_mutation_ranges():
             for i in snp_range:
-                arr[i][0] = 'orange'
+                arr[i][0] = 'yellow'
                 arr[i][1] = 'x'
 
         # Reverse order so that the indices of already-inserted cuts don't push the later indices
@@ -318,13 +320,13 @@ class Gene(object):
         # keeping at least n_cuts segments per gene.
         # Returns the trimmed library.
         guides = set()
-        
+
         if self.mutation_ranges:
             # we keep all cuts for genes with SNPs
             num_cuts = len(self.cuts)
         else:
             num_cuts = min(n_cuts, len(self.cuts))
-            
+
         for cut in range(num_cuts):
             guides.add(self.cuts[cut].guide)
         return list(guides)
@@ -361,7 +363,7 @@ class MutationIndex(object):
                 s2 = re.search(r"^[A-Z-](\d+)(STOP|fs)", m)
                 if s2:
                     b = int(s2.group(1))
-                    return range(b*3-3, b*3)                    
+                    return range(b*3-3, b*3)
                 else:
                     # eg: +nt349:CACTG
                     s3 = re.search(r"^\+nt(\d+):([A-Z-]+)$", m)
