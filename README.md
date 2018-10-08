@@ -27,25 +27,6 @@ The output is:
 
 * a list of RNA guides
 
-To generate a FLASH library targeting genes from a single `fasta` file and avoiding
-the human genome and a reference _E. Coli_ strain, run
-
-`make library TARGETS=[input.fasta] OUTPUT=library.txt`.
-
-For example,
-
-`make library TARGETS=tests/inputs/colistin.fasta OUTPUT=colistin_library.txt`
-
-To reproduce the library construction from the paper, after installing the
-prerequisites below, run
-
-`make amr_library`.
-
-This will produce 2 files in `generated_files/untracked`:
-
-* `library.txt` -- all optimized guides for genes used for the paper.
-* `amr_library.txt` -- this is the set of guides used in the paper.
-
 ## Prerequisites
 
 1) Install the [Anaconda](https://www.anaconda.com/) package manager for python.
@@ -70,14 +51,36 @@ Get a license from [Gurobi](https://user.gurobi.com/download/licenses/free-acade
 
 4) Install [GO](https://golang.org/doc/install).
 
-If you wish to avoid the human genome as offtarget as in the paper, then
+## Workflows
 
-5) Download [hg38.fa.gz](http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz)
-into `inputs/additional/offtargets/`.
+This section will cover the most common use cases of creating your own library and creating the AMR library from the paper.
 
-	`curl http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz > inputs/additional/offtargets/hg38.fa.gz`
+### Creating your own library
 
-## Build Stages
+To generate a FLASH library targeting genes from a single `fasta` file and avoiding
+the human genome and a reference _E. Coli_ strain, run
+
+`make library TARGETS=[input.fasta] OUTPUT=library.txt`.
+
+For example,
+
+`make library TARGETS=tests/inputs/colistin.fasta OUTPUT=colistin_library.txt`
+
+### Creating the AMR library
+
+To reproduce the library construction from the paper, after installing the
+prerequisites below, run
+
+`make amr_library`.
+
+This will produce 2 files in `generated_files/untracked`:
+
+* `library.txt` (all optimized guides for the full AMR gene set)
+* `amr_library.txt` (optimized guides restricted to the 127 genes used in the paper)
+
+## Addtional details about the build stages
+
+These steps are handled by the workflows mentioned above. This section gives additional details about the individual steps.
 
 ### Build gene files
 
