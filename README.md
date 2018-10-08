@@ -16,7 +16,7 @@ such as human DNA in the case of a library designed to target resistant genes in
 
 The problem of constructing a library efficiently, using the fewest guides
 necessary to get the desired coverage of all target genes, is solved
-as an mixed integer program optimization. For details, see the [formal description](docs/Guide_design.pdf).
+as a mixed integer program optimization. For details, see the [formal description](docs/Guide_design.pdf).
 
 The inputs consist of:
 
@@ -26,25 +26,6 @@ The inputs consist of:
 The output is:
 
 * a list of RNA guides
-
-To generate a FLASH library targeting genes from a single `fasta` file and avoiding
-the human genome and a reference _E. Coli_ strain, run
-
-`make library TARGETS=[input.fasta] OUTPUT=library.txt`.
-
-For example,
-
-`make library TARGETS=tests/inputs/colistin.fasta OUTPUT=colistin_library.txt`
-
-To reproduce the library construction from the paper, after installing the
-prerequisites below, run
-
-`make amr_library`.
-
-This will produce 2 files in `generated_files/untracked`:
-
-* `library.txt` -- all optimized guides for genes used for the paper.
-* `amr_library.txt` -- this is the set of guides used in the paper.
 
 ## Prerequisites
 
@@ -70,14 +51,108 @@ Get a license from [Gurobi](https://user.gurobi.com/download/licenses/free-acade
 
 4) Install [GO](https://golang.org/doc/install).
 
-If you wish to avoid the human genome as offtarget as in the paper, then
+## Workflows
 
-5) Download [hg38.fa.gz](http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz)
-into `inputs/additional/offtargets/`.
+This section will cover the most common use cases of creating your own library and creating the AMR library from the paper.
 
-	`curl http://hgdownload.cse.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz > inputs/additional/offtargets/hg38.fa.gz`
+### Creating your own library
 
-## Build Stages
+To generate a FLASH library targeting genes from a single `fasta` file and avoiding
+the human genome and a reference _E. Coli_ strain, run
+
+`make library TARGETS=[input.fasta] OUTPUT=library.txt`.
+
+For example,
+
+`make library TARGETS=tests/inputs/colistin.fasta OUTPUT=colistin_library.txt`
+
+### Creating the AMR library
+
+To reproduce the library construction from the paper, after installing the
+prerequisites below, run
+
+`make amr_library`.
+
+This will produce 2 files in `generated_files/untracked`:
+
+* `library.txt` (all optimized guides for the full AMR gene set)
+* `amr_library.txt` (optimized guides restricted to the 127 genes used in the paper)
+
+## Formatting Genes
+
+Input genes to FLASHit should be placed in one or more fasta files. If multiple
+fasta files are used, they should be in a single subdirectory of `inputs`.
+
+The header of each gene can contain arbitrary key:value pairs separated by pipes (|).
+
+Some keys have special meaning in FLASHit.
+
+`flash_key`: A unique ID for the gene. If unspecified, it will be automatically
+generated from the fasta header before the first pipe.
+`flash_mutation_ranges`: Locations of known mutations in each gene. These sites
+will be avoided as CRISPR targets, and the optimizer will attempt to generate
+fragments that contain each of those loci.
+
+Example:
+
+```
+>NCTC_8325|ARO:3003312|Staphyloccocus_aureus_NCTC_8325_parC|flash_key:parC__NCTC_8325__fluoroquinolone_additional|flash_resistance:fluoroquinolone|flash_mutation_ranges:nt240+12
+GTGAGTGAAATAATTCAAGATTTATCACTTGAAGATGTTTTAGGTGATCGCTTTGGAAGATATAGTAAATATATTATTCAAGAGCGTGCATTGCCAGATGTTCGTGATGGTTTAAAACCAGTACAACGTCGTATTTTATATGCAATGTATTCAAGTGGTAATACACACGATAAAAATTTCCGTAAAAGTGCGAAAACAGTCGGTGATGTTATTGGTCAATATCATCCACATGGAGAC...
+```
+
+## Mutations
+
+The guides may be designed to capture certain mutations present in
+each gene. Guides that would hybridize to those variable regions are forbidden,
+and we ensure that each variable region is contained in a fragment. (The default
+	assumption is that reads are paired-end 150. We ensure that
+	the mutation is contained in the first or last 150 bp of the fragment.) This will allow
+you to identify which allele of a gene present in each sample.
+
+The mutations are encoded in the fasta headers of each gene as follows.
+
+* Amino Acid Change
+
+`A50Q` indicates that an alanine at position 50 in the
+amino acid translation of the sequence may be mutated to a glutamine. Only the
+position (50 here) is used by the optimizer. If you do not know the result of
+the mutation, you may use an arbitrary letter.
+
+* Nucleic Acid Substitution/Deletion
+
+`nt420+4:GGAT` indicates that the 4 bases beginning at position 420 (420-423),
+ may be mutated to `GGAT`. The target is optional (`nt420+4` would also work).
+
+* Nucleic Acid Insertion
+
+`+nt349:CACTG` indicates that `CACTG` may be inserted in between bases 349 and 350.
+The target is optional (`+nt349` would also work).
+
+These are included in a comma-separated field. For example,
+
+`flash_mutation_ranges: A50Q,Y400L,+nt349:CACTG,+nt100,+nt120:CG,nt420+4`
+
+The optimizer will return an error if there is a gene for which one of the
+mutations cannot be captured in a fragment. This happens most often for SNPs
+near the end of genes, when there is no legal target between the SNP and
+the end of the gene. If the neighboring genomic context is known,
+it can be added by hand by pre/post-pending sequence to the gene (and adjusting
+the locations for the SNPs accordingly). We organize this through
+the use of padding in the case of the AMR guide set:
+the file `padding.json` contains the additional
+sequence for those genes requiring it.
+
+## Visualization
+
+To inspect a given gene--its list of potential
+CRISPR cut sites, its SNPs, and the cuts made by a given library--run the
+`display_genes.py` script:
+
+`echo 'nalC__NC_002516__ARO_3000818' | python display_genes.py`
+
+## Additional details about the build stages
+
+These steps are handled by the workflows mentioned above. This section gives additional details about the individual steps.
 
 ### Build gene files
 
@@ -123,14 +198,6 @@ To ensure that certain guides are not included in your library, include a list o
 
 `python extract_guides.py [library.txt] [gene_list.txt]`
 
-## Introspection
-
-To inspect a given gene--its list of potential
-CRISPR cut sites, its SNPs, and the cuts made by a given library--run the
-`display_genes.py` script:
-
-`echo 'nalC__NC_002516__ARO_3000818' | python display_genes.py`
-
 ## Git
 
 For the paper, we keep many of the intermediate files in github for easy versioning.
@@ -140,69 +207,6 @@ when generated. To review what has changed, run `git diff HEAD`.
 If you would like to work with a different collection of genes,
 SNPs, or offtargets, we recommend working in a new git branch. (To create a new branch,
 run `git checkout -b BRANCHNAME`).
-
-## Gene formatting
-
-Input genes to FLASHit should be placed in one or more fasta files. If multiple
-fasta files are used, they should be in a single subdirectory of `inputs`.
-
-The header of each gene can contain arbitrary key:value pairs separated by pipes (|).
-
-Some keys have special meaning in FLASHit.
-
-`flash_key`: A unique ID for the gene. If unspecified, it will be automatically
-generated from the fasta header before the first pipe.
-`flash_mutation_ranges`: Locations of known mutations in each gene. These sites
-will be avoided as CRISPR targets, and the optimizer will attempt to generate
-fragments that contain each of those loci.
-
-Example:
-
-```
->NCTC_8325|ARO:3003312|Staphyloccocus_aureus_NCTC_8325_parC|flash_key:parC__NCTC_8325__fluoroquinolone_additional|flash_resistance:fluoroquinolone|flash_mutation_ranges:nt240+12
-GTGAGTGAAATAATTCAAGATTTATCACTTGAAGATGTTTTAGGTGATCGCTTTGGAAGATATAGTAAATATATTATTCAAGAGCGTGCATTGCCAGATGTTCGTGATGGTTTAAAACCAGTACAACGTCGTATTTTATATGCAATGTATTCAAGTGGTAATACACACGATAAAAATTTCCGTAAAAGTGCGAAAACAGTCGGTGATGTTATTGGTCAATATCATCCACATGGAGAC...
-```
-
-## Mutations
-
-The guides may be designed to capture certain mutations present in
-each gene. Guides that would hybridize to those variable regions are forbidden,
-and we ensure that each variable region is contained in a fragment. This allows
-you to identify the allele present in each sample.
-
-The mutations are encoded in the fasta headers of each gene as follows.
-
-* Amino Acid Change
-
-`A50Q` indicates that an alanine at position 50 in the
-amino acid translation of the sequence may be mutated to a glutamine. Only the
-position (50 here) is used by the optimizer. If you do not know the result of
-the mutation, you may use an arbitrary letter.
-
-* Nucleic Acid Substitution/Deletion
-
-`nt420+4:GGAT` indicates that the 4 bases beginning at position 420 (420-423),
- may be mutated to `GGAT`. The target is optional (`nt420+4` would also work).
-
-* Nucleic Acid Insertion
-
-`+nt349:CACTG` indicates that `CACTG` may be inserted in between bases 349 and 350.
-The target is optional (`+nt349` would also work).
-
-These are included in a comma-separated field.
-
-`flash_mutation_ranges: A50Q,Y400L,+nt349:CACTG,+nt100,+nt120:CG,nt420+4`
-
-The optimizer will return an error if there is a gene for which one of the
-mutations cannot be captured in a fragment. This happens most often for SNPs
-near the end of genes, when there is no legal target between the SNP and
-the end of the gene. If the neighboring genomic context is known,
-it can be added by hand by pre/post-pending sequence to the gene (and adjusting
-the locations for the SNPs accordingly). We organize this through
-the use of padding in the case of the AMR guide set:
-the file `padding.json` contains the additional
-sequence for those genes requiring it.
-
 
 ## AMR Use Case
 
