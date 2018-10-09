@@ -49,3 +49,9 @@ library:
 	python make_genes_and_identify_all_targets.py --targets=$(TARGETS) --disable-git
 	$(MAKE) build_indices
 	$(MAKE) optimizer ARGS="--output $(OUTPUT)"
+
+# make library TARGETS=inputs/additional/colistin.fasta OUTPUT=library.txt EXCLUDE=exlude.txt
+library_excluding:
+	python make_genes_and_identify_all_targets.py --targets=$(TARGETS) --disable-git
+	$(MAKE) build_indices
+	$(MAKE) optimizer ARGS="--output $(OUTPUT) --exclude $(EXCLUDE)"
