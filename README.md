@@ -66,6 +66,10 @@ For example,
 
 `make library TARGETS=tests/inputs/colistin.fasta OUTPUT=colistin_library.txt`
 
+To exclude a set of guides,
+
+`make library_excluding TARGETS=inputs/additional/colistin.fasta OUTPUT=library.txt EXCLUDE=exclude.txt`
+
 ### Creating the AMR library
 
 To reproduce the library construction from the paper, after installing the
