@@ -35,7 +35,7 @@ def optimize(genes, required_guides=[], excluded_guides=[], MIN_FRAGMENT_SIZE=20
         for t in g.targets:
             if t.guide not in guide_vars:
                 guide_vars[t.guide] = m.addVar(vtype=GRB.BINARY, name=t.guide)
-    
+
     # Set required and excluded guides.
     set_required_value_for_guides(guide_vars, m, required_guides, 1)
     set_required_value_for_guides(guide_vars, m, excluded_guides, 0)
@@ -198,13 +198,6 @@ def main():
     for guide in guide_to_genes:
         for c in itertools.combinations(guide_to_genes[guide], 2):
             graph.add_edge(*c)
-
-    all_guides = set()
-    for g in genes:
-        if g.targets is None:
-            continue
-        for t in g.targets:
-            all_guides.add(t.guide)
 
     components = [Component([g for g in genes if g.name in c])
                   for c in networkx.connected_components(graph)]
