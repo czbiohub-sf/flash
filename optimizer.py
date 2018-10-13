@@ -24,7 +24,8 @@ def set_required_value_for_guides(guide_vars, m, guides, value):
             m.addConstr(guide_vars[guide], GRB.EQUAL, value)
 
 
-def optimize(genes, required_guides=[], excluded_guides=[], MIN_FRAGMENT_SIZE=200):
+def optimize(genes, required_guides=[], excluded_guides=[], MIN_FRAGMENT_SIZE=200,
+             verbose=False):
     print("optimizing %d genes starting with %s" % (len(genes), genes[0].name))
 
     m = Model()
@@ -47,7 +48,7 @@ def optimize(genes, required_guides=[], excluded_guides=[], MIN_FRAGMENT_SIZE=20
 
     # add constraints
     for i, g in enumerate(genes):
-        if i % 100 == 0:
+        if verbose and i % 100 == 0:
             print("Added constraints for {} genes.".format(i))
 
         if len(g.targets) < 1:
@@ -120,7 +121,8 @@ def optimize(genes, required_guides=[], excluded_guides=[], MIN_FRAGMENT_SIZE=20
         GRB.MINIMIZE
     )
 
-    #m.Params.LogToConsole = 0
+    if not verbose:
+        m.Params.LogToConsole = 0
     m.update()
     print('Done building model')
     m.optimize()
@@ -200,7 +202,7 @@ def main():
     print("Loading genes...")
     gene_names = sorted([os.path.splitext(os.path.basename(f))[0] for f in glob.glob(
         'generated_files/under_version_control/genes/*.fasta')])
-    #gene_names = gene_names[2000:2500]
+
     genes = [Gene(name) for name in gene_names]
 
     existing_guides = get_guides_from_file_or_empty(args.extend)
