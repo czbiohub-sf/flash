@@ -46,7 +46,10 @@ def optimize(genes, required_guides=[], excluded_guides=[], MIN_FRAGMENT_SIZE=20
         return [t for t in targets if t.cut in r]
 
     # add constraints
-    for g in genes:
+    for i, g in enumerate(genes):
+        if i % 100 == 0:
+            print("Added constraints for {} genes.".format(i))
+
         if len(g.targets) < 1:
             continue
 
@@ -117,7 +120,7 @@ def optimize(genes, required_guides=[], excluded_guides=[], MIN_FRAGMENT_SIZE=20
         GRB.MINIMIZE
     )
 
-    m.Params.LogToConsole = 0
+    #m.Params.LogToConsole = 0
     m.update()
     print('Done building model')
     m.optimize()
@@ -143,6 +146,42 @@ def get_guides_from_file_or_empty(f):
     else:
         return []
 
+def find_components(genes):
+    print("Finding components...")
+    guide_to_genes = defaultdict(set)
+
+    for g in genes:
+        for target in g.targets:
+            guide_to_genes[target.guide].add(g.name)
+
+    graph = networkx.Graph()
+
+    for g in genes:
+        graph.add_node(g.name)
+
+    def guide_to_node(guide):
+        return 'guide: ' + guide
+    def is_guide(node):
+        if node[:6] == 'guide:':
+            return True
+        else:
+            return False
+
+    for guide in guide_to_genes:
+        graph.add_node(guide_to_node(guide))
+        for gene in guide_to_genes[guide]:
+            graph.add_edge(guide_to_node(guide), gene)
+
+    connected_components = networkx.connected_components(graph)
+    connected_genes = [[node for node in c if not is_guide(node)] for c in connected_components]
+
+    gene_dict = {g.name: g for g in genes}
+
+    components = [Component([gene_dict[name] for name in sorted(c)]) for c in connected_genes]
+
+    print("There are ", len(components), " components.")
+
+    return components
 
 def main():
     parser = argparse.ArgumentParser()
@@ -158,8 +197,10 @@ def main():
                         default="library.txt")
     args = parser.parse_args()
 
+    print("Loading genes...")
     gene_names = sorted([os.path.splitext(os.path.basename(f))[0] for f in glob.glob(
         'generated_files/under_version_control/genes/*.fasta')])
+    #gene_names = gene_names[2000:2500]
     genes = [Gene(name) for name in gene_names]
 
     existing_guides = get_guides_from_file_or_empty(args.extend)
@@ -184,25 +225,7 @@ def main():
 
     genes = [g for g in genes if g.targets is not None]
 
-    guide_to_genes = defaultdict(set)
-
-    for g in genes:
-        for target in g.targets:
-            guide_to_genes[target.guide].add(g.name)
-
-    graph = networkx.Graph()
-
-    for g in genes:
-        graph.add_node(g.name)
-
-    for guide in guide_to_genes:
-        for c in itertools.combinations(guide_to_genes[guide], 2):
-            graph.add_edge(*c)
-
-    components = [Component([g for g in genes if g.name in c])
-                  for c in networkx.connected_components(graph)]
-
-    print("There are ", len(components), " components.")
+    components = find_components(genes)
 
     solved_guides = set()
 
