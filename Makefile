@@ -14,10 +14,12 @@ build_gene_files:
 crispr_sites2: crispr_sites2.cpp
 	g++ -O3 --std=c++11 -o crispr_sites2 crispr_sites2.cpp
 
-generate_offtargets: inputs/additional/offtargets/hg38.fa.gz crispr_sites2
+generated_files/untracked/all_offtargets.txt: inputs/additional/offtargets/hg38.fa.gz crispr_sites2
 	gzip -dc inputs/additional/offtargets/hg38.fa.gz | ./crispr_sites2 > generated_files/untracked/human_guides_38.txt
 	gzip -dc inputs/additional/offtargets/EColi_BL21_DE3__NC_012892.2.fasta.gz | ./crispr_sites2 > generated_files/untracked/ecoli_bl21_de3_offtargets.txt
 	cat generated_files/untracked/ecoli_bl21_de3_offtargets.txt generated_files/untracked/human_guides_38.txt > generated_files/untracked/all_offtargets.txt
+
+generate_offtargets: generated_files/untracked/all_offtargets.txt
 
 compile_offtarget_server: offtarget/matcher.go offtarget/main.go
 	cd offtarget && go build
