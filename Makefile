@@ -1,5 +1,5 @@
 amr_library: build_gene_files build_indices
-	$(MAKE) optimizer ARGS="--extend generated_files/under_version_control/all_ordered_guides.txt --output generated_files/untracked/library.txt"
+	$(MAKE) optimizer ARGS="--include generated_files/under_version_control/all_ordered_guides.txt --output generated_files/untracked/library.txt"
 	$(MAKE) extract_guides ARGS="--library generated_files/untracked/library.txt \
 				     --genes generated_files/under_version_control/amr_staph_genes.txt \
 				     --max-cuts 10 \

@@ -187,7 +187,7 @@ def find_components(genes):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--extend',
+    parser.add_argument('--include',
                         type=argparse.FileType('r'),
                         metavar="file")
     parser.add_argument('--exclude',
@@ -205,7 +205,7 @@ def main():
 
     genes = [Gene(name) for name in gene_names]
 
-    existing_guides = get_guides_from_file_or_empty(args.extend)
+    existing_guides = get_guides_from_file_or_empty(args.include)
     excluded_guides = get_guides_from_file_or_empty(args.exclude)
 
     with open('inputs/additional/padding.json', 'r') as fp:
