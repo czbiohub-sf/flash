@@ -1,4 +1,4 @@
->gb|NC_015964.1|+|1996520-1999166|ARO:3003924|Haemophilus parainfluenzae gyrA conferring resistance to fluoroquinolones [Haemophilus parainfluenzae]|flash_resistance:aminocoumarin_antibiotic,fluoroquinolone_antibiotic|flash_key:gyrA__NC_015964.1__ARO_3003924|flash_aro:3003924|flash_mutation_ranges:S84Y
+>gb|NC_015964.1|+|1996520-1999166|ARO:3003924|Haemophilus parainfluenzae gyrA conferring resistance to fluoroquinolones [Haemophilus parainfluenzae]|flash_resistance:fluoroquinolone_antibiotic|flash_key:gyrA__NC_015964.1__ARO_3003924|flash_aro:3003924|flash_mutation_ranges:S84Y
 ATGACGGATTCAATCCATTCCTCTATTACCCCAGTCAATATTGAAGAAGAACTAAAATCT
 TCTTACCTTGACTACGCCATGTCGGTGATTGTTGGGCGTGCTTTGCCTGATGTGCGTGAC
 GGTTTAAAACCGGTGCATCGACGTGTGCTTTTCTCCATGGATCAATCTGGCATCACTGCC

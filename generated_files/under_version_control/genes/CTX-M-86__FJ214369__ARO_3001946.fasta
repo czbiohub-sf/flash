@@ -1,4 +1,4 @@
->gb|FJ214369|+|0-876|ARO:3001946|CTX-M-86 [Salmonella enterica subsp. enterica serovar Agona]|blaCTX-M-86_1_FJ214369|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:CTX-M-86__FJ214369__ARO_3001946|flash_aro:3001946|flash_aliases:CTX-M-86__FJ214369__ARO_3001946,CTX-M-86__FJ214369__beta_lactamase
+>gb|FJ214369|+|0-876|ARO:3001946|CTX-M-86 [Salmonella enterica subsp. enterica serovar Agona]|blaCTX-M-86_1_FJ214369|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta_lactamase_resfinder|flash_key:CTX-M-86__FJ214369__ARO_3001946|flash_aro:3001946|flash_aliases:CTX-M-86__FJ214369__ARO_3001946,CTX-M-86__FJ214369__beta_lactamase
 ATGGTGACAAAGAGAGTGCAACGGATGATGTTCGCGGCGGCGGCGTGCATTCCGCTGCTG
 CTGGGCAGCGCGCCGCTTTATGCGCAGACGAGTGCGGTGCAGCAAAAGCTGGCGGCGCTG
 GAGAAAAGCAGCGGAGGGCGGCTGGGCGTCGCGCTCATCGATACCGCAGATAATACGCAG

@@ -1,4 +1,4 @@
->gb|U05883|+|555-1458|ARO:3003559|cepA beta-lactamase [Bacteroides fragilis]|flash_resistance:beta-lactam_antibiotic|flash_key:cepA__U05883__ARO_3003559|flash_aro:3003559
+>gb|U05883|+|555-1458|ARO:3003559|cepA beta-lactamase [Bacteroides fragilis]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin|flash_key:cepA__U05883__ARO_3003559|flash_aro:3003559
 ATGCAAAAAAGACTTATACATTTATCCATTATCTTCTTTCTGCTATGTCCTGCCCTGGTA
 GTTGCGCAGAACAGTCCTCTTGAAACTCAACTCAAGAAAGCCATAGAAGGGAAAAAAGCC
 GAAATAGGAATTGCAGTCATTATCGACGGGCAAGATACGATAACAGTCAATAATGATATT

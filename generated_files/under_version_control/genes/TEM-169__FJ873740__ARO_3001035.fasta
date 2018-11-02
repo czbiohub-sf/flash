@@ -1,4 +1,4 @@
->gb|FJ873740|+|0-858|ARO:3001035|TEM-169 [Salmonella enterica subsp. enterica serovar Infantis]|blaTEM-169_1_FJ873740|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:TEM-169__FJ873740__ARO_3001035|flash_aro:3001035|flash_aliases:TEM-169__FJ873740__ARO_3001035,TEM-169__FJ873740__beta_lactamase
+>gb|FJ873740|+|0-858|ARO:3001035|TEM-169 [Salmonella enterica subsp. enterica serovar Infantis]|blaTEM-169_1_FJ873740|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__monobactam,beta-lactam_antibiotic__penam,beta-lactam_antibiotic__penem,beta_lactamase_resfinder|flash_key:TEM-169__FJ873740__ARO_3001035|flash_aro:3001035|flash_aliases:TEM-169__FJ873740__ARO_3001035,TEM-169__FJ873740__beta_lactamase
 ATGAGTATTCAACATTTCCGTGTCGCCCTTATTCCCTTTTTTGCGGCATTTTGCCTTCCT
 GTTTTTGCTCACCCAGAAACGCTGGTGAAAGTAAAAGATGCTGAAGATCAGTTGGGTGCA
 CGAGTGGGTTACATCGAACTGGATCTCAACAGCGGTAAGATCCTTGAGAGTTTTCGCCCC

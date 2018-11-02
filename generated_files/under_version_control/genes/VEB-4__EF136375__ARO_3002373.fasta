@@ -1,4 +1,4 @@
->gb|EF136375|+|0-900|ARO:3002373|VEB-4 [Proteus mirabilis]|blaVEB-4_1_EF136375|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:VEB-4__EF136375__ARO_3002373|flash_aro:3002373|flash_aliases:VEB-4__EF136375__ARO_3002373,VEB-4__EF136375__beta_lactamase
+>gb|EF136375|+|0-900|ARO:3002373|VEB-4 [Proteus mirabilis]|blaVEB-4_1_EF136375|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__monobactam,beta_lactamase_resfinder|flash_key:VEB-4__EF136375__ARO_3002373|flash_aro:3002373|flash_aliases:VEB-4__EF136375__ARO_3002373,VEB-4__EF136375__beta_lactamase
 ATGAAAATCGTAAAAAGGATATTATTAGTATTGTTAAGTTTATTTTTTACAATTGTGTAT
 TCAAATGCTCAAGCTGACAACTTAACTTTGAAAATTGAGAATGTTTTAAAGGCAAAAAAT
 GCCAGAATAGGAGTAGCAATATTCAACAGCAATGAGAAGGATACTTTGAAGATTAATAAC

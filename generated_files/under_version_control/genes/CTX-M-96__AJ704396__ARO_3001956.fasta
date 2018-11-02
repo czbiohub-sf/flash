@@ -1,4 +1,4 @@
->gb|AJ704396|+|0-876|ARO:3001956|CTX-M-96 [Klebsiella pneumoniae]|blaCTX-M-96_1_AJ704396|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:CTX-M-96__AJ704396__ARO_3001956|flash_aro:3001956|flash_aliases:CTX-M-96__AJ704396__ARO_3001956,CTX-M-96__AJ704396__beta_lactamase
+>gb|AJ704396|+|0-876|ARO:3001956|CTX-M-96 [Klebsiella pneumoniae]|blaCTX-M-96_1_AJ704396|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta_lactamase_resfinder|flash_key:CTX-M-96__AJ704396__ARO_3001956|flash_aro:3001956|flash_aliases:CTX-M-96__AJ704396__ARO_3001956,CTX-M-96__AJ704396__beta_lactamase
 ATGGTTAAAAAATCACTGCGCCAGTTCACGCTGATGGCGACGGCAGCCGTCACGCTGTTG
 TTAGGAAGTGTGCCGCTGTATGCGCAAACGGCGGACGTACAGCAAAAACTTGCCGAATTA
 GAGCGGCAGTCGGGAGGCAGACTGGGTGTGGCATTGATTAACACAGCGGATAATTCGCAA

@@ -1,4 +1,4 @@
->gb|KF460533|+|0-831|ARO:3001550|OXA-363 [Acinetobacter lwoffii]|flash_resistance:beta-lactam_antibiotic|flash_key:OXA-363__KF460533__ARO_3001550|flash_aro:3001550
+>gb|KF460533|+|0-831|ARO:3001550|OXA-363 [Acinetobacter lwoffii]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__penam|flash_key:OXA-363__KF460533__ARO_3001550|flash_aro:3001550
 ATGAAAACTCTGATTTTTCTGCCTTTACTTAATTGCTTGAGCCTGACGGCGTGTACCTTA
 CCCGTTTCATCTTCCCCATCTCATATCACTTCGACTCAATCGACTCAAGCCATTGCCCAA
 TTATTTGATCAGGCGCAAAGCTCTGGCGTTTTAGTGATTCAGCGTGGTCAACAGATACAG

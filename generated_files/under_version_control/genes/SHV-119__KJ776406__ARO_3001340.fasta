@@ -1,4 +1,4 @@
->gb|KJ776406|+|16-877|ARO:3001340|SHV-119 [Klebsiella pneumoniae]|flash_resistance:beta-lactam_antibiotic|flash_key:SHV-119__KJ776406__ARO_3001340|flash_aro:3001340
+>gb|KJ776406|+|16-877|ARO:3001340|SHV-119 [Klebsiella pneumoniae]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__carbapenem,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__penam|flash_key:SHV-119__KJ776406__ARO_3001340|flash_aro:3001340
 ATGCGTCATATTCGCCTGTGTATTATCTCCCTGTTAGCCACCCTGCCGCTGGCGGTACAA
 GCCAGCCCGCAGCCGCTTGAGCAAATTAAACAAAGCGAAAGCCAGCTGTCGGGCCGCGTA
 GGCATGATAGAAATGGATCTGGCCAGCGGCCGCACGCTGACCGCCTGGCGCGCCGATGAA

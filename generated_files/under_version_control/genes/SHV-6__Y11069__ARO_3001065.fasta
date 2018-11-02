@@ -1,4 +1,4 @@
->gb|Y11069|+|0-780|ARO:3001065|SHV-6 [Klebsiella pneumoniae]|flash_resistance:beta-lactam_antibiotic|flash_key:SHV-6__Y11069__ARO_3001065|flash_aro:3001065
+>gb|Y11069|+|0-780|ARO:3001065|SHV-6 [Klebsiella pneumoniae]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__carbapenem,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__penam|flash_key:SHV-6__Y11069__ARO_3001065|flash_aro:3001065
 CTGTTAGCCACCCTGCCGCTGGCGGTACACGCCAGCCCGCAGCCGCTTGAGCAAATTAAA
 CTAAGCGAAAGCCAGCTGTCGGGCCGCGTAGGCATGATAGAAATGGATCTGGCCAGCGGC
 CGCACGCTGACCGCCTGGCGCGCCGATGAACGCTTTCCCATGATGAGCACCTTTAAAGTA

@@ -1,4 +1,4 @@
->gb|KM087864|+|0-1146|ARO:3002179|MIR-14 [Enterobacter asburiae]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin|flash_key:MIR-14__KM087864__ARO_3002179|flash_aro:3002179
+>gb|KM087864|+|0-1146|ARO:3002179|MIR-14 [Enterobacter asburiae]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__monobactam|flash_key:MIR-14__KM087864__ARO_3002179|flash_aro:3002179
 ATGATGACAAAATCCCTAAGCTGTGCCCTGCTGCTCAGCGTTGCCAGCTCTGCATTCGCC
 GCACCGATGTCCGAAAAACAGCTGGCTGAGGTGGTGGAACGTACCGTTACGCCGCTGATG
 AAAGCGCAGGCCATTCCGGGCATGGCGGTGGCGGTGATTTATCAGGGTCAGCCGCACTAC

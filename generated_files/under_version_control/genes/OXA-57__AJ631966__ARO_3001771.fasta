@@ -1,4 +1,4 @@
->gb|AJ631966|+|0-810|ARO:3001771|OXA-57 [Burkholderia pseudomallei 576]|blaOXA-57_1_AJ631966|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:OXA-57__AJ631966__ARO_3001771|flash_aro:3001771|flash_aliases:OXA-57__AJ631966__ARO_3001771,OXA-57__AJ631966__beta_lactamase
+>gb|AJ631966|+|0-810|ARO:3001771|OXA-57 [Burkholderia pseudomallei 576]|blaOXA-57_1_AJ631966|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__penam,beta_lactamase_resfinder|flash_key:OXA-57__AJ631966__ARO_3001771|flash_aro:3001771|flash_aliases:OXA-57__AJ631966__ARO_3001771,OXA-57__AJ631966__beta_lactamase
 ATGAAATTCCGACACGCGCTGTCGAGCGCATTCGTTTTGCTGGGTTGCATCGCCGCGTCG
 GCGCATGCGAAGACGATCTGCACGGCGATCGCCGATGCGGGCACGGGCAAGCTGCTGGTG
 CAGGACGGCGATTGCGGCCGCCGCGCATCGCCCGCGTCGACGTTCAAGATCGCGATCAGC

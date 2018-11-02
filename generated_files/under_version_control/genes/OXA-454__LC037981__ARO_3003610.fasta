@@ -1,4 +1,4 @@
->gb|LC037981|+|0-801|ARO:3003610|OXA-454 [Delftia acidovorans]|flash_resistance:beta-lactam_antibiotic|flash_key:OXA-454__LC037981__ARO_3003610|flash_aro:3003610
+>gb|LC037981|+|0-801|ARO:3003610|OXA-454 [Delftia acidovorans]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__penam|flash_key:OXA-454__LC037981__ARO_3003610|flash_aro:3003610
 ATGAAAACATTTGCCGCATATGTAATTATCGCGTGTCTTTCGAGTACGGCATTAGCTGGT
 TCAATTACAGAAAATACGTCTTGGAACAAAGAGTTCTCTGCCGAAGCCGTCAATGGTGTC
 TTCGTGCTTTGTAAAAGTAGCAGTAAATCCTGCGCTACCAATGACTTAGCTCGTGCATCA

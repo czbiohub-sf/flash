@@ -1,4 +1,4 @@
->gb|Z28968|+|0-885|ARO:3002379|SME-1 [Serratia marcescens]|blaSME-1_1_Z28968|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:SME-1__Z28968__ARO_3002379|flash_aro:3002379|flash_aliases:SME-1__Z28968__ARO_3002379,SME-1__Z28968__beta_lactamase
+>gb|Z28968|+|0-885|ARO:3002379|SME-1 [Serratia marcescens]|blaSME-1_1_Z28968|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__carbapenem,beta_lactamase_resfinder|flash_key:SME-1__Z28968__ARO_3002379|flash_aro:3002379|flash_aliases:SME-1__Z28968__ARO_3002379,SME-1__Z28968__beta_lactamase
 ATGTCAAACAAAGTAAATTTTAAAACGGCTTCATTTTTGTTTAGTGTTTGTTTAGCTTTG
 TCGGCATTTAATGCTCATGCTAACAAAAGTGATGCTGCGGCAAAACAAATAAAAAAATTA
 GAGGAAGACTTTGATGGGAGGATTGGCGTCTTTGCAATAGATACAGGATCGGGTAATACA

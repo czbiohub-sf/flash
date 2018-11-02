@@ -1,4 +1,4 @@
->gb|FN813245|+|1911-2787|ARO:3001955|CTX-M-95 [Kluyvera ascorbata]|blaCTX-M-95_1_FN813245|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:CTX-M-95__FN813245__ARO_3001955|flash_aro:3001955|flash_aliases:CTX-M-95__FN813245__ARO_3001955,CTX-M-95__FN813245__beta_lactamase
+>gb|FN813245|+|1911-2787|ARO:3001955|CTX-M-95 [Kluyvera ascorbata]|blaCTX-M-95_1_FN813245|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta_lactamase_resfinder|flash_key:CTX-M-95__FN813245__ARO_3001955|flash_aro:3001955|flash_aliases:CTX-M-95__FN813245__ARO_3001955,CTX-M-95__FN813245__beta_lactamase
 ATGATGACTCAGAGCATTCGCCGCTCAATGTTAACGGTGATGGCGACGCTACCCCTGCTA
 TTTAGCAGCGCAACGCTGCATGCGCAAACGAACAGCGTGCAACAGCAGCTGGAAGCCCTG
 GAGAAAAGTTCGGGAGGTCGGCTTGGCGTTGCGCTGATTAACACCGCCGATAATTCGCAG

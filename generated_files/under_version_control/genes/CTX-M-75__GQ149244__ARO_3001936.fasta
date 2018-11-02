@@ -1,4 +1,4 @@
->gb|GQ149244|+|0-873|ARO:3001936|CTX-M-75 [Providencia stuartii]|blaCTX-M-75_1_GQ149244|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:CTX-M-75__GQ149244__ARO_3001936|flash_aro:3001936|flash_aliases:CTX-M-75__GQ149244__ARO_3001936,CTX-M-75__GQ149244__beta_lactamase
+>gb|GQ149244|+|0-873|ARO:3001936|CTX-M-75 [Providencia stuartii]|blaCTX-M-75_1_GQ149244|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta_lactamase_resfinder|flash_key:CTX-M-75__GQ149244__ARO_3001936|flash_aro:3001936|flash_aliases:CTX-M-75__GQ149244__ARO_3001936,CTX-M-75__GQ149244__beta_lactamase
 ATGATGACCCAGAGCATTCGCCGCAGCATGCTGACCGTGATGGCGACCCTGAGCCTGCTG
 TTTAGCAGCGCGACCCTGCATGCGCAGGCGAACAGCGTGCAGCAGCAGCTGGAAGCGCTG
 GAAAAAAGCAGCGGCGGCCGCCTGGGCGTGGCGCTGATTAACACCGCGGATAACAGCCAG

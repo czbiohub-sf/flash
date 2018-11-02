@@ -217,7 +217,7 @@ def main():
         if g.name in padding_seqs:
             g.verify_padding(padding_seqs[g.name])
         else:
-            assert g.padding is None
+            assert g.padding is None, g.name
 
     genes_without_targets = [g for g in genes if g.targets is None]
 

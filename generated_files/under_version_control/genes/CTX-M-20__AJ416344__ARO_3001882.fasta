@@ -1,4 +1,4 @@
->gb|AJ416344|+|303-1179|ARO:3001882|CTX-M-20 [Proteus mirabilis]|blaCTX-M-20_1_AJ416344|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:CTX-M-20__AJ416344__ARO_3001882|flash_aro:3001882|flash_aliases:CTX-M-20__AJ416344__ARO_3001882,CTX-M-20__AJ416344__beta_lactamase
+>gb|AJ416344|+|303-1179|ARO:3001882|CTX-M-20 [Proteus mirabilis]|blaCTX-M-20_1_AJ416344|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta_lactamase_resfinder|flash_key:CTX-M-20__AJ416344__ARO_3001882|flash_aro:3001882|flash_aliases:CTX-M-20__AJ416344__ARO_3001882,CTX-M-20__AJ416344__beta_lactamase
 ATGATGACTCAGAGCATTCGCCGCTCAATGTTAACGGTGATGGCGACGCTACCCCTGCTA
 TTTAGCAGCGCAACGCTGCATGCGCAGGCGAACAGCGTGCAACAGCAGCTGGAAGCCCTG
 GAGAAAAGTTCGGGAGGTCGGCTTGGCGTTGCGCTGATTAACACCGCCGATAATTCGCAG

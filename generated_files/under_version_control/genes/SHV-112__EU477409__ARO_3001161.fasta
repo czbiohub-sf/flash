@@ -1,4 +1,4 @@
->gb|EU477409|+|0-308|ARO:3001161|SHV-112 [Klebsiella pneumoniae]|flash_resistance:beta-lactam_antibiotic|flash_key:SHV-112__EU477409__ARO_3001161|flash_aro:3001161
+>gb|EU477409|+|0-308|ARO:3001161|SHV-112 [Klebsiella pneumoniae] Partial|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__carbapenem,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__penam|flash_key:SHV-112__EU477409__ARO_3001161|flash_aro:3001161
 CTGGGAAACGGAACTGAATGAGGCGCTTCCCGGCGACGCCCGCGACACCACTACCCCGGC
 CAGCATGGCCGCGACCCTGCGCAAGCTGCTGACCAGCCAGCGTCTGAGCGCCCGTTCGCA
 ACGGCAGCTGCTGCAGTGGATGGTGGACGATCGGGTCGCCGGACCGTTGATCCGCTCCGT

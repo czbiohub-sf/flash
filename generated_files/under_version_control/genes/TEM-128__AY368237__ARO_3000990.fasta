@@ -1,4 +1,4 @@
->gb|AY368237|+|0-861|ARO:3000990|TEM-128 [Escherichia coli]|flash_resistance:beta-lactam_antibiotic|flash_key:TEM-128__AY368237__ARO_3000990|flash_aro:3000990
+>gb|AY368237|+|0-861|ARO:3000990|TEM-128 [Escherichia coli]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__monobactam,beta-lactam_antibiotic__penam,beta-lactam_antibiotic__penem|flash_key:TEM-128__AY368237__ARO_3000990|flash_aro:3000990
 ATGAGTATTCAACATTTTCGTGTCGCCCTTATTCCCTTTTTTGCGGCATTTTGCCTTCCT
 GTTTTTGCTCACCCAGAAACGCTGGTGAAAGTAAAAGATGCTGAAGATCAGTTGGGTGCA
 CGAGTGGGTTACATCGAACTGGATCTCAACAGCGGTAAGATCCTTGAGAGTTTTCGCCCC

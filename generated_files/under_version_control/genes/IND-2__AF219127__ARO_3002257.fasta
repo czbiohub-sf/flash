@@ -1,4 +1,4 @@
->gb|AF219127|+|0-732|ARO:3002257|IND-2 [Chryseobacterium indologenes]|blaIND-2_2_AF219127|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:IND-2__AF219127__ARO_3002257|flash_aro:3002257|flash_aliases:IND-2__AF219127__ARO_3002257,IND-2__AF219127__beta_lactamase
+>gb|AF219127|+|0-732|ARO:3002257|IND-2 [Chryseobacterium indologenes]|blaIND-2_2_AF219127|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__carbapenem,beta_lactamase_resfinder|flash_key:IND-2__AF219127__ARO_3002257|flash_aro:3002257|flash_aliases:IND-2__AF219127__ARO_3002257,IND-2__AF219127__beta_lactamase
 ATGAAAAAAAGTATTCAGCTTTTGATGATGTCAATGTTTTTAAGCCCATTGATCAATGCC
 CAGGTTAAAGATTTTGTAATTGAGCCGCCTGTTAAACCCAACCTGTATCTTTATAAAAGT
 TTCGGAGTTTTCGGGGGTAAAGAATATTCTGCCAATGCTGTATATCTTACCACTAAGAAA

@@ -1,4 +1,4 @@
->gb|KF131539|+|0-801|ARO:3002309|VIM-39 [Klebsiella pneumoniae]|flash_resistance:beta-lactam_antibiotic|flash_key:VIM-39__KF131539__ARO_3002309|flash_aro:3002309
+>gb|KF131539|+|0-801|ARO:3002309|VIM-39 [Klebsiella pneumoniae]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__carbapenem,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__cephem__cephamycin,beta-lactam_antibiotic__penam,beta-lactam_antibiotic__penem|flash_key:VIM-39__KF131539__ARO_3002309|flash_aro:3002309
 ATGTTAAAAGTTATTAGTAGTTTATTGGTCTACATGACCGCGTCTGTCATGGCTGTCGCA
 AGTCCGTTAGCCCATTCCGGGGAGCCGAGTGGTGAGTATCCGGCAGTCAACGAAATTCCG
 GTCGGAGAGGTCCGACTTTACCAGATTGCCGATGGTGTTTGGTCGCATATCGCAACGCAG

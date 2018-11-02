@@ -1,4 +1,4 @@
->gb|AF117745|+|0-780|ARO:3001079|SHV-21 [Klebsiella pneumoniae]|flash_resistance:beta-lactam_antibiotic|flash_key:SHV-21__AF117745__ARO_3001079|flash_aro:3001079
+>gb|AF117745|+|0-780|ARO:3001079|SHV-21 [Klebsiella pneumoniae]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__carbapenem,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__penam|flash_key:SHV-21__AF117745__ARO_3001079|flash_aro:3001079
 CTGTTAGCCACCCTGCCGCTGGCGGTACACGCCAGCCCGCAGCCGCTTGAGCAAATTAAA
 CTAAGCGAAAGCCAGCTGTCGGGCCGCGTAGGCATGATAGAAATGGATCTGGCCAGCGGC
 CGCACGCTGACCGCCTGGCGCGCCGATGAACGCTTTCCCATGATGAGCACCTTTAAAGTA

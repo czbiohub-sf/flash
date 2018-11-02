@@ -1,4 +1,4 @@
->blaOKP-B-16_1_AM850918|gb|AM850918|+|24-885|ARO:3002438|OKP-B-5 [Klebsiella pneumoniae]|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:OKP-B-5__AM850918__ARO_3002438|flash_aro:3002438|flash_aliases:OKP-B-16__AM850918__beta_lactamase,OKP-B-5__AM850918__ARO_3002438
+>blaOKP-B-16_1_AM850918|gb|AM850918|+|24-885|ARO:3002438|OKP-B-5 [Klebsiella pneumoniae]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__penam,beta_lactamase_resfinder|flash_key:OKP-B-5__AM850918__ARO_3002438|flash_aro:3002438|flash_aliases:OKP-B-16__AM850918__beta_lactamase,OKP-B-5__AM850918__ARO_3002438
 ATGCGTTATGTTCGCCTGTGCCTTATCTCCCTGATTGCCGCCCTGCCACTGGCGGTATTC
 GCCAGCCCTCAGCCGCTTGAGCAGATTAAAATCAGCGAAAGTCAGCTGGCGGGCCGGGTG
 GGCTATGTTGAAATGGATCTGGCCAGCGGCCGCACGCTGGCCGCCTGGCGCGCCAGTGAG

@@ -1,4 +1,4 @@
->gb|KM087851|+|0-1146|ARO:3002180|MIR-15 [Enterobacter kobei]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin|flash_key:MIR-15__KM087851__ARO_3002180|flash_aro:3002180
+>gb|KM087851|+|0-1146|ARO:3002180|MIR-15 [Enterobacter kobei]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__monobactam|flash_key:MIR-15__KM087851__ARO_3002180|flash_aro:3002180
 ATGATGACAAAATCCCTAAGCTGTGCCCTGCTGCTCAGCGTCGCCAGCGCTGCATTCGCC
 GCACCGATGTCCGAAAAACAGCTGGCTGAGGTGGTGGAACGTACCGTTACGCCGCTGATA
 AACGCGCAGGCCATTCCGGGTATGGCGGTGGCGGTAATTTATCAGGGTCAGCCACACTAC

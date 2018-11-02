@@ -1,4 +1,4 @@
->gb|AY168442.1|+|53-1109|ARO:3003970|D-Ala-D-Ala ligase [Enterococcus gallinarum]|flash_resistance:glycopeptide_antibiotic|flash_key:D-Ala-D-Ala__AY168442.1__ARO_3003970|flash_padding:53_153|flash_aro:3003970|flash_mutation_ranges:E13G,P313L,V241D,G99R,D295G
+>gb|AY168442.1|+|53-1109|ARO:3003970|D-Ala-D-Ala ligase [Enterococcus gallinarum]|flash_resistance:glycopeptide_antibiotic|flash_key:D-Ala-D-Ala__AY168442.1__ARO_3003970|flash_padding:53_153|flash_aro:3003970|flash_mutation_ranges:E13G,V241D,P313L,D295G,G99R
 AAATGTGGAAGAATTAGTTTTGGTAGAAACAATGAATACAGGAGGAATTTCTTTTGAAAA
 TTATTTTATTATATGGCGGACGCAGTGCAGAGCATGATGTATCGCTTCTATCCGCTTTTT
 CAGTAGTCAATGCTGTATATTATAATTACTACCAAGTACAATTAGTAATGATCACGAGAG

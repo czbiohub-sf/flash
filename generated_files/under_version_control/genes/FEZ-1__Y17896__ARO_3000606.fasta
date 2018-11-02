@@ -1,4 +1,4 @@
->gb|Y17896|+|0-849|ARO:3000606|FEZ-1 beta-lactamase [Fluoribacter gormanii]|flash_resistance:beta-lactam_antibiotic|flash_key:FEZ-1__Y17896__ARO_3000606|flash_aro:3000606
+>gb|Y17896|+|0-849|ARO:3000606|FEZ-1 beta-lactamase [Fluoribacter gormanii]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__carbapenem,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__penam|flash_key:FEZ-1__Y17896__ARO_3000606|flash_aro:3000606
 ATGAAAAAAGTATTAAGTTTAACCGCATTGATGATGGTATTGAACCATTCAAGCTTCGCA
 TATCCAATGCCAAATCCTTTTCCCCCATTCCGTATTGCTGGAAACTTGTACTATGTAGGC
 ACTGATGATCTCGCAAGCTACCTGATTGTCACACCGAGAGGGAACATTTTGATCAATAGT

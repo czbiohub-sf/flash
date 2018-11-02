@@ -1,4 +1,4 @@
->gb|GQ149243|+|0-873|ARO:3001935|CTX-M-74 [Enterobacter cloacae]|blaCTX-M-74_1_GQ149243|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:CTX-M-74__GQ149243__ARO_3001935|flash_aro:3001935|flash_aliases:CTX-M-74__GQ149243__ARO_3001935,CTX-M-74__GQ149243__beta_lactamase
+>gb|GQ149243|+|0-873|ARO:3001935|CTX-M-74 [Enterobacter cloacae]|blaCTX-M-74_1_GQ149243|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta_lactamase_resfinder|flash_key:CTX-M-74__GQ149243__ARO_3001935|flash_aro:3001935|flash_aliases:CTX-M-74__GQ149243__ARO_3001935,CTX-M-74__GQ149243__beta_lactamase
 ATGATGACCCAGAGCATTCGCCGCAGCATGCTGACCGTGATGGCGACCCTGCCGCTGCTG
 TTTAGCAGCGCGACCCTGCATGCGCAGGCGAACAGCGTGCAGCAGCAGCTGGAAGCGCTG
 GAAAAAAGCAGCGGCGGCCGCCTGGGCGTGGCGCTGATTAACACCGCGGATAACAGCCAG

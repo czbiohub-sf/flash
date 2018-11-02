@@ -1,4 +1,4 @@
->gb|NC_015964.1|+|1905162-1907418|ARO:3003925|Haemophilus parainfluenzae parC conferring resistance to fluoroquinolones [Haemophilus parainfluenzae]|flash_resistance:aminocoumarin_antibiotic,fluoroquinolone_antibiotic|flash_key:parC__NC_015964.1__ARO_3003925|flash_aro:3003925|flash_mutation_ranges:S84F
+>gb|NC_015964.1|+|1905162-1907418|ARO:3003925|Haemophilus parainfluenzae parC conferring resistance to fluoroquinolones [Haemophilus parainfluenzae]|flash_resistance:fluoroquinolone_antibiotic|flash_key:parC__NC_015964.1__ARO_3003925|flash_aro:3003925|flash_mutation_ranges:S84F
 ATGAGCAATATTAATTACGAAGGCATCGAGCAGATGCCACTTCGCACCTTTACAGAAAAG
 GCTTACCTTAATTATTCAATGTACGTCATCATGGATCGTGCATTGCCTTTTATTGGCGAT
 GGCTTAAAGCCTGTTCAACGTCGTATTGTCTATGCGATGTCTGAACTGGGTTTAAATGCC

@@ -1,4 +1,4 @@
->aph(9)-Ia_1_U94857|gb|U94857|+|0-996|ARO:3002662|APH(9)-Ia [Legionella pneumophila 130b]|flash_resistance:aminoglycoside_antibiotic,aminoglycoside_antibiotic__spectinomycin,aminoglycoside_resfinder|flash_key:APH9-Ia__U94857__ARO_3002662|flash_aro:3002662|flash_aliases:aph9-Ia__U94857__aminoglycoside,APH9-Ia__U94857__ARO_3002662
+>aph(9)-Ia_1_U94857|gb|U94857|+|0-996|ARO:3002662|APH(9)-Ia [Legionella pneumophila 130b]|flash_resistance:aminoglycoside_antibiotic,aminoglycoside_antibiotic__plazomicin,aminoglycoside_antibiotic__spectinomycin,aminoglycoside_resfinder|flash_key:APH9-Ia__U94857__ARO_3002662|flash_aro:3002662|flash_aliases:aph9-Ia__U94857__aminoglycoside,APH9-Ia__U94857__ARO_3002662
 ATGCTAAAACAACCAATTCAAGCTCAACAACTTATCGAACTTTTGAAAGTGCATTATGGA
 ATTGATATTCATACAGCACAATTCATCCAGGGTGGTGCTGATACGAATGCATTTGCATAT
 CAAGCAGATTCAGAATCCAAGTCTTATTTCATAAAGCTAAAATACGGCTATCATGATGAA

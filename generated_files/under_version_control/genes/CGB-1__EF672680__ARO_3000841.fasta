@@ -1,4 +1,4 @@
->gb|EF672680|+|0-729|ARO:3000841|CGB-1 beta-lactamase [Chryseobacterium gleum]|blaCGB-1_1_EF672680|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:CGB-1__EF672680__ARO_3000841|flash_aro:3000841|flash_aliases:CGB-1__EF672680__ARO_3000841,CGB-1__EF672680__beta_lactamase
+>gb|EF672680|+|0-729|ARO:3000841|CGB-1 beta-lactamase [Chryseobacterium gleum]|blaCGB-1_1_EF672680|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__carbapenem,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__penam,beta_lactamase_resfinder|flash_key:CGB-1__EF672680__ARO_3000841|flash_aro:3000841|flash_aliases:CGB-1__EF672680__ARO_3000841,CGB-1__EF672680__beta_lactamase
 ATGAAAAAAAGCATTCCGTTTTTTATTATTTCGATGTTGCTAAGCCCATTGGCAAACGCC
 CAGGACACACAGGTAAGAGATTTTGTAATTGAGCCTCAAATTCAACCTAACTTTTATATT
 TACAAAACTTTCGGAGTATTCGGAGGGAAAGAATATTCTACCAATGCCGTGTATCTGGTA

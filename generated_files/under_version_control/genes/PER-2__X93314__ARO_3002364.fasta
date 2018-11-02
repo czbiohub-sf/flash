@@ -1,4 +1,4 @@
->gb|X93314|+|0-927|ARO:3002364|PER-2 [Salmonella enterica subsp. enterica serovar Typhimurium]|blaPER-2_1_X93314|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:PER-2__X93314__ARO_3002364|flash_aro:3002364|flash_aliases:PER-2__X93314__ARO_3002364,PER-2__X93314__beta_lactamase
+>gb|X93314|+|0-927|ARO:3002364|PER-2 [Salmonella enterica subsp. enterica serovar Typhimurium]|blaPER-2_1_X93314|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__carbapenem,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__monobactam,beta-lactam_antibiotic__penam,beta-lactam_antibiotic__penem,beta_lactamase_resfinder|flash_key:PER-2__X93314__ARO_3002364|flash_aro:3002364|flash_aliases:PER-2__X93314__ARO_3002364,PER-2__X93314__beta_lactamase
 ATGAATGTCATCACAAAATGTGTTTTCACCGCTTCTGCTCTGCTGATGCTTGGCTTAAGT
 TCATTTGTAGTATCAGCCCAATCCCCTTTGTTAAAAGAGCAGATTGAAACCATAGTGACG
 GGTAAAAAGGCCACTGTAGGTGTAGCAGTGTGGGGGCCTGACGATCTGGAACCTTTGTTG

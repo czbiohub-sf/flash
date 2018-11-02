@@ -1,4 +1,4 @@
->gb|HE608151|+|1472985-1474242|ARO:3003784|Mycobacterium tuberculosis intrinsic murA conferring resistance to fosfomycin [Mycobacterium tuberculosis UT205]|flash_resistance:fosfomycin|flash_key:murA__HE608151__ARO_3003784|flash_aro:3003784
+>gb|HE608151|+|1472985-1474242|ARO:3003784|Mycobacterium tuberculosis intrinsic murA conferring resistance to fosfomycin [Mycobacterium tuberculosis UT205]|flash_resistance:fosfomycin|flash_key:murA__HE608151__ARO_3003784|flash_aro:3003784|flash_mutation_ranges:C117D
 GTGGCCGAGCGTTTCGTCGTGACTGGGGGCAACCGGTTATCAGGCGAAGTGGCCGTCGGC
 GGCGCCAAGAACAGCGTGCTCAAGCTCATGGCTGCGACGTTGTTGGCCGAGGGCACCAGC
 ACGATCACCAACTGTCCCGACATCCTCGATGTGCCGCTGATGGCGGAGGTACTGCGTGGT

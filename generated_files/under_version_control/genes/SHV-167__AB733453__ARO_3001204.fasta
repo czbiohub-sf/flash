@@ -1,4 +1,4 @@
->gb|AB733453|+|3-849|ARO:3001204|SHV-167 [Klebsiella pneumoniae]|flash_resistance:beta-lactam_antibiotic|flash_key:SHV-167__AB733453__ARO_3001204|flash_aro:3001204
+>gb|AB733453|+|3-849|ARO:3001204|SHV-167 [Klebsiella pneumoniae]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__carbapenem,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__penam|flash_key:SHV-167__AB733453__ARO_3001204|flash_aro:3001204
 ATGCGTTATATTCGCCTGTGTATTATCTCCCTGTTAGCCACCCTGCCGCTGGCGGTACAC
 GCCAGCCCGCAGCCGCTTGAGCAAATTAAACTAAGCGAAAGCCAGCTGTCGGGCCGCGTA
 GGCATGATAGAAATGGATCTGGCCAGCGGCCGCACGCTGACCGCCTGGCGCGCCGATGAA

@@ -1,4 +1,4 @@
->gb|KF526118|+|0-1146|ARO:3001842|ACT-21 [Enterobacter hormaechei]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin|flash_key:ACT-21__KF526118__ARO_3001842|flash_aro:3001842
+>gb|KF526118|+|0-1146|ARO:3001842|ACT-21 [Enterobacter hormaechei]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__carbapenem,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__cephem__cephamycin,beta-lactam_antibiotic__penam|flash_key:ACT-21__KF526118__ARO_3001842|flash_aro:3001842
 ATGATGAAAAAATCTCTTTGCTGCGCCCTGCTGCTCGGCATCTCTTGCTCTGCTCTCGCC
 GCGCCAGTGTCAGAAAAACAGCTGGCGGAGGTGGTCGCGAATACGGTTACCCCGCTGATG
 AAAGCCCAGTCGATTCCAGGCATGGCGGTGGCCGTTATTTATCAGGGTAAACCGCACTAT
