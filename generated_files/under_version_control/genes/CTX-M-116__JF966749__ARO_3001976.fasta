@@ -1,4 +1,4 @@
->gb|JF966749|+|157-1033|ARO:3001976|CTX-M-116 [Proteus mirabilis]|blaCTX-M-116_1_JF966749|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:CTX-M-116__JF966749__ARO_3001976|flash_aro:3001976|flash_aliases:CTX-M-116__JF966749__ARO_3001976,CTX-M-116__JF966749__beta_lactamase
+>gb|JF966749|+|157-1033|ARO:3001976|CTX-M-116 [Proteus mirabilis]|blaCTX-M-116_1_JF966749|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta_lactamase_resfinder|flash_key:CTX-M-116__JF966749__ARO_3001976|flash_aro:3001976|flash_aliases:CTX-M-116__JF966749__ARO_3001976,CTX-M-116__JF966749__beta_lactamase
 ATGGTTAAAAAATCACTGCGTCAGTTCACGCTGATGGCGACGGCAACCGTCACGCTGTTG
 TTAGGAAGTGTGCCGCTGTATGCGCAAACGGCGGACGTACAGCAAAAACTTGCCGAATTA
 GAGCGGCAGTCGGGAGGACGACTGGGTGTGGCATTGATTAACACAGCAGATAATTCGCAA

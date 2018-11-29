@@ -1,4 +1,4 @@
->blaVEB-1_4_AF324834|gb|AF324834.1|+|0-900|ARO:3003712|VEB-1b [Pseudomonas aeruginosa]|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:VEB-1b__AF324834.1__ARO_3003712|flash_aro:3003712|flash_aliases:VEB-1__AF324834__beta_lactamase,VEB-1b__AF324834.1__ARO_3003712
+>blaVEB-1_4_AF324834|gb|AF324834.1|+|0-900|ARO:3003712|VEB-1b [Pseudomonas aeruginosa]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__monobactam,beta_lactamase_resfinder|flash_key:VEB-1b__AF324834.1__ARO_3003712|flash_aro:3003712|flash_aliases:VEB-1__AF324834__beta_lactamase,VEB-1b__AF324834.1__ARO_3003712
 ATGAAAATCGTAAAAAGGATATTATTAGTATTGTTAAGTTTATTTTTTACAGTTGAGTAT
 TCAAATGCTCAAACTGACAACTTAACTTTGAAAATTGAGAATGTTTTAAAGGCAAAAAAT
 GCCAGAATAGGAGTAGCAATATTCAACAGCAATGAGAAGGATACTTTGAAGATTAATAAC

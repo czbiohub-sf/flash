@@ -1,4 +1,4 @@
->gb|KM087854|+|0-1140|ARO:3002145|DHA-14 [Morganella morganii]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin|flash_key:DHA-14__KM087854__ARO_3002145|flash_aro:3002145
+>gb|KM087854|+|0-1140|ARO:3002145|DHA-14 [Morganella morganii]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__cephem__cephamycin|flash_key:DHA-14__KM087854__ARO_3002145|flash_aro:3002145
 ATGAAAAAATCGTTATCTGCAACACTGATTTCCGCTCTGCTGGCGTTTTCCGCCCCGGGG
 TTTTCTGCCGCTGATAATGTCGCGGCGGTGGTGGACAGCACCATTAAACCGCTGATGGCA
 CAGCAGGATATTCCCGGGATGGCGGTTGCCGTCTCCGTAAAGGGTAAGCCCTATTATTTC

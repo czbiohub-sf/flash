@@ -1,4 +1,4 @@
->gb|FJ873739|+|0-875|ARO:3001948|CTX-M-88 [Salmonella enterica subsp. enterica serovar Infantis]|flash_resistance:beta-lactam_antibiotic|flash_key:CTX-M-88__FJ873739__ARO_3001948|flash_aro:3001948
+>gb|FJ873739|+|0-875|ARO:3001948|CTX-M-88 [Salmonella enterica subsp. enterica serovar Infantis]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin|flash_key:CTX-M-88__FJ873739__ARO_3001948|flash_aro:3001948
 ATGGTTAAAAAATCACTGCGCCAGTTCACGCTGATGGCGACGGCAACCGTCACGCTGTTG
 TTAGGAAGTGTGCCGCTGTATGCGCAAACGGCGGACGTACAGCAAAAACTTGCCGAATTA
 GAGCGGCAGTCGGGAGGCAGACTGGGTGTGGCATTGATTAACACAGCAGATAATTCGCAA

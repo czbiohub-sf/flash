@@ -1,4 +1,4 @@
->gb|AM051156|+|0-861|ARO:3002440|OKP-B-7 [Klebsiella pneumoniae]|blaOKP-B-7_1_AM051156|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:OKP-B-7__AM051156__ARO_3002440|flash_aro:3002440|flash_aliases:OKP-B-7__AM051156__ARO_3002440,OKP-B-7__AM051156__beta_lactamase
+>gb|AM051156|+|0-861|ARO:3002440|OKP-B-7 [Klebsiella pneumoniae]|blaOKP-B-7_1_AM051156|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__penam,beta_lactamase_resfinder|flash_key:OKP-B-7__AM051156__ARO_3002440|flash_aro:3002440|flash_aliases:OKP-B-7__AM051156__ARO_3002440,OKP-B-7__AM051156__beta_lactamase
 ATGCGTTATGTTCGCCTGTGCCTTATCTCCCTGATTGCCGCCCTGCCACTGGCGGTATTC
 GCCAGCCCTCAGCCGCTTGAGCAGATTAAAATCAGCGAAAGTCAGCTGGCGGGCCGGGTG
 GGCTATGTTGAAATGGATCTGGCCAGCGGCCGCACGCTGGCCGCCTGGCGCGCCAGTGAG

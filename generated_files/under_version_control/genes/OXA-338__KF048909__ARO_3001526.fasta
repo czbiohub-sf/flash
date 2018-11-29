@@ -1,4 +1,4 @@
->gb|KF048909|+|0-825|ARO:3001526|OXA-338 [Acinetobacter baumannii]|flash_resistance:beta-lactam_antibiotic|flash_key:OXA-338__KF048909__ARO_3001526|flash_aro:3001526
+>gb|KF048909|+|0-825|ARO:3001526|OXA-338 [Acinetobacter baumannii]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__penam|flash_key:OXA-338__KF048909__ARO_3001526|flash_aro:3001526
 ATGAATATTAAAGCACTCTTACTTATAACAAGCGCTATTTTTATTTCAGCCTGCTCACCT
 TATATAGTGACTGCTAATCCAAATCACAGCGCTTCAAAATCTGATGAAAAAGCAGAGAAA
 ATTAAAAATTTATTTAACGAAGCACACACTACGGGTGTTTTAGTTATCCAACAAGGCCAA

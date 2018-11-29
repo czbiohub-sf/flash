@@ -1,4 +1,4 @@
->gb|AJ549244|+|0-876|ARO:3001890|CTX-M-28 [Escherichia coli]|blaCTX-M-28_6_AJ549244|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:CTX-M-28__AJ549244__ARO_3001890|flash_aro:3001890|flash_aliases:CTX-M-28__AJ549244__ARO_3001890,CTX-M-28__AJ549244__beta_lactamase
+>gb|AJ549244|+|0-876|ARO:3001890|CTX-M-28 [Escherichia coli]|blaCTX-M-28_6_AJ549244|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta_lactamase_resfinder|flash_key:CTX-M-28__AJ549244__ARO_3001890|flash_aro:3001890|flash_aliases:CTX-M-28__AJ549244__ARO_3001890,CTX-M-28__AJ549244__beta_lactamase
 ATGGTTAAAAAATCACTGCGTCAGTTCACGCTGATGGCGACGGCAACCGTCACGCTGTTG
 TTAGGAAGTGTGCCGCTGTATGCGCAAACGGCGGACGTACAGCAAAAACTTGCCGAATTA
 GAGCGGCAGTCGGGAGGCAGACTGGGTGTGGCATTGATTAACACAGCAGATAATTCGCAA

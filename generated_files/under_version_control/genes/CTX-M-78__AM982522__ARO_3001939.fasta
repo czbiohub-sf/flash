@@ -1,4 +1,4 @@
->gb|AM982522|+|0-876|ARO:3001939|CTX-M-78 [Kluyvera georgiana]|blaCTX-M-78_1_AM982522|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:CTX-M-78__AM982522__ARO_3001939|flash_aro:3001939|flash_aliases:CTX-M-78__AM982522__ARO_3001939,CTX-M-78__AM982522__beta_lactamase
+>gb|AM982522|+|0-876|ARO:3001939|CTX-M-78 [Kluyvera georgiana]|blaCTX-M-78_1_AM982522|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta_lactamase_resfinder|flash_key:CTX-M-78__AM982522__ARO_3001939|flash_aro:3001939|flash_aliases:CTX-M-78__AM982522__ARO_3001939,CTX-M-78__AM982522__beta_lactamase
 ATGATGAGAAAAAGCGTAAGGCGGGCGATATTAATGACGACAGCCTGTGTTTCGCTGCTG
 TTGGCCAGTGTGCCGCTGTATGCCCAAGCGAACGATATTCAGCAAAAGCTGGCGGCGCTG
 GAGAAAAGCAGCGGGGGACGACTGGGTGTGGCGTTGATTAACACCGCCGATAACACGCAG

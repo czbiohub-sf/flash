@@ -1,4 +1,4 @@
->blaOXY-1-2_2_AJ871864|gb|AJ871865|+|0-876|ARO:3002390|OXY-1-2 [Klebsiella oxytoca]|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:OXY-1-2__AJ871865__ARO_3002390|flash_aro:3002390|flash_aliases:OXY-1-2__AJ871864__beta_lactamase,OXY-1-2__AJ871865__ARO_3002390
+>blaOXY-1-2_2_AJ871864|gb|AJ871865|+|0-876|ARO:3002390|OXY-1-2 [Klebsiella oxytoca]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__monobactam,beta-lactam_antibiotic__penam,beta_lactamase_resfinder|flash_key:OXY-1-2__AJ871865__ARO_3002390|flash_aro:3002390|flash_aliases:OXY-1-2__AJ871864__beta_lactamase,OXY-1-2__AJ871865__ARO_3002390
 ATGTTGAAAAGTTCGTGGCGTAAAACCGCCCTGATGGCCGCCGCCGCCGTTCCGCTGCTG
 CTGGCGAGCGGTTCATTATGGGCCAGTGCCGATGCTATCCAGCAAAAGCTGGCTGATTTA
 GAAAAACGTTCCGGCGGTCGGCTGGGCGTAGCGCTGATTAACACGGCAGATGATTCGCAA

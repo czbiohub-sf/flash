@@ -1,4 +1,4 @@
->gb|KP096412|+|0-801|ARO:3003179|VIM-43 [Pseudomonas aeruginosa]|flash_resistance:beta-lactam_antibiotic|flash_key:VIM-43__KP096412__ARO_3003179|flash_aro:3003179
+>gb|KP096412|+|0-801|ARO:3003179|VIM-43 [Pseudomonas aeruginosa]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__carbapenem,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__cephem__cephamycin,beta-lactam_antibiotic__penam,beta-lactam_antibiotic__penem|flash_key:VIM-43__KP096412__ARO_3003179|flash_aro:3003179
 ATGTTAAAAGTTATTAGTAGTTTATTGGTCTACATGACCGCGTCTGTCATGGCTGTCGCA
 AGTCCGTTAGTCCATTCCGGGGAGCCGAGTGGTGAGTATCCGACAGTCAACGAAATTCCG
 GTCGGAGAGGTCCGACTTTACCAGATTGCCGATGGTGTTTGGTCGCATATCGCAACGCAG

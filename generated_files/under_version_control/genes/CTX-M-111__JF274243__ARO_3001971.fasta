@@ -1,4 +1,4 @@
->gb|JF274243|+|0-876|ARO:3001971|CTX-M-111 [Shigella sp. SH202]|blaCTX-M-111_1_JF274243|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:CTX-M-111__JF274243__ARO_3001971|flash_aro:3001971|flash_aliases:CTX-M-111__JF274243__ARO_3001971,CTX-M-111__JF274243__beta_lactamase
+>gb|JF274243|+|0-876|ARO:3001971|CTX-M-111 [Shigella sp. SH202]|blaCTX-M-111_1_JF274243|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta_lactamase_resfinder|flash_key:CTX-M-111__JF274243__ARO_3001971|flash_aro:3001971|flash_aliases:CTX-M-111__JF274243__ARO_3001971,CTX-M-111__JF274243__beta_lactamase
 ATGGTGACAAAGAGAGTGCAACGGATGATGTTCGCGGCGGCGGCGTGCATTCCGCTGCTG
 CTGGGCAGCGCGCCGCTTTATGCGCAGACGAGTGCGGTGCAGCAAAAGCTGGCGGCGCTG
 GAGAAAAGCAGCGGAGGGCGGCTGGGCGTCGCGCTCATCGATACCGCAGATAATACGCAG

@@ -1,4 +1,4 @@
->gb|AB636283|+|0-843|ARO:3000854|SMB-1 beta-lactamase [Serratia marcescens]|blaSMB-1_1_AB636283|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:SMB-1__AB636283__ARO_3000854|flash_aro:3000854|flash_aliases:SMB-1__AB636283__ARO_3000854,SMB-1__AB636283__beta_lactamase
+>gb|AB636283|+|0-843|ARO:3000854|SMB-1 beta-lactamase [Serratia marcescens]|blaSMB-1_1_AB636283|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__carbapenem,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__penam,beta_lactamase_resfinder|flash_key:SMB-1__AB636283__ARO_3000854|flash_aro:3000854|flash_aliases:SMB-1__AB636283__ARO_3000854,SMB-1__AB636283__beta_lactamase
 ATGAAAATCATCGCTTCCCTGATCCTGGCGGCGTTTGCGTCTGTTGCGCAGGCGCAGGAT
 CGTGATTGGAGCTCGCCGCAGCAGCCATTCACCATCTACGGCAATACCCATTACGTCGGC
 ACCGGCGGCATCAGTGCGGTGCTGCTGTCCTCACCGCAAGGCCATATCCTGGTCGATGGC

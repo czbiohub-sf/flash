@@ -1,4 +1,4 @@
->gb|AY130284|+|0-785|ARO:3000941|TEM-75 [Klebsiella pneumoniae]|flash_resistance:beta-lactam_antibiotic|flash_key:TEM-75__AY130284__ARO_3000941|flash_aro:3000941
+>gb|AY130284|+|0-785|ARO:3000941|TEM-75 [Klebsiella pneumoniae]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__monobactam,beta-lactam_antibiotic__penam,beta-lactam_antibiotic__penem|flash_key:TEM-75__AY130284__ARO_3000941|flash_aro:3000941
 TTTTTTGCGGCATTTTGCTTTCCTGTTTTTGCTCACCCAGAAACGCTGGTGAAAGTAAAA
 GATGCTGAAGATCAGTTGGGTGCACGAGTGGGTTACATCGAGCTGGATCTCAACAGCGGT
 AAGATCCTTGAGAGTTTTCGCCCCGAAGAACGTTTTCCAATGATGAGCACTTTTAAAGTT

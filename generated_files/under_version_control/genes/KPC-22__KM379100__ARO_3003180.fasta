@@ -1,4 +1,4 @@
->gb|KM379100|+|0-882|ARO:3003180|KPC-22 [Klebsiella pneumoniae]|flash_resistance:beta-lactam_antibiotic|flash_key:KPC-22__KM379100__ARO_3003180|flash_aro:3003180
+>gb|KM379100|+|0-882|ARO:3003180|KPC-22 [Klebsiella pneumoniae]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__carbapenem,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__monobactam,beta-lactam_antibiotic__penam|flash_key:KPC-22__KM379100__ARO_3003180|flash_aro:3003180
 ATGTCACTGTATCGCCGTCTAGTTCTGCTGTCTTGTCTCTCATGGCCGCTGGCTGGCTTT
 TCTGCCACCGCGCTGACCAACCTCGTCGCGGAACCATTCGCTAAACTCGAACAGGACTTT
 GGCGGCTCCATCGGTGTGTACGCGATGGATACCGGCTCAGGCGCAACTGTAAGTTACCGC

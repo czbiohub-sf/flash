@@ -1,4 +1,4 @@
->gb|EF426798|+|0-876|ARO:3001940|CTX-M-79 [Escherichia coli]|blaCTX-M-79_1_GU125666|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:CTX-M-79__EF426798__ARO_3001940|flash_aro:3001940|flash_aliases:CTX-M-79__EF426798__ARO_3001940,CTX-M-79__GU125666__beta_lactamase
+>gb|EF426798|+|0-876|ARO:3001940|CTX-M-79 [Escherichia coli]|blaCTX-M-79_1_GU125666|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta_lactamase_resfinder|flash_key:CTX-M-79__EF426798__ARO_3001940|flash_aro:3001940|flash_aliases:CTX-M-79__EF426798__ARO_3001940,CTX-M-79__GU125666__beta_lactamase
 ATGGTTAAAAAATCACTGCGCCAGTTCACGCTGATGGCGACGGCAACCGTCACGCTGTTG
 TTAGGAAGTGTGCCGCTGTATGCGCAAACGGCGGACGTACAGCAAAAACTTGCCGAATTA
 GAGCGGCAGTCGGGAGGCAGACTGGGTGTGGCATTGATTAACACAGCAGATAATTCGCAA

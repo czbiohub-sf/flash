@@ -1,4 +1,4 @@
->gb|KM087849|+|0-1140|ARO:3002150|DHA-19 [Morganella morganii]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin|flash_key:DHA-19__KM087849__ARO_3002150|flash_aro:3002150
+>gb|KM087849|+|0-1140|ARO:3002150|DHA-19 [Morganella morganii]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__cephem__cephamycin|flash_key:DHA-19__KM087849__ARO_3002150|flash_aro:3002150
 ATGAAAAAATCGTTATCTGCAACACTGATTTCCGCTCTGCTGGCGTTTTCCGCCCCGGGG
 TTTTCTGCCGCTGATAATGTCGCGGCGGTGGTGGACAGCACCATTAAACCGCTGATGGCA
 CAGCAGGATATTCCCGGGATGGCGGTTGCCGTCTCCGTAAAGGGTAAGCCCTATTATTTC

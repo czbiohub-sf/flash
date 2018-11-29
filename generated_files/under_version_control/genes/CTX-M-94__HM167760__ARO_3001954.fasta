@@ -1,4 +1,4 @@
->gb|HM167760|+|0-876|ARO:3001954|CTX-M-94 [Escherichia coli]|blaCTX-M-94_1_HM167760|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:CTX-M-94__HM167760__ARO_3001954|flash_aro:3001954|flash_aliases:CTX-M-94__HM167760__ARO_3001954,CTX-M-94__HM167760__beta_lactamase
+>gb|HM167760|+|0-876|ARO:3001954|CTX-M-94 [Escherichia coli]|blaCTX-M-94_1_HM167760|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta_lactamase_resfinder|flash_key:CTX-M-94__HM167760__ARO_3001954|flash_aro:3001954|flash_aliases:CTX-M-94__HM167760__ARO_3001954,CTX-M-94__HM167760__beta_lactamase
 ATGATGAGAAAAAGCGTAAGGCGGGCGATGTTAATGACGACAGCCTGTGTTTCGCTGCTG
 TTGGCCAGTGTGCCGCTGTGTGCCCAGGCGAACGATGTTCAACAAAAGCTCGCGGCGCTG
 GAGAAAAGCAGCGGGGGACGACTGGGTGTGGCGTTGATTAACACCGCCGATAACACGCAG

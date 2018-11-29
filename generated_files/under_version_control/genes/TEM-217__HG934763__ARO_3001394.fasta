@@ -1,4 +1,4 @@
->gb|HG934763|+|0-861|ARO:3001394|TEM-217 [Enterobacter cloacae]|flash_resistance:beta-lactam_antibiotic|flash_key:TEM-217__HG934763__ARO_3001394|flash_aro:3001394
+>gb|HG934763|+|0-861|ARO:3001394|TEM-217 [Enterobacter cloacae]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__monobactam,beta-lactam_antibiotic__penam,beta-lactam_antibiotic__penem|flash_key:TEM-217__HG934763__ARO_3001394|flash_aro:3001394
 ATGAGTATTCAACATTTTCGTGTCGCCCTTATTCCCTTTTTTGCGGCATTTTGCCTTCCT
 GTTTTTGCTCACCCAGAAACGCTGGTGAAAGTAAAAGATGCTGAAGATCAGTTGGGTGCA
 CGAGTGGGTTACATCGAACTGGATCTCAACAGCGGTAAGATCCTTGAGAGTTTTCGCCCC

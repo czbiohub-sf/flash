@@ -1,4 +1,4 @@
->gb|KM114268|+|0-861|ARO:3003157|TEM-219 [Escherichia coli]|flash_resistance:beta-lactam_antibiotic|flash_key:TEM-219__KM114268__ARO_3003157|flash_aro:3003157
+>gb|KM114268|+|0-861|ARO:3003157|TEM-219 [Escherichia coli]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__monobactam,beta-lactam_antibiotic__penam,beta-lactam_antibiotic__penem|flash_key:TEM-219__KM114268__ARO_3003157|flash_aro:3003157
 ATGAGTATTCAACATTTTCGTGTCGCCCTTATTCCCTTTTTTGCGGCATTTTGCCTTCCT
 GTTTTTGCTCACCCAGAAACGCTGGTGAAAGTAAAAGATGCTGAAGATCAGTTGGGTGCA
 CGAGTGGGTTACATCGAACTGGATCTCAACAGCGGTAAGATCCTTGAGAGTTTTCGCCCC

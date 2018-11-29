@@ -1,4 +1,4 @@
->gb|AM982521|+|1911-2787|ARO:3001938|CTX-M-77 [Kluyvera ascorbata]|blaCTX-M-77_1_AM982521|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:CTX-M-77__AM982521__ARO_3001938|flash_aro:3001938|flash_aliases:CTX-M-77__AM982521__ARO_3001938,CTX-M-77__AM982521__beta_lactamase
+>gb|AM982521|+|1911-2787|ARO:3001938|CTX-M-77 [Kluyvera ascorbata]|blaCTX-M-77_1_AM982521|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta_lactamase_resfinder|flash_key:CTX-M-77__AM982521__ARO_3001938|flash_aro:3001938|flash_aliases:CTX-M-77__AM982521__ARO_3001938,CTX-M-77__AM982521__beta_lactamase
 ATGATGACTCAGAGCATTCGCCGCTCAATGTTAACGGTGATGGCGACGCTACCCCTGCTA
 TTTAGCAGCGCAACGCTGCATGCGCAGACGAACAGCGTGCAACAGCAGCTGAAAGCCCTG
 GAGAAAAGTTCGGGAGGTCGGCTTGGCGTTGCGCTGATTAACACCGCCGATAATTCGCAG

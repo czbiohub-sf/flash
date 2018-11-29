@@ -1,4 +1,4 @@
->gb|NC_009089.1|+|6065-8492|ARO:3003995|Clostridium difficile gyrA conferring resistance to fluoroquinolones [Clostridium difficile 630]|flash_resistance:aminocoumarin_antibiotic,fluoroquinolone_antibiotic|flash_key:gyrA__NC_009089.1__ARO_3003995|flash_aro:3003995|flash_mutation_ranges:A384D
+>gb|NC_009089.1|+|6065-8492|ARO:3003995|Clostridium difficile gyrA conferring resistance to fluoroquinolones [Clostridium difficile 630]|flash_resistance:fluoroquinolone_antibiotic|flash_key:gyrA__NC_009089.1__ARO_3003995|flash_aro:3003995|flash_mutation_ranges:A384D
 ATGGAAGAAAATAACAAAATACTCCCTATTGAAATAGCGGAAGAAATGAAAAAATCGTAT
 ATTGATTATTCAATGAGTGTTATAGCTGGACGTGCTCTTCCTGATGTTAGAGATGGTTTA
 AAGCCAGTTCATAGAAGAATATTATATTCAATGAGTGAGTTAAATTTAACTCCAGATAAA

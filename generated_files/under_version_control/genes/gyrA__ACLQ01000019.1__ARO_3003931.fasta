@@ -1,4 +1,4 @@
->gb|ACLQ01000019.1|+|24238-26749|ARO:3003931|Capnocytophaga gingivalis gyrA conferring resistance to fluoroquinolones [Capnocytophaga gingivalis ATCC 33624]|flash_resistance:aminocoumarin_antibiotic,fluoroquinolone_antibiotic|flash_key:gyrA__ACLQ01000019.1__ARO_3003931|flash_aro:3003931|flash_mutation_ranges:G80N
+>gb|ACLQ01000019.1|+|24238-26749|ARO:3003931|Capnocytophaga gingivalis gyrA conferring resistance to fluoroquinolones [Capnocytophaga gingivalis ATCC 33624]|flash_resistance:fluoroquinolone_antibiotic|flash_key:gyrA__ACLQ01000019.1__ARO_3003931|flash_aro:3003931|flash_mutation_ranges:G80N
 ATGGTTGAAGGAGAAAAACTCATTCCTATTAACATAGAAGACCAGATGAAGACAGCCTAC
 ATTGACTATTCAATGTCAGTGATTGTCTCAAGAGCTTTGCCCGATGTACGCGATGGGCTG
 AAGCCTGTACATCGTCGTGTACTCTTTGGAATGCACGAGCTTGGCGTACGTAGCAACACC

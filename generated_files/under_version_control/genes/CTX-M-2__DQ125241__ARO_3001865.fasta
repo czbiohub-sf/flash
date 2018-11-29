@@ -1,4 +1,4 @@
->gb|DQ125241|+|0-876|ARO:3001865|CTX-M-2 [Escherichia coli]|blaCTX-M-2_1_EU622041|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:CTX-M-2__DQ125241__ARO_3001865|flash_aro:3001865|flash_aliases:CTX-M-2__DQ125241__ARO_3001865,CTX-M-2__EU622041__beta_lactamase
+>gb|DQ125241|+|0-876|ARO:3001865|CTX-M-2 [Escherichia coli]|blaCTX-M-2_1_EU622041|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta_lactamase_resfinder|flash_key:CTX-M-2__DQ125241__ARO_3001865|flash_aro:3001865|flash_aliases:CTX-M-2__DQ125241__ARO_3001865,CTX-M-2__EU622041__beta_lactamase
 ATGATGACTCAGAGCATTCGCCGCTCAATGTTAACGGTGATGGCGACGCTACCCCTGCTA
 TTTAGCAGCGCAACGCTGCATGCGCAGGCGAACAGCGTGCAACAGCAGCTGGAAGCCCTG
 GAGAAAAGTTCGGGAGGTCGGCTTGGCGTTGCGCTGATTAACACCGCCGATAATTCGCAG

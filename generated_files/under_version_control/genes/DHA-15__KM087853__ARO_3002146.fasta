@@ -1,4 +1,4 @@
->gb|KM087853|+|0-1140|ARO:3002146|DHA-15 [Klebsiella pneumoniae]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin|flash_key:DHA-15__KM087853__ARO_3002146|flash_aro:3002146
+>gb|KM087853|+|0-1140|ARO:3002146|DHA-15 [Klebsiella pneumoniae]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__cephem__cephamycin|flash_key:DHA-15__KM087853__ARO_3002146|flash_aro:3002146
 ATGAAAAAATCGTTATCTGCAACACTGATTTCCGCTCTGCTGGCGTTTTCCGCCCCGGGG
 TTTTCTGCCGCTGATAATGTCGCGGCGGTGGTGGACAGCACCATTAAACCGCTGATGGCA
 CAGCAGGATATTCCCGGGATGGCGGTTGCCGTCTCCGTAAAGGGTAAGCCCTATTATTTC

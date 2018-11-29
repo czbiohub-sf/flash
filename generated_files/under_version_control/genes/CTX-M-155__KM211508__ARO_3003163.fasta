@@ -1,4 +1,4 @@
->gb|KM211508|+|0-876|ARO:3003163|CTX-M-155 [Klebsiella pneumoniae]|flash_resistance:beta-lactam_antibiotic|flash_key:CTX-M-155__KM211508__ARO_3003163|flash_aro:3003163
+>gb|KM211508|+|0-876|ARO:3003163|CTX-M-155 [Klebsiella pneumoniae]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin|flash_key:CTX-M-155__KM211508__ARO_3003163|flash_aro:3003163
 ATGGTTAAAAAATCACTGCGCCAGTTCACGCTGATGGCGACGGCAACCGTCACGCTGTTG
 TTAGGAAGTGTGCCGCTGTATGCGCAAACGGCGGACGTACAGCAAAAACTTGCCGAATTA
 GAGCGGCAGTCGGGAGGCAGACTGGGTGTGGCATTGATTAACACAGCAGATAATTCGCAA

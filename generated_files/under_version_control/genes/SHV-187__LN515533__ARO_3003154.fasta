@@ -1,4 +1,4 @@
->gb|LN515533|+|0-867|ARO:3003154|SHV-187 [Klebsiella pneumoniae]|flash_resistance:beta-lactam_antibiotic|flash_key:SHV-187__LN515533__ARO_3003154|flash_aro:3003154
+>gb|LN515533|+|0-867|ARO:3003154|SHV-187 [Klebsiella pneumoniae]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__carbapenem,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__penam|flash_key:SHV-187__LN515533__ARO_3003154|flash_aro:3003154
 GTGGTTAAGCGTTATATTCGCCTGTGTATTATCTCCCTGTTAGCCACCCTGCCGCTGGCG
 GTACACGCCAGCCCGCAGCCGCTTGAGCAAATTAAACTAAGCGAAAGCCAGCTGTCGGGC
 CGCGTAGGCATGATAGAAATGGATCTGGCCAGCGGCCGCACGCTGACCGCCTGGCGCGCC

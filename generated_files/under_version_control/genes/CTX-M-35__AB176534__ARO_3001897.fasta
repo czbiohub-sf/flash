@@ -1,4 +1,4 @@
->gb|AB176534|+|0-876|ARO:3001897|CTX-M-35 [Klebsiella oxytoca]|blaCTX-M-35_1_AB176534|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:CTX-M-35__AB176534__ARO_3001897|flash_aro:3001897|flash_aliases:CTX-M-35__AB176534__ARO_3001897,CTX-M-35__AB176534__beta_lactamase
+>gb|AB176534|+|0-876|ARO:3001897|CTX-M-35 [Klebsiella oxytoca]|blaCTX-M-35_1_AB176534|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta_lactamase_resfinder|flash_key:CTX-M-35__AB176534__ARO_3001897|flash_aro:3001897|flash_aliases:CTX-M-35__AB176534__ARO_3001897,CTX-M-35__AB176534__beta_lactamase
 ATGATGACTCAGAGCATTCGCCGCTCAATGTTAACGGTGATGGCGACGCTACCCCTGCTA
 TTTAGCAGCGCAACGCTGCATGCGCAGGCGAACAGCGTGCAACAGCAGCTGGAAGCCCTG
 GAGAAAAGTTCGGGAGGTCGGCTTGGCGTTGCGCTGATTAACACCGCCGATAATTCGCAG

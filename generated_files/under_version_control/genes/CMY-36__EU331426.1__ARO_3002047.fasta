@@ -1,4 +1,4 @@
->gb|EU331426.1|+|2374-3520|ARO:3002047|CMY-36 [Klebsiella pneumoniae]|blaCMY-36_1_EU331426|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta_lactamase_resfinder|flash_key:CMY-36__EU331426.1__ARO_3002047|flash_aro:3002047|flash_aliases:CMY-36__EU331426.1__ARO_3002047,CMY-36__EU331426__beta_lactamase
+>gb|EU331426.1|+|2374-3520|ARO:3002047|CMY-36 [Klebsiella pneumoniae]|blaCMY-36_1_EU331426|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephamycin,beta_lactamase_resfinder|flash_key:CMY-36__EU331426.1__ARO_3002047|flash_aro:3002047|flash_aliases:CMY-36__EU331426.1__ARO_3002047,CMY-36__EU331426__beta_lactamase
 ATGATGAAAAAATCGTTATGCTGCGCTCTGCTGCTGACAGCCTCTTTCTCCACATTTGCT
 GCCGCAAAAACAGAACAACAGATTGCCGATATCGTTAATCGCACCATCACCCCGTTGATG
 CAGGAGCAGGCTATTCCGGGTATGGCCGTTGCCGTTATCTACCAGGGAAAACCCTATTAT

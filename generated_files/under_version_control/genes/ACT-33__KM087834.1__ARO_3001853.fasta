@@ -1,4 +1,4 @@
->gb|KM087834.1|+|0-1146|ARO:3001853|ACT-33 [Enterobacter cloacae]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin|flash_key:ACT-33__KM087834.1__ARO_3001853|flash_aro:3001853
+>gb|KM087834.1|+|0-1146|ARO:3001853|ACT-33 [Enterobacter cloacae]|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__carbapenem,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__cephem__cephamycin,beta-lactam_antibiotic__penam|flash_key:ACT-33__KM087834.1__ARO_3001853|flash_aro:3001853
 ATGATGAAAAAATCTCTTTGCTGCGCCCTGCTGCTCGGCATCTCTTGCTCTGCTCTCGCC
 ACGCCAGTGTCAGAAAAACAGCTGGCGGAGGTGGTAGCGAATACGGTTACCCCGCTGATG
 AAAGCCCAGTCTGTTCCAGGCATGGCGGTGGCCGTTATTTATCAGGGAAAACCGCACTAT

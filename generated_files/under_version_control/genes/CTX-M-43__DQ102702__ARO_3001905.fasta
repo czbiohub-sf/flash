@@ -1,4 +1,4 @@
->gb|DQ102702|+|0-876|ARO:3001905|CTX-M-43 [Acinetobacter baumannii]|blaCTX-M-43_1_DQ102702|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:CTX-M-43__DQ102702__ARO_3001905|flash_aro:3001905|flash_aliases:CTX-M-43__DQ102702__ARO_3001905,CTX-M-43__DQ102702__beta_lactamase
+>gb|DQ102702|+|0-876|ARO:3001905|CTX-M-43 [Acinetobacter baumannii]|blaCTX-M-43_1_DQ102702|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta_lactamase_resfinder|flash_key:CTX-M-43__DQ102702__ARO_3001905|flash_aro:3001905|flash_aliases:CTX-M-43__DQ102702__ARO_3001905,CTX-M-43__DQ102702__beta_lactamase
 ATGATGACTCAGAGCATTCGCCGCTCAATGTTAACGGTGATGGCGACGCTACCCCTGCTA
 TTTAGCAGCGCAACGCTGCATGCGCAGGCGAACAGCGTGCAACAGCAGCTGGAAGCCCTG
 GAGAAAAGTTCGGGAGGTCGGCTTGGCGTTGCGCTGATTAACACCGCCGATAATTCGCAG

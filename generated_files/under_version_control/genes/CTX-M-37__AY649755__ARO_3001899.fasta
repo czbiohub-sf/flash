@@ -1,4 +1,4 @@
->gb|AY649755|+|17-893|ARO:3001899|CTX-M-37 [Enterobacter cloacae]|blaCTX-M-37_2_FN813246|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:CTX-M-37__AY649755__ARO_3001899|flash_aro:3001899|flash_aliases:CTX-M-37__AY649755__ARO_3001899,CTX-M-37__FN813246__beta_lactamase
+>gb|AY649755|+|17-893|ARO:3001899|CTX-M-37 [Enterobacter cloacae]|blaCTX-M-37_2_FN813246|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta_lactamase_resfinder|flash_key:CTX-M-37__AY649755__ARO_3001899|flash_aro:3001899|flash_aliases:CTX-M-37__AY649755__ARO_3001899,CTX-M-37__FN813246__beta_lactamase
 ATGGTTAAAAAATCACTGCGCCAGTTCACGCTGATGGCGACGGCAACCGTCACGCTGTTG
 TTAGGAAGTGTGCCGCTGCATGCGCAAACGGCGGACGTACAGCAAAAACTTGCCGAATTA
 GAGCAGCAGTCGGGAGGAAGGCTGGGTGTGGCATTGATTAACACAGCGGATAATTCGCAA

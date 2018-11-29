@@ -1,4 +1,4 @@
->gb|AB703103|+|0-876|ARO:3001985|CTX-M-126 [Escherichia coli]|blaCTX-M-126_1_AB703103|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:CTX-M-126__AB703103__ARO_3001985|flash_aro:3001985|flash_aliases:CTX-M-126__AB703103__ARO_3001985,CTX-M-126__AB703103__beta_lactamase
+>gb|AB703103|+|0-876|ARO:3001985|CTX-M-126 [Escherichia coli]|blaCTX-M-126_1_AB703103|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta_lactamase_resfinder|flash_key:CTX-M-126__AB703103__ARO_3001985|flash_aro:3001985|flash_aliases:CTX-M-126__AB703103__ARO_3001985,CTX-M-126__AB703103__beta_lactamase
 ATGGTGACAAAGAGAGTGCAACGGATGATGTTCGCGGCGGCGGCGTGCATTCCGCTGCTG
 CTGGGCAGCGCGCCGCTTTATGCGCAGACGAGTGCGGTGCAGCAAAAGCTGGCGGCGCTG
 GAGAAAAGCAGCGGAGGGCGGCTGGGCGTCGCGCTCATCGATACCGCAGATAATACGCAG

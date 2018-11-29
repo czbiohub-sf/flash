@@ -1,4 +1,4 @@
->gb|AY157676|+|0-876|ARO:3001888|CTX-M-26 [Klebsiella pneumoniae]|blaCTX-M-26_1_AY455830|flash_resistance:beta-lactam_antibiotic,beta_lactamase_resfinder|flash_key:CTX-M-26__AY157676__ARO_3001888|flash_aro:3001888|flash_aliases:CTX-M-26__AY157676__ARO_3001888,CTX-M-26__AY455830__beta_lactamase
+>gb|AY157676|+|0-876|ARO:3001888|CTX-M-26 [Klebsiella pneumoniae]|blaCTX-M-26_1_AY455830|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta_lactamase_resfinder|flash_key:CTX-M-26__AY157676__ARO_3001888|flash_aro:3001888|flash_aliases:CTX-M-26__AY157676__ARO_3001888,CTX-M-26__AY455830__beta_lactamase
 ATGATGAGAAAAAGCGTAAGGCGGGCGATGTTAATGACGACAGCCTGTGTTTCGCTGCTG
 TTGGCCAGTGTGCCGCTGTGTGCCCAGGCGAACGATGTTCAACAAAAGCTCGCGGCGCTG
 GAGAAAAGCAGCGGGGGACGACTGGGTGTGGCGTTGATTAACACCGCCGATAACACGCAG

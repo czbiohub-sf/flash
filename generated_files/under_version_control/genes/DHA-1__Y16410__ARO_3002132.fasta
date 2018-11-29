@@ -1,4 +1,4 @@
->gb|Y16410|+|986-2126|ARO:3002132|DHA-1 [Salmonella enterica subsp. enterica serovar Enteritidis]|blaDHA-1_1_Y16410|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta_lactamase_resfinder|flash_key:DHA-1__Y16410__ARO_3002132|flash_aro:3002132|flash_aliases:DHA-1__Y16410__ARO_3002132,DHA-1__Y16410__beta_lactamase
+>gb|Y16410|+|986-2126|ARO:3002132|DHA-1 [Salmonella enterica subsp. enterica serovar Enteritidis]|blaDHA-1_1_Y16410|flash_resistance:beta-lactam_antibiotic,beta-lactam_antibiotic__cephem,beta-lactam_antibiotic__cephem__cephalosporin,beta-lactam_antibiotic__cephem__cephamycin,beta_lactamase_resfinder|flash_key:DHA-1__Y16410__ARO_3002132|flash_aro:3002132|flash_aliases:DHA-1__Y16410__ARO_3002132,DHA-1__Y16410__beta_lactamase
 ATGAAAAAATCGTTATCTGCAACACTGATTTCCGCTCTGCTGGCGTTTTCCGCCCCGGGG
 TTTTCTGCCGCTGATAATGTCGCGGCGGTGGTGGACAGCACCATTAAACCGCTGATGGCA
 CAGCAGGATATTCCCGGGATGGCGGTTGCCGTCTCCGTAAAGGGTAAGCCCTATTATTTC
