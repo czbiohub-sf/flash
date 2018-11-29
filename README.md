@@ -72,8 +72,10 @@ To exclude a set of guides,
 
 ### Creating the AMR library
 
-To reproduce the library construction from the paper, after installing the
-prerequisites below, run
+This constructs a set of guides for the AMR gene set.
+The genes and CARD database used are updated from the set used in the paper.
+See the top of the README for a link to the details for the guide set from the paper.
+After installing the prerequisites below, run
 
 `make amr_library`.
 
