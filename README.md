@@ -106,6 +106,17 @@ Example:
 GTGAGTGAAATAATTCAAGATTTATCACTTGAAGATGTTTTAGGTGATCGCTTTGGAAGATATAGTAAATATATTATTCAAGAGCGTGCATTGCCAGATGTTCGTGATGGTTTAAAACCAGTACAACGTCGTATTTTATATGCAATGTATTCAAGTGGTAATACACACGATAAAAATTTCCGTAAAAGTGCGAAAACAGTCGGTGATGTTATTGGTCAATATCATCCACATGGAGAC...
 ```
 
+### Bases
+
+FLASHit expects each nucleotide to be ATCG or N, if ambiguous. It will automatically
+convert the other formats for [ambiguous bases](http://www.dnabaser.com/articles/IUPAC%20ambiguity%20codes.html) (UYRSWKMBDHV) to N. If you have RNA data (U instead of T), then you may convert it to to DNA by running the following on the command-line.
+
+```
+sed '/^[^>]/ y/uU/tT/' INPUT_FASTA_RNA.fa > OUTPUT_FASTA_DNA.fa
+```
+
+You would then use the output DNA fasta as the input to FLASHit.
+
 ### Mutations
 
 The guides may be designed to capture certain mutations present in
