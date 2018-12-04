@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import os.path
 import string
 import glob
 import subprocess
@@ -59,7 +60,7 @@ def long_word(s):
     return s.isalpha() and len(s) > 6
 
 
-card_origin_abbreviatons = {
+CARD_ORIGIN_ABBREVIATONS = {
     'nucleotide_fasta_protein_variant_model':  'protein_variant',
     'nucleotide_fasta_protein_homolog_model':  'protein_homolog',
     'nucleotide_fasta_protein_overexpression_model':  'protein_overexpression'
@@ -67,11 +68,7 @@ card_origin_abbreviatons = {
 
 
 def extract_filename(path):
-    return path.rsplit('/', 1)[-1].rsplit('.', 1)[0]
-
-
-def is_alphanumeric(word):
-    return all((c.isalpha() or c.isdigit()) for c in word)
+    return os.path.splitext(os.path.basename(path))[0]
 
 
 def first_bacterial_gene_name(text):
@@ -80,7 +77,7 @@ def first_bacterial_gene_name(text):
     # for 90% of the card protein_variant_model descriptions.
     for word in text.split():
         # See http://www.biosciencewriters.com/Guidelines-for-Formatting-Gene-and-Protein-Names.aspx
-        if len(word) == 4 and is_alphanumeric(word) and (word[:3].lower() + word[-1:].upper()) == word:
+        if len(word) == 4 and word.isalnum() and (word[:3].lower() + word[-1:].upper()) == word:
             return word
     for word in text.split()[:5]:
         if len(word) == 3 and word.lower() == word and word not in ["and", "for"]:
@@ -117,7 +114,7 @@ class GeneRecord(object):
 
     def parse_card(self, descr, input_path):
         self.origin = 'card'
-        self.origin_short_filename = card_origin_abbreviatons[extract_filename(input_path)]
+        self.origin_short_filename = CARD_ORIGIN_ABBREVIATONS[extract_filename(input_path)]
         dl = descr.split("|")
         if dl[0] != 'gb':
             raise RuntimeError("Unexpected record description format.")
