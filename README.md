@@ -167,6 +167,11 @@ CRISPR cut sites, its SNPs, and the cuts made by a given library--run the
 
 `python display_genes.py nalC__NC_002516__ARO_3000818 mecA__AB033763__beta_lactamase [--library library.txt]`
 
+## Creating a bed file of the guides
+To generate a bed file marking the locations a guide library would hybridize in a set of genes run:
+
+`python generate_bed_file.py --input-fasta INPUT_FASTA.fa --library LIBRARY.txt --output OUTPUT.bed`
+
 ## Additional details about the build stages
 
 These steps are handled by the workflows mentioned above. This section gives additional details about the individual steps.
