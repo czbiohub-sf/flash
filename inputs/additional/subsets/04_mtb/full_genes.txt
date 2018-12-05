@@ -1,2 +1,0 @@
-We don't seem to have these genes
-fbiC__NC_000962.3__delamanid_additional (This is an exact match with fbiB in our fasta inputs so it's merged).
