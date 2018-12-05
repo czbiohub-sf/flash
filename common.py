@@ -27,30 +27,6 @@ class Component(object):
         self.library = None
         self.name = genes[0].name + "-comp-" + str(len(self.genes))
 
-    def set_library(self, library):
-        self.library = library
-        for gene in self.genes:
-            gene.cut_with_library(library)
-
-    def gene_names(self):
-        return [g.name for g in self.genes]
-
-    def subset_library(self, gene_subset, guide_subset=None):
-        sub_library = set()
-        if gene_subset is not None:
-            gene_subset = set(gene_subset)
-        if guide_subset is not None:
-            guide_subset = set(guide_subset)
-        for gene in self.genes:
-            if gene_subset is None or gene.name in gene_subset:
-                for target in gene.cuts:
-                    if guide_subset is None or target.guide in guide_subset:
-                        sub_library.add(target.guide)
-
-        assert sub_library <= set(self.library)
-
-        return list(sub_library)
-
 
 class Gene(object):
     def __init__(self, name):
@@ -384,21 +360,3 @@ class MutationIndex(object):
             return ret
         else:
             return []
-
-
-def subset(components, gene_names, n_cuts=10):
-    """
-    Pull out only the cuts for gene_names from the given componenents.
-    The result is a list of guides.
-    """
-    gene_names = set(gene_names)
-    unsolved = set()
-    results = []
-    for component in components:
-        component_subset = component.subset_library(gene_names,
-                                                    component.trim_library(n_cuts, gene_names))
-        component_gene_names = set(component.gene_names())
-        if not component_subset:
-            unsolved |= (component_gene_names & gene_names)
-        results.extend(component_subset)
-    return results, unsolved
