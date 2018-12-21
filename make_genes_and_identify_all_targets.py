@@ -150,9 +150,7 @@ class GeneRecord(object):
         self.resistances = [self.origin_short_filename + "_resfinder"]
         self.disambiguation = dl[1]
 
-    def parse_additional(self, descr):
-        self.origin='additional'
-        dl = descr.split("|")
+    def parse_flash_resistance(self, dl):
         self.resistances = []
         raw_resistance = ""
         for part in dl:
@@ -163,6 +161,11 @@ class GeneRecord(object):
                     raise RuntimeError("Multiple flash_resistance: fields per description.  Use comma separated values instead.")
                 raw_resistance = part
                 self.resistances.extend(part.split(":", 1)[1].split(","))
+
+    def parse_additional(self, descr):
+        self.origin='additional'
+        dl = descr.split("|")
+        self.parse_flash_resistance(dl)
         if sanitize(self.key) != self.key:
             raise RuntimeError("flash_key '{}' contains disallowed characters".format(self.key))
         key_parts = self.key.split("__")
@@ -181,6 +184,7 @@ class GeneRecord(object):
     def parse_generic(self, descr):
         self.origin = 'generic'
         dl = descr.split("|")
+        self.parse_flash_resistance(dl)
         self.key = None
         for part in dl:
             if part.startswith("flash_key"):
