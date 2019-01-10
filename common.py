@@ -106,7 +106,6 @@ class Gene(object):
             #     |QnrS7 [Escherichia coli]
             #     |flash_resistance:fluoroquinolone_antibiotic
             #     |flash_key:QnrS7__KF730651__ARO_3002796
-            #     |flash_padding:0_200
             #
             # (except all on one line)
             #

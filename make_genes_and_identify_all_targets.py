@@ -300,7 +300,6 @@ def output_unique_sequence(antibiotics_for_gene, genes_for_antibiotic, all_files
     str_desc, multi_values = remove_tags(str_desc,
         "flash_resistance",
         "flash_key",
-        "flash_padding",
         "flash_dna_key",
         "flash_aro",
         "flash_aliases",
@@ -329,7 +328,6 @@ def output_unique_sequence(antibiotics_for_gene, genes_for_antibiotic, all_files
         prefix = padding["prefix"]
         suffix = padding["suffix"]
         str_seq = prefix + str_seq + suffix
-        str_desc += "|flash_padding:{}_{}".format(len(prefix), len(suffix))
     if inferred_aro != None:
         str_desc += "|flash_aro:{}".format(inferred_aro)
         multi_values["flash_mutation_ranges"].extend(mutation_index.mutations.get(str(inferred_aro), []))
