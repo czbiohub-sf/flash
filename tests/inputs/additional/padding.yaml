@@ -1,0 +1,3 @@
+test_gene_with_padding:
+  prefix: AAAAA
+  suffix: TTT

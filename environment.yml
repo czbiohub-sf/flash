@@ -6,6 +6,7 @@ channels:
 - defaults
 dependencies:
 - python=3.5
+- pyyaml=3.13
 - pytest=3.8.0=py35_0
 - gurobi=7.0.2=py35_0
 - networkx=1.11=py35_0

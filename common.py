@@ -2,6 +2,7 @@ import csv
 import re
 import os
 import sys
+import yaml
 from collections import namedtuple
 
 from Bio import SeqIO
@@ -52,6 +53,21 @@ class Component(object):
         return list(sub_library)
 
 
+class Padding(object):
+    def __init__(self):
+        self.padding_file = "inputs/additional/padding.yaml"
+
+    def get_padding(self, gene_name):
+        with open(self.padding_file) as fh:
+            padding = yaml.load(fh.read())
+            if gene_name in padding:
+                gene_padding = padding[gene_name]
+                return (len(gene_padding['prefix']),
+                        len(gene_padding["suffix"]))
+            else:
+                return None
+
+
 class Gene(object):
     def __init__(self, name):
 
@@ -60,7 +76,8 @@ class Gene(object):
         self.presence_absence = None
         self.mutation_ranges = []
 
-        self.padding = None
+        # This is being computed instead of being passed in during the refactor phase.
+        self.padding = Padding().get_padding(self.name)
         self.resistance = None
 
         self.load_fasta()
@@ -95,9 +112,7 @@ class Gene(object):
             #
             s = str(record.description).split("|")
             for part in s:
-                if part.startswith("flash_padding:"):
-                    prefix_str, suffix_str = part.split(':')[1].split('_')
-                    self.padding = (int(prefix_str), int(suffix_str))
+                # TODO(AM): Write script to extract padding from existing fasta files.
                 if part.startswith("flash_resistance:"):
                     self.resistance = part.split(':')[1].split(',')
                 if part.startswith("flash_mutation_ranges:"):
