@@ -10,7 +10,7 @@ import time
 import threading
 import argparse
 from collections import defaultdict
-import json
+import yaml
 from Bio import SeqIO
 import flash
 import build
@@ -322,7 +322,8 @@ def output_unique_sequence(antibiotics_for_gene, genes_for_antibiotic, all_files
                 del padding_seq[gk]
                 break
     if padding != None:
-        prefix, suffix = padding
+        prefix = padding["prefix"]
+        suffix = padding["suffix"]
         str_seq = prefix + str_seq + suffix
         str_desc += "|flash_padding:{}_{}".format(len(prefix), len(suffix))
     if inferred_aro != None:
@@ -359,7 +360,7 @@ def split_all(input_files, output_dir, all_targets_index_path, ambiguous_targets
     print("Generating output in {}.".format(output_dir))
     os.makedirs(output_dir, exist_ok=True)  # requires python3
     with open(padding_input_path, 'r') as fp:
-        padding_seq = json.load(fp)
+        padding_seq = yaml.load(fp)
     mutation_index = MutationIndex()
     sequences = defaultdict(list)
     aro_genes = {}
@@ -388,7 +389,7 @@ def split_all(input_files, output_dir, all_targets_index_path, ambiguous_targets
         print()
         print("WARNING:  UNUSED PADDING SEQUENCES:  CHECK KEYS, FILENAMES MAY HAVE CHANGED:")
         print()
-        print(json.dumps(padding_seq))
+        print(yaml.dumps(padding_seq))
     ambiguous_targets = {}
     ambiguous_genes = set()
     for target, gene_pos in all_targets.items():

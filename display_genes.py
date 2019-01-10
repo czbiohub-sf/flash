@@ -1,6 +1,8 @@
 import argparse
 import sys
-import json
+import yaml
+
+import build
 from common import *
 
 
@@ -33,10 +35,12 @@ def main():
         g = Gene(gene_key)
 
         if g.padding:
-            with open('inputs/additional/padding.json', 'r') as fp:
-                padding_seqs = json.load(fp)
+            with open(build.padding_input_path, 'r') as fp:
+                padding_seqs = yaml.load(fp)
             if g.name in padding_seqs:
-                g.verify_padding(padding_seqs[g.name])
+                gene_padding_seq = padding_seqs[g.name]
+                g.verify_padding((gene_padding_seq["prefix"],
+                                  gene_padding_seq["suffix"]))
 
         g.load_targets("dna_good_5_9_18.txt")
 
