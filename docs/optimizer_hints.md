@@ -37,7 +37,4 @@ fname = 'generated_files/untracked/components/%s.pickle' % unsolved_component
 with open(fname,'rb') as f:
     dfr = pickle.load(f)
 m, genes, library, impossible_snps = optimizer.optimize(dfr.genes, MIN_FRAGMENT_SIZE=178)
-dfr.set_library(library)
-with open(fname, 'wb') as fp:
-    pickle.dump(dfr, fp)
 ```
