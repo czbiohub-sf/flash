@@ -53,15 +53,33 @@ class Component(object):
         return list(sub_library)
 
 
-class Padding(object):
-    def __init__(self):
+class PaddingForGene(object):
+    def __init__(self, gene_name, header_description=None):
         self.padding_file = "inputs/additional/padding.yaml"
+        self.gene_name = gene_name
+        self.header_description = header_description
 
-    def get_padding(self, gene_name):
+    def get_key_from_header(self, key):
+        for part in self.header_description:
+            if part.startswith(key):
+                return part
+
+    def get_padding(self):
+        padding_description = self.get_key_from_header("flash_padding:")
+        if padding_description:
+            return self.get_padding_from_fasta_header(padding_description)
+        else:
+            return self.get_padding_from_yaml()
+
+    def get_padding_from_fasta_header(self, padding_description):
+        prefix_str, suffix_str = padding_description.split(':')[1].split('_')
+        return (int(prefix_str), int(suffix_str))
+
+    def get_padding_from_yaml(self):
         with open(self.padding_file) as fh:
             padding = yaml.load(fh.read())
-            if gene_name in padding:
-                gene_padding = padding[gene_name]
+            if self.gene_name in padding:
+                gene_padding = padding[self.gene_name]
                 return (len(gene_padding['prefix']),
                         len(gene_padding["suffix"]))
             else:
@@ -77,7 +95,8 @@ class Gene(object):
         self.mutation_ranges = []
 
         # This is being computed instead of being passed in during the refactor phase.
-        self.padding = Padding().get_padding(self.name)
+        self.padding = None
+
         self.resistance = None
 
         self.load_fasta()
@@ -110,8 +129,12 @@ class Gene(object):
             # (except all on one line)
             #
             s = str(record.description).split("|")
+            self.padding = PaddingForGene(
+                gene_name=self.name,
+                header_description=s
+            ).get_padding()
+
             for part in s:
-                # TODO(AM): Write script to extract padding from existing fasta files.
                 if part.startswith("flash_resistance:"):
                     self.resistance = part.split(':')[1].split(',')
                 if part.startswith("flash_mutation_ranges:"):
