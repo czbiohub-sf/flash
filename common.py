@@ -8,6 +8,7 @@ from collections import namedtuple
 from Bio import SeqIO
 from colors import color
 
+import build
 import flash
 
 
@@ -92,7 +93,7 @@ class FastaHeaderParser:
 
 class PaddingForGene:
     def __init__(self, gene_name, fasta_header):
-        self.padding_file = "inputs/additional/padding.yaml"
+        self.padding_file = build.padding_input_path
         self.gene_name = gene_name
         self.header = fasta_header
 

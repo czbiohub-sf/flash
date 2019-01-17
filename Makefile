@@ -46,6 +46,9 @@ stop_offtarget_server:
 optimizer:
 	python optimizer.py $(ARGS)
 
+update_dependencies:
+	conda env update -f environment.yml
+
 test:
 	cd tests && pytest
 

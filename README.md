@@ -39,17 +39,24 @@ The output is:
 
 3) Install the dependencies with conda.
 
-	`conda env create -f environment.yml`
-
+	`conda env update -f environment.yml`
 	`source activate flash`
 
-3) License the Gurobi optimizer.
+4) License the Gurobi optimizer.
 
 Get a license from [Gurobi](https://user.gurobi.com/download/licenses/free-academic). Academic licenses are free.
 
 	grbgetkey KEYHERE
 
-4) Install [GO](https://golang.org/doc/install).
+5) Install [GO](https://golang.org/doc/install).
+
+## Updating the project dependencies
+
+Dependencies for the project are updated periodically. In order to ensure that the latest dependencies are installed run,
+
+`make update_dependencies`
+
+after pulling changes via git.
 
 ## Workflows
 
@@ -156,7 +163,7 @@ the end of the gene. If the neighboring genomic context is known,
 it can be added by hand by pre/post-pending sequence to the gene (and adjusting
 the locations for the SNPs accordingly). We organize this through
 the use of padding in the case of the AMR guide set:
-the file `padding.json` contains the additional
+the file `padding.yml` contains the additional
 sequence for those genes requiring it.
 
 ## Visualization
