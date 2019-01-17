@@ -120,9 +120,7 @@ class Gene(object):
         self.seq = None
         self.presence_absence = None
         self.mutation_ranges = []
-
         self.padding = None
-
         self.resistance = None
 
         self.load_fasta()
