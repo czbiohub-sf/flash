@@ -121,7 +121,6 @@ class Gene(object):
         self.presence_absence = None
         self.mutation_ranges = []
 
-        # This is being computed instead of being passed in during the refactor phase.
         self.padding = None
 
         self.resistance = None
