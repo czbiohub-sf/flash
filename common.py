@@ -53,27 +53,54 @@ class Component(object):
         return list(sub_library)
 
 
-class PaddingForGene(object):
-    def __init__(self, gene_name, header_description=None):
+class FastaHeaderParser:
+    def __init__(self, gene_name, header):
+        self.gene_name = gene_name
+        self.header = str(header).split("|")
+        self.padding = None
+        self.resistance = None
+        self.mutation_ranges = None
+        self.parse_header()
+
+    def parse_header(self):
+        for part in self.header:
+            if part.startswith("flash_padding:"):
+                self.padding = self.parse_padding(part)
+            if part.startswith("flash_resistance:"):
+                self.resistance = self.parse_resistance(part)
+            if part.startswith("flash_mutation_ranges:"):
+                self.mutation_ranges = self.parse_mutation_ranges(part)
+
+    def parse_resistance(self, part):
+        return part.split(':')[1].split(',')
+
+    def parse_mutation_ranges(self, part):
+        mutation_ranges = []
+        for rstr in part.split('flash_mutation_ranges:')[1].split(','):
+            rrng = MutationIndex.parse_mutation(rstr)
+            if type(rrng) == range:
+                mutation_ranges.append((rstr, rrng))
+            else:
+                print("ERROR: {}: Failed to parse mutation_range: {}". \
+                      format(self.gene_name, rstr))
+        return mutation_ranges
+
+    def parse_padding(self, part):
+        prefix_str, suffix_str = part.split(':')[1].split('_')
+        return (int(prefix_str), int(suffix_str))
+
+
+class PaddingForGene:
+    def __init__(self, gene_name, fasta_header):
         self.padding_file = "inputs/additional/padding.yaml"
         self.gene_name = gene_name
-        self.header_description = header_description
-
-    def get_key_from_header(self, key):
-        for part in self.header_description:
-            if part.startswith(key):
-                return part
+        self.header = fasta_header
 
     def get_padding(self):
-        padding_description = self.get_key_from_header("flash_padding:")
-        if padding_description:
-            return self.get_padding_from_fasta_header(padding_description)
+        if self.header.padding:
+            return self.header.padding
         else:
             return self.get_padding_from_yaml()
-
-    def get_padding_from_fasta_header(self, padding_description):
-        prefix_str, suffix_str = padding_description.split(':')[1].split('_')
-        return (int(prefix_str), int(suffix_str))
 
     def get_padding_from_yaml(self):
         with open(self.padding_file) as fh:
@@ -128,24 +155,21 @@ class Gene(object):
             #
             # (except all on one line)
             #
-            s = str(record.description).split("|")
+            fasta_header = FastaHeaderParser(gene_name=self.name,
+                                             header=record.description)
+
+            # This currently handles both the old version of parsing the
+            # padding from the fata header, or getting it from a yaml.
             self.padding = PaddingForGene(
                 gene_name=self.name,
-                header_description=s
+                fasta_header=fasta_header
             ).get_padding()
 
-            for part in s:
-                if part.startswith("flash_resistance:"):
-                    self.resistance = part.split(':')[1].split(',')
-                if part.startswith("flash_mutation_ranges:"):
-                    self.mutation_ranges = []
-                    for rstr in part.split('flash_mutation_ranges:')[1].split(','):
-                        rrng = MutationIndex.parse_mutation(rstr)
-                        if type(rrng) == range:
-                            self.mutation_ranges.append((rstr, rrng))
-                        else:
-                            print("ERROR: {}: Failed to parse mutation_range: {}". \
-                                  format(self.name, rstr))
+            if fasta_header.resistance:
+                self.resistance = fasta_header.resistance
+            if fasta_header.mutation_ranges:
+                self.mutation_ranges = fasta_header.mutation_ranges
+
             self.seq = record.seq
         except FileNotFoundError:
             print(self.name, " is missing a fasta file.")
