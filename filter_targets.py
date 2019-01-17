@@ -43,7 +43,6 @@ def output(filtered_targets_output, filtered_targets, off_targets):
 
 def main():
     t = time.time()
-    build.git_remove_generated_file(build.filtered_targets_path)
     all_targets = target_index.read_all_targets(build.all_targets_path)
     off_targets = target_index.read_tagged_targets(build.off_targets_path)
     assert set(off_targets) <= set(all_targets)
@@ -57,7 +56,6 @@ def main():
     filtered_targets = collated(subprocess_results)
     assert set(filtered_targets.keys()) == set(all_targets)
     output(build.filtered_targets_path, filtered_targets, off_targets)
-    build.git_add_back_generated_file(build.filtered_targets_path)
     print("Completed structure filtering in {:3.1f} seconds.".format(time.time() - t))
 
 

@@ -115,13 +115,13 @@ class PaddingForGene:
 
 
 class Gene(object):
-    def __init__(self, name):
+    def __init__(self, name, padding=None):
 
         self.name = name
         self.seq = None
         self.presence_absence = None
         self.mutation_ranges = []
-        self.padding = None
+        self.padding = padding
         self.resistance = None
 
         self.load_fasta()

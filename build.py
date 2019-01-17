@@ -53,58 +53,6 @@ padding_input_path = "inputs/additional/padding.yml"
 special_token = "rebuild_version_controlled_genes"
 
 
-# It is convenient to track changes with git for the smaller and more human
-# readable generated files.
-#
-# When files are (re)generated, the build process presents a git status
-# report showing which, if any, of the generated files have changed.
-#
-# The changes are automatically added to the git index, i.e., to the
-# user's pending commit.
-
-
-def git_reset_and_remove_generated_folder(output_dir, return_values={}):
-    try:
-        assert ' ' not in output_dir
-        # t = time.time()
-        print("Deleting every file in {}.".format(output_dir))
-        subprocess.check_call("rm -rf {}".format(output_dir).split())
-        subprocess.check_call("git rm -r --cached --force --ignore-unmatch --quiet {}".format(output_dir).split())
-        # print("GIT houskeeping took {:3.1f} seconds.".format(time.time() - t))
-        return_values['status'] = 'Success'
-    except:
-        traceback.print_exc()
-        return_values['status'] = 'Failure'
-
-
-def git_add_back_generated_folder(output_dir, return_values={}):
-    try:
-        assert output_dir
-        assert ' ' not in output_dir
-        print("Adding every file in {output_dir} to git.".format(output_dir=output_dir))
-        subprocess.check_call("git add -A {}".format(output_dir).split())
-        subprocess.check_call("git status --short {}".format(output_dir).split())
-        return_values['status'] = 'Success'
-    except:
-        traceback.print_exc()
-        return_values['status'] = 'Failure'
-
-
-def git_remove_generated_file(output_file):
-    assert ' ' not in output_file
-    subprocess.check_call("rm -f {}".format(output_file).split())
-    subprocess.check_call("git rm --cached --force --ignore-unmatch --quiet {}".format(output_file).split())
-
-
-def git_add_back_generated_file(output_file, skip_status=False):
-    assert output_file
-    assert ' ' not in output_file
-    print("Adding {} back to git.".format(output_file))
-    subprocess.check_call("git add -A {}".format(output_file).split())
-    if not skip_status:
-        subprocess.check_call("git status --short {}".format(output_file).split())
-
-
 def fetch_with_retries(targets, c5, c10, c20, timeout=300, max_response_time=600):
     sleep_time = 2
     failures = 0

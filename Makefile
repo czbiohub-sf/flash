@@ -54,17 +54,17 @@ test:
 
 # make library TARGETS=inputs/additional/colistin.fasta OUTPUT=library.txt
 library:
-	python make_genes_and_identify_all_targets.py --targets=$(TARGETS) --disable-git
+	python make_genes_and_identify_all_targets.py --targets=$(TARGETS)
 	$(MAKE) build_indices
 	$(MAKE) optimizer ARGS="--output $(OUTPUT)"
 
 # make library_excluding TARGETS=inputs/additional/colistin.fasta OUTPUT=library.txt EXCLUDE=exclude.txt
 library_excluding:
-	python make_genes_and_identify_all_targets.py --targets=$(TARGETS) --disable-git
+	python make_genes_and_identify_all_targets.py --targets=$(TARGETS)
 	$(MAKE) build_indices
 	$(MAKE) optimizer ARGS="--output $(OUTPUT) --exclude $(EXCLUDE)"
 
 library_including:
-	python make_genes_and_identify_all_targets.py --targets=$(TARGETS) --disable-git
+	python make_genes_and_identify_all_targets.py --targets=$(TARGETS)
 	$(MAKE) build_indices
 	$(MAKE) optimizer ARGS="--output $(OUTPUT) --include $(INCLUDE)"

@@ -460,9 +460,6 @@ def parse_args():
                         help="Fasta file containing target genes.",
                         type=argparse.FileType("r"),
                         metavar="file")
-    parser.add_argument("--disable-git",
-                        help="Do not add changed files to git.",
-                        action='store_true')
 
     return parser.parse_args()
 
@@ -487,19 +484,8 @@ def make_genes_and_identify_all_targets():
 
     output_dir = build.genes_dir
     output_temp_dir = build.genes_temp_dir
-    # print("Deleting every file in {}.".format(output_temp_dir))
     subprocess.check_call("rm -rf {}".format(output_temp_dir).split())
-    build.git_remove_generated_file(build.all_targets_path)
-    build.git_remove_generated_file(build.ambiguous_targets_path)
-    build.git_remove_generated_file(build.antibiotics_by_gene_path)
-    build.git_remove_generated_file(build.genes_by_antibiotic_path)
-    build.git_remove_generated_file(build.antibiotics_path)
-    git_rm_return = {}
-    git_rm = threading.Thread(
-        target=build.git_reset_and_remove_generated_folder,
-        args=[output_dir, git_rm_return]
-    )
-    git_rm.start()
+    subprocess.check_call("rm -rf {}".format(output_dir).split())    
     split_all(
         input_files,
         output_temp_dir,
@@ -510,19 +496,8 @@ def make_genes_and_identify_all_targets():
         build.genes_by_antibiotic_path,
         build.antibiotics_path
     )
-    git_rm.join()
-    if git_rm_return['status'] != 'Success':
-        print("Problem with GIT commands.")
-        return -3
     print("Moving {} to {}.".format(output_temp_dir, output_dir))
     subprocess.check_call(["/bin/mv", output_temp_dir, output_dir])
-    if not args.disable_git:
-        build.git_add_back_generated_file(build.ambiguous_targets_path)
-        build.git_add_back_generated_file(build.all_targets_path)
-        build.git_add_back_generated_file(build.antibiotics_by_gene_path)
-        build.git_add_back_generated_file(build.genes_by_antibiotic_path)
-        build.git_add_back_generated_file(build.antibiotics_path)
-        build.git_add_back_generated_folder(output_dir)
     print("Completed make_genes_and_identify_all_targets in {:3.1f} seconds".format(time.time() - t))
     return 0
 
