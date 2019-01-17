@@ -4,7 +4,7 @@
 __pycache__
 offtarget/offtarget
 crispr_sites2
-generated_files/untracked/*
+generated_files/*
 inputs/additional/offtargets/hg38.fa.gz
 gurobi.log
 offtarget/server.PID
