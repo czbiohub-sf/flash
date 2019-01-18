@@ -391,7 +391,7 @@ def split_all(input_files, output_dir, all_targets_index_path, ambiguous_targets
         print()
         print("WARNING:  UNUSED PADDING SEQUENCES:  CHECK KEYS, FILENAMES MAY HAVE CHANGED:")
         print()
-        print(yaml.dumps(padding_seq))
+        print(yaml.dump(padding_seq))
     ambiguous_targets = {}
     ambiguous_genes = set()
     for target, gene_pos in all_targets.items():
