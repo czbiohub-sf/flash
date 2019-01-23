@@ -70,6 +70,9 @@ To exclude a set of guides,
 
 `make library_excluding TARGETS=inputs/additional/colistin.fasta OUTPUT=library.txt EXCLUDE=exclude.txt`
 
+To inluce a s set of guides,
+`make library_including TARGETS=inputs/additional/colistin.fasta OUTPUT=library.txt INCLUDE=include.txt`
+
 ### Creating the AMR library
 
 This constructs a set of guides for the AMR gene set.
