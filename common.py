@@ -28,6 +28,36 @@ class Component(object):
         self.name = genes[0].name + "-comp-" + str(len(self.genes))
 
 
+class FastaHeader(object):
+    def __init__(self, header, gene_name):
+        self.header = header
+        self.gene_name = gene_name
+
+        self.padding = None
+        self.resistance = None
+        self.mutation_ranges = []
+
+        self.header_parts = str(self.header).split("|")
+        self.parse_header()
+
+    def parse_header(self):
+        for part in self.header_parts:
+            if part.startswith("flash_padding:"):
+                prefix_str, suffix_str = part.split(':')[1].split('_')
+                self.padding = (int(prefix_str), int(suffix_str))
+            if part.startswith("flash_resistance:"):
+                self.resistance = part.split(':')[1].split(',')
+            if part.startswith("flash_mutation_ranges:"):
+                self.mutation_ranges = []
+                for rstr in part.split('flash_mutation_ranges:')[1].split(','):
+                    rrng = MutationIndex.parse_mutation(rstr)
+                    if type(rrng) == range:
+                        self.mutation_ranges.append((rstr, rrng))
+                    else:
+                        print("ERROR: {}: Failed to parse mutation_range: {}". \
+                                 format(self.gene_name, rstr))
+
+
 class Gene(object):
     def __init__(self, name):
 
@@ -69,22 +99,10 @@ class Gene(object):
             #
             # (except all on one line)
             #
-            s = str(record.description).split("|")
-            for part in s:
-                if part.startswith("flash_padding:"):
-                    prefix_str, suffix_str = part.split(':')[1].split('_')
-                    self.padding = (int(prefix_str), int(suffix_str))
-                if part.startswith("flash_resistance:"):
-                    self.resistance = part.split(':')[1].split(',')
-                if part.startswith("flash_mutation_ranges:"):
-                    self.mutation_ranges = []
-                    for rstr in part.split('flash_mutation_ranges:')[1].split(','):
-                        rrng = MutationIndex.parse_mutation(rstr)
-                        if type(rrng) == range:
-                            self.mutation_ranges.append((rstr, rrng))
-                        else:
-                            print("ERROR: {}: Failed to parse mutation_range: {}". \
-                                  format(self.name, rstr))
+            fasta_header = FastaHeader(record.description, self.name)
+            self.padding = fasta_header.padding
+            self.resistance = fasta_header.resistance
+            self.mutation_ranges = fasta_header.mutation_ranges
             self.seq = record.seq
         except FileNotFoundError:
             print(self.name, " is missing a fasta file.")
