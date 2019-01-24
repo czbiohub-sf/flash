@@ -85,15 +85,8 @@ def rebuild_gene_index():
         return -2
     output_dir = build.gene_index_dir
     output_temp_dir = build.gene_index_temp_dir
-    # print("Deleting every file in {}.".format(output_temp_dir))
     subprocess.check_call("rm -rf {}".format(output_temp_dir).split())
     os.makedirs(output_temp_dir)
-    git_rm_return = {}
-    git_rm = threading.Thread(
-        target=build.git_reset_and_remove_generated_folder,
-        args=[output_dir, git_rm_return]
-    )
-    git_rm.start()
     filtered_targets = target_index.read_tagged_targets(build.filtered_targets_path)
     ambiguous_targets = target_index.read_tagged_targets(build.ambiguous_targets_path)
     # index_all(output_temp_dir, gene_files, filtered_targets, ambiguous_targets)
@@ -104,13 +97,8 @@ def rebuild_gene_index():
         p.starmap(index_all,
             [(output_temp_dir, gene_files[index : index + size], filtered_targets, ambiguous_targets)
              for index in range(0, len(gene_files), size)])
-    git_rm.join()
-    if git_rm_return['status'] != 'Success':
-        print("Problem with GIT commands.")
-        return -3
     print("Moving {} to {}.".format(output_temp_dir, output_dir))
     subprocess.check_call(["/bin/mv", output_temp_dir, output_dir])
-    build.git_add_back_generated_folder(output_dir)
     print("Completed rebuild_gene_index in {:3.1f} seconds.".format(time.time() - t))
     return 0
 

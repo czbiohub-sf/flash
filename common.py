@@ -7,6 +7,7 @@ from collections import namedtuple
 from Bio import SeqIO
 from colors import color
 
+import build
 import flash
 
 
@@ -82,7 +83,9 @@ class Gene(object):
     def load_fasta(self):
         try:
             fasta_file = open(
-                os.path.join("generated_files/under_version_control/genes", self.name + ".fasta"))
+                os.path.join(build.genes_dir,
+                             "{}.fasta".format(self.name)),
+            "r")
             record = list(SeqIO.parse(fasta_file, "fasta"))[0]
 
             # Typical record id from CARD:
@@ -116,8 +119,12 @@ class Gene(object):
     def load_targets(self, suffix):
         "Typical suffix is dna_good_5_9_18.txt"
         try:
-            f = open(os.path.join("generated_files/under_version_control/gene_index",
-                                  self.name, suffix), 'r')
+            f = open(
+                os.path.join(build.gene_index_dir,
+                             self.name,
+                             suffix),
+            'r')
+
             self.targets = []
             for line in f:
                 (i, d) = line.strip().split()

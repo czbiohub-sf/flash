@@ -65,11 +65,9 @@ def output(offtargets_output, results):
 
 def main():
     t = time.time()
-    build.git_remove_generated_file(build.off_targets_path)
     all_targets = target_index.read_all_targets(build.all_targets_path)
     results = fetch_all_offtargets(all_targets, build.offtarget_proximity.values())
     output(build.off_targets_path, results)
-    build.git_add_back_generated_file(build.off_targets_path)
     print("Completed filter_offtarget in {:3.1f} seconds.".format(time.time() - t))
 
 

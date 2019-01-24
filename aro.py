@@ -5,6 +5,8 @@ import glob
 import sys
 from collections import defaultdict
 
+import build
+
 
 def is_aro(value):
     return value.startswith("ARO:") and value.split("ARO:", 1)[1].isdigit()
@@ -228,7 +230,7 @@ def prefix_remove(fqn_resistances):
 
 
 def glob_aro_genes():
-    files = glob.glob('generated_files/under_version_control/genes/*.fasta')
+    files = glob.glob('{}/*.fasta'.format(build.gene_dir))
     all_genes = {}
     for f in files:
         gene = f.rsplit("/", 1)[1].rsplit(".", 1)[0]
@@ -400,7 +402,7 @@ def print_usage(me):
 
          python3 {me} list_antibiotics_by_gene
 
-         For every gene in generated_files/under_version_control/genes,
+         For every gene in generated_files/genes,
          list the antibiotics it confers resistance to, along with the
          ontology network path legnth connecting the gene to the
          antibiotic.  Path length 999 represents classes of antibiotics

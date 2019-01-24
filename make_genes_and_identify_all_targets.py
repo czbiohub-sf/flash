@@ -356,8 +356,6 @@ def output_targets(output_path, targets_dict):
                 "\n    ".join((canonical_key + " " + str(targets_dict[target][canonical_key])) for canonical_key in sorted(targets_dict[target].keys(), key=str.lower)) + "\n\n")
 
 def split_all(input_files, output_dir, all_targets_index_path, ambiguous_targets_index_path, padding_input_path, antibiotics_by_gene_path, genes_by_antibiotic_path, antibiotics_path):
-    print("Generating output in {}.".format(output_dir))
-    os.makedirs(output_dir, exist_ok=True)  # requires python3
     with open(padding_input_path, 'r') as fp:
         padding_seq = json.load(fp)
     mutation_index = MutationIndex()
@@ -484,19 +482,12 @@ def make_genes_and_identify_all_targets():
 
     output_dir = build.genes_dir
     output_temp_dir = build.genes_temp_dir
-    # print("Deleting every file in {}.".format(output_temp_dir))
+
     subprocess.check_call("rm -rf {}".format(output_temp_dir).split())
-    build.git_remove_generated_file(build.all_targets_path)
-    build.git_remove_generated_file(build.ambiguous_targets_path)
-    build.git_remove_generated_file(build.antibiotics_by_gene_path)
-    build.git_remove_generated_file(build.genes_by_antibiotic_path)
-    build.git_remove_generated_file(build.antibiotics_path)
-    git_rm_return = {}
-    git_rm = threading.Thread(
-        target=build.git_reset_and_remove_generated_folder,
-        args=[output_dir, git_rm_return]
-    )
-    git_rm.start()
+    subprocess.check_call("rm -rf {}".format(output_dir).split())
+
+    os.makedirs(output_temp_dir)
+
     split_all(
         input_files,
         output_temp_dir,
@@ -507,19 +498,9 @@ def make_genes_and_identify_all_targets():
         build.genes_by_antibiotic_path,
         build.antibiotics_path
     )
-    git_rm.join()
-    if git_rm_return['status'] != 'Success':
-        print("Problem with GIT commands.")
-        return -3
+
     print("Moving {} to {}.".format(output_temp_dir, output_dir))
     subprocess.check_call(["/bin/mv", output_temp_dir, output_dir])
-    if not args.disable_git:
-        build.git_add_back_generated_file(build.ambiguous_targets_path)
-        build.git_add_back_generated_file(build.all_targets_path)
-        build.git_add_back_generated_file(build.antibiotics_by_gene_path)
-        build.git_add_back_generated_file(build.genes_by_antibiotic_path)
-        build.git_add_back_generated_file(build.antibiotics_path)
-        build.git_add_back_generated_folder(output_dir)
     print("Completed make_genes_and_identify_all_targets in {:3.1f} seconds".format(time.time() - t))
     return 0
 

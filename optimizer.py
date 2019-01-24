@@ -7,14 +7,16 @@ from collections import defaultdict
 
 import networkx
 
-from common import (
-    Component,
-    Gene
-)
 from gurobipy import (
     GRB,
     Model,
     quicksum
+)
+
+import build
+from common import (
+    Component,
+    Gene
 )
 
 
@@ -201,7 +203,7 @@ def main():
 
     print("Loading genes...")
     gene_names = sorted([os.path.splitext(os.path.basename(f))[0] for f in glob.glob(
-        'generated_files/under_version_control/genes/*.fasta')])
+        '{}/*.fasta'.format(build.genes_dir))])
 
     genes = [Gene(name) for name in gene_names]
 
