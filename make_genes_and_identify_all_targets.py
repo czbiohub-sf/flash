@@ -116,9 +116,7 @@ class GeneRecord(object):
         self.origin = 'card'
         self.origin_short_filename = CARD_ORIGIN_ABBREVIATONS[extract_filename(input_path)]
         dl = descr.split("|")
-        if dl[0] != 'gb':
-            raise RuntimeError("Unexpected record description format.")
-        if len(dl) < 3:
+        if (dl[0] != 'gb') or (len(dl) < 3):
             raise RuntimeError("Unexpected record description format.")
         self.locus = dl[1]
         if len(dl) > 4 and dl[4].startswith("ARO"):
