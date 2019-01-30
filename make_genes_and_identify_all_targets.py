@@ -61,9 +61,9 @@ def long_word(s):
 
 
 CARD_ORIGIN_ABBREVIATONS = {
-    'nucleotide_fasta_protein_variant_model':  'protein_variant',
-    'nucleotide_fasta_protein_homolog_model':  'protein_homolog',
-    'nucleotide_fasta_protein_overexpression_model':  'protein_overexpression'
+    'nucleotide_fasta_protein_variant_model': 'protein_variant',
+    'nucleotide_fasta_protein_homolog_model': 'protein_homolog',
+    'nucleotide_fasta_protein_overexpression_model': 'protein_overexpression'
 }
 
 
