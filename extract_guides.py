@@ -1,6 +1,8 @@
 import argparse
 
+import build
 import common
+from padding import get_gene_to_padding
 
 
 def parse_args():
@@ -13,6 +15,10 @@ def parse_args():
                         metavar="file",
                         type=argparse.FileType("r"),
                         required=True)
+    parser.add_argument("--padding",
+                        metavar="file",
+                        type=argparse.FileType("r"),
+                        default=build.padding_input_path)
     parser.add_argument("--max-cuts",
                         help="Max number of cuts to keep per gene.",
                         type=int)
@@ -29,9 +35,11 @@ def main():
     args = parse_args()
     gene_names = read_file(args.genes)
     library = read_file(args.library)
+    gene_to_padding = get_gene_to_padding(args.padding.name)
 
     # Set up Gene objects.
-    genes = [common.Gene(gname) for gname in gene_names]
+    genes = [
+        common.Gene(gname, gene_to_padding.get(gname)) for gname in gene_names]
     [g.load_targets("dna_good_5_9_18.txt") for g in genes]
     [g.cut_with_library(library) for g in genes]
 

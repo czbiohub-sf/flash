@@ -12,10 +12,12 @@ import argparse
 from collections import defaultdict
 import json
 from Bio import SeqIO
+
 import flash
 import build
 import aro
 from common import MutationIndex
+from padding import get_gene_to_padding
 
 
 # It splits large fasta files into individual gene files, naming each output
@@ -307,7 +309,7 @@ def output_unique_sequence(antibiotics_for_gene, genes_for_antibiotic, all_files
         for ir in inferred_resistances:
             genes_for_antibiotic[ir].append(canonical_key)
     str_desc +="|flash_key:{}".format(canonical_key)
-    if canonical_key in padding_seq:
+    if padding_seq.get(canonical_key):
         # common case
         padding = padding_seq[canonical_key]
         del padding_seq[canonical_key]
@@ -315,12 +317,12 @@ def output_unique_sequence(antibiotics_for_gene, genes_for_antibiotic, all_files
         # probably will never happen
         padding = None
         for gk in aliases:
-            if gk in padding_seq:
+            if padding_seq.get(gk):
                 padding = padding_seq[gk]
                 del padding_seq[gk]
                 break
     if padding != None:
-        prefix, suffix = padding
+        prefix, suffix = padding.prefix, padding.suffix
         str_seq = prefix + str_seq + suffix
         str_desc += "|flash_padding:{}_{}".format(len(prefix), len(suffix))
     if inferred_aro != None:
@@ -354,8 +356,7 @@ def output_targets(output_path, targets_dict):
                 "\n    ".join((canonical_key + " " + str(targets_dict[target][canonical_key])) for canonical_key in sorted(targets_dict[target].keys(), key=str.lower)) + "\n\n")
 
 def split_all(input_files, output_dir, all_targets_index_path, ambiguous_targets_index_path, padding_input_path, antibiotics_by_gene_path, genes_by_antibiotic_path, antibiotics_path):
-    with open(padding_input_path, 'r') as fp:
-        padding_seq = json.load(fp)
+    gene_to_padding = get_gene_to_padding(padding_input_path)
     mutation_index = MutationIndex()
     sequences = defaultdict(list)
     aro_genes = {}
@@ -377,14 +378,14 @@ def split_all(input_files, output_dir, all_targets_index_path, ambiguous_targets
     antibiotics_for_gene = {}
     genes_for_antibiotic = defaultdict(list)
     for str_seq, gene_records in sorted(sequences.items()):
-        output_unique_sequence(antibiotics_for_gene, genes_for_antibiotic, all_files_lc, all_targets, str_seq, gene_records, padding_seq, output_dir, mutation_index)
+        output_unique_sequence(antibiotics_for_gene, genes_for_antibiotic, all_files_lc, all_targets, str_seq, gene_records, gene_to_padding, output_dir, mutation_index)
     for ab in genes_for_antibiotic:
         genes_for_antibiotic[ab] = sorted(genes_for_antibiotic[ab], key=str.lower)
-    if padding_seq:
+    if gene_to_padding:
         print()
         print("WARNING:  UNUSED PADDING SEQUENCES:  CHECK KEYS, FILENAMES MAY HAVE CHANGED:")
         print()
-        print(json.dumps(padding_seq))
+        print(json.dumps(gene_to_padding))
     ambiguous_targets = {}
     ambiguous_genes = set()
     for target, gene_pos in all_targets.items():
@@ -447,12 +448,18 @@ def parse_args():
     parser = argparse.ArgumentParser()
     input_group = parser.add_mutually_exclusive_group()
     input_group.add_argument("--targets-dir",
-                        help="Directory containing input gene fastas.",
-                        type=str)
+                             help="Directory containing input gene fastas.",
+                             type=str)
     input_group.add_argument("--targets",
-                        help="Fasta file containing target genes.",
+                             help="Fasta file containing target genes.",
+                             type=argparse.FileType("r"),
+                             metavar="file")
+    
+    parser.add_argument("--padding",
+                        help="yaml or json file with padding info.",
                         type=argparse.FileType("r"),
-                        metavar="file")
+                        metavar="file",
+                        default=build.padding_input_path)
     parser.add_argument("--disable-git",
                         help="Do not add changed files to git.",
                         action='store_true')
@@ -491,7 +498,7 @@ def make_genes_and_identify_all_targets():
         output_temp_dir,
         build.all_targets_path,
         build.ambiguous_targets_path,
-        build.padding_input_path,
+        args.padding.name,
         build.antibiotics_by_gene_path,
         build.genes_by_antibiotic_path,
         build.antibiotics_path

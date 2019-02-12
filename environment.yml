@@ -7,6 +7,7 @@ channels:
 dependencies:
 - python=3.5
 - pytest=3.8.0=py35_0
+- pyaml=18.11.0
 - gurobi=7.0.2=py35_0
 - networkx=1.11=py35_0
 - biopython=1.69=np112py35_0

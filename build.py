@@ -48,7 +48,7 @@ filtered_targets_path = "{}/filtered_targets.txt".format(target_index_dir)
 gene_index_dir = "{}/gene_index".format(gvc_top)
 gene_index_temp_dir = "{}/gene_index_temp".format(gvc_top)
 
-padding_input_path = "inputs/additional/padding.json"
+padding_input_path = "inputs/additional/padding.yml"
 
 
 # It is convenient to track changes with git for the smaller and more human

@@ -1,3 +1,9 @@
+ifeq ($(PADDING),)
+PADDING_ARG :=
+else
+PADDING_ARG := --padding=$(PADDING)
+endif
+
 amr_library: build_gene_files build_indices
 	$(MAKE) optimize_amr_library
 	$(MAKE) extract_guides ARGS="--library generated_files/library.txt \
@@ -51,17 +57,17 @@ test:
 
 # make library TARGETS=inputs/additional/colistin.fasta OUTPUT=library.txt
 library:
-	python make_genes_and_identify_all_targets.py --targets=$(TARGETS) --disable-git
+	python make_genes_and_identify_all_targets.py --targets=$(TARGETS) $(PADDING_ARG) --disable-git
 	$(MAKE) build_indices
-	$(MAKE) optimizer ARGS="--output $(OUTPUT)"
+	$(MAKE) optimizer ARGS="--output $(OUTPUT) $(PADDING_ARG)"
 
 # make library_excluding TARGETS=inputs/additional/colistin.fasta OUTPUT=library.txt EXCLUDE=exclude.txt
 library_excluding:
-	python make_genes_and_identify_all_targets.py --targets=$(TARGETS) --disable-git
+	python make_genes_and_identify_all_targets.py --targets=$(TARGETS) $(PADDING_ARG) --disable-git
 	$(MAKE) build_indices
-	$(MAKE) optimizer ARGS="--output $(OUTPUT) --exclude $(EXCLUDE)"
+	$(MAKE) optimizer ARGS="--output $(OUTPUT) --exclude $(EXCLUDE) $(PADDING_ARG)"
 
 library_including:
-	python make_genes_and_identify_all_targets.py --targets=$(TARGETS) --disable-git
+	python make_genes_and_identify_all_targets.py --targets=$(TARGETS) $(PADDING_ARG) --disable-git
 	$(MAKE) build_indices
-	$(MAKE) optimizer ARGS="--output $(OUTPUT) --include $(INCLUDE)"
+	$(MAKE) optimizer ARGS="--output $(OUTPUT) --include $(INCLUDE) $(PADDING_ARG)"

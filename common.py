@@ -34,7 +34,6 @@ class FastaHeader(object):
         self.header = header
         self.gene_name = gene_name
 
-        self.padding = None
         self.resistance = None
         self.mutation_ranges = []
 
@@ -43,9 +42,6 @@ class FastaHeader(object):
 
     def parse_header(self):
         for part in self.header_parts:
-            if part.startswith("flash_padding:"):
-                prefix_str, suffix_str = part.split(':')[1].split('_')
-                self.padding = (int(prefix_str), int(suffix_str))
             if part.startswith("flash_resistance:"):
                 self.resistance = part.split(':')[1].split(',')
             if part.startswith("flash_mutation_ranges:"):
@@ -60,14 +56,18 @@ class FastaHeader(object):
 
 
 class Gene(object):
-    def __init__(self, name):
+    def __init__(self, name, padding=None, mutation_ranges=[]):
 
         self.name = name
         self.seq = None
         self.presence_absence = None
-        self.mutation_ranges = []
+        self.mutation_ranges = mutation_ranges
 
-        self.padding = None
+        if padding:
+            self.padding = (len(padding.prefix), len(padding.suffix))
+        else:
+            self.padding = None
+
         self.resistance = None
 
         self.load_fasta()
@@ -103,7 +103,6 @@ class Gene(object):
             # (except all on one line)
             #
             fasta_header = FastaHeader(record.description, self.name)
-            self.padding = fasta_header.padding
             self.resistance = fasta_header.resistance
             self.mutation_ranges = fasta_header.mutation_ranges
             self.seq = record.seq
@@ -116,7 +115,7 @@ class Gene(object):
         else:
             return False
 
-    def load_targets(self, suffix):
+    def load_targets(self, suffix="dna_good_5_9_18.txt"):
         "Typical suffix is dna_good_5_9_18.txt"
         try:
             f = open(
