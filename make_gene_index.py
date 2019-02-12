@@ -86,6 +86,7 @@ def rebuild_gene_index():
     output_dir = build.gene_index_dir
     output_temp_dir = build.gene_index_temp_dir
     subprocess.check_call("rm -rf {}".format(output_temp_dir).split())
+    subprocess.check_call("rm -rf {}".format(output_dir).split())
     os.makedirs(output_temp_dir)
     filtered_targets = target_index.read_tagged_targets(build.filtered_targets_path)
     ambiguous_targets = target_index.read_tagged_targets(build.ambiguous_targets_path)
