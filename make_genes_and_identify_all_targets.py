@@ -466,24 +466,24 @@ def parse_args():
 
     return parser.parse_args()
 
-def make_genes_and_identify_all_targets():
-    t = time.time()
-
-    args = parse_args()
-
-    if args.targets_dir:
+def get_files(args_obj):
+    if args_obj.targets_dir:
         input_files = glob.glob(args.targets_dir + '/*.fasta')
-    elif args.targets:
+    elif args_obj.targets:
         input_files = [args.targets.name]
     else:
         input_files = (
-            glob.glob('inputs/card/*.fasta') +
-            glob.glob('inputs/resfinder/*.fsa') +
-            glob.glob('inputs/additional/*.fasta')
-        )
+        glob.glob('inputs/card/*.fasta') +
+        glob.glob('inputs/resfinder/*.fsa') +
+        glob.glob('inputs/additional/*.fasta')
+            )
     if not input_files:
         print("Could not find input files.")
-        return -2
+        sys.exit(-2)
+    return input_files
+
+def make_genes_and_identify_all_targets(files,padding=None):
+    t = time.time()
 
     output_dir = build.genes_dir
     output_temp_dir = build.genes_temp_dir
@@ -494,11 +494,11 @@ def make_genes_and_identify_all_targets():
     os.makedirs(output_temp_dir)
 
     split_all(
-        input_files,
+        files,
         output_temp_dir,
         build.all_targets_path,
         build.ambiguous_targets_path,
-        args.padding.name,
+        padding,
         build.antibiotics_by_gene_path,
         build.genes_by_antibiotic_path,
         build.antibiotics_path
@@ -509,6 +509,10 @@ def make_genes_and_identify_all_targets():
     print("Completed make_genes_and_identify_all_targets in {:3.1f} seconds".format(time.time() - t))
     return 0
 
+
 if __name__ == "__main__":
-    retcode = make_genes_and_identify_all_targets()
+    args = parse_args()
+    input_files= get_files(args)
+
+    retcode = make_genes_and_identify_all_targets(padding=args.padding.name,files=input_files)
     sys.exit(retcode)

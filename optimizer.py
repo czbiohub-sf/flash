@@ -188,7 +188,7 @@ def find_components(genes):
 
     return components
 
-def main():
+def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--include',
                         type=argparse.FileType('r'),
@@ -204,17 +204,20 @@ def main():
                         type=argparse.FileType('w'),
                         metavar="file",
                         default="library.txt")
-    args = parser.parse_args()
-    gene_to_padding = get_gene_to_padding(args.padding.name)
+    args=parser.parse_args()
+    return args
+
+
+def main(include, exclude, output, padding=None):
+    existing_guides = get_guides_from_file_or_empty(include)
+    excluded_guides = get_guides_from_file_or_empty(exclude)
+    gene_to_padding = get_gene_to_padding(padding)
 
     print("Loading genes...")
     gene_names = sorted([os.path.splitext(os.path.basename(f))[0] for f in glob.glob(
         '{}/*.fasta'.format(build.genes_dir))])
 
     genes = [Gene(name, gene_to_padding.get(name)) for name in gene_names]
-
-    existing_guides = get_guides_from_file_or_empty(args.include)
-    excluded_guides = get_guides_from_file_or_empty(args.exclude)
 
     for g in genes:
         g.load_targets("dna_good_5_9_18.txt")
@@ -254,8 +257,9 @@ def main():
             print("Component %s was not solved" % comp.name)
 
     for guide in sorted(solved_guides):
-        args.output.write("{}\n".format(guide))
+        output.write("{}\n".format(guide))
 
 
 if __name__ == "__main__":
-    main()
+    args= parse_args()
+    main(include=args.include, exclude=args.exclude, output=args.output, padding=args.padding.name)
