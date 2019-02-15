@@ -454,7 +454,7 @@ def parse_args():
                              help="Fasta file containing target genes.",
                              type=argparse.FileType("r"),
                              metavar="file")
-    
+
     parser.add_argument("--padding",
                         help="yaml or json file with padding info.",
                         type=argparse.FileType("r"),
