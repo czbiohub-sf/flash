@@ -54,6 +54,8 @@ optimizer:
 
 test:
 	cd tests && pytest
+	cd tests && ./regression_test.sh inputs/fasta_files/simple_guide_test.fasta \
+											             outputs/expected_simple_guide_test.txt
 
 # make library TARGETS=inputs/additional/colistin.fasta OUTPUT=library.txt
 library:
