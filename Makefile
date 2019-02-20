@@ -57,7 +57,8 @@ test:
 	cd tests && ./regression_test.sh inputs/fasta_files/simple_guide_test.fasta \
 											             outputs/expected_simple_guide_test.txt
 	cd tests && ./regression_test.sh	inputs/fasta_files/simple_guide_test_with_padding.fasta	\
-											 						 outputs/expected_simple_guide_test_with_padding.txt
+											 						 outputs/expected_simple_guide_test_with_padding.txt \
+																	 tests/inputs/simple_guide_test_padding.yml
 
 # make library TARGETS=inputs/additional/colistin.fasta OUTPUT=library.txt
 library:
