@@ -9,10 +9,11 @@ amr_library: build_gene_files build_indices
 	$(MAKE) extract_guides ARGS="--library generated_files/library.txt \
 				     --genes inputs/amr/full_guide_set/amr_staph_genes.txt \
 				     --max-cuts 10 \
-				     --output generated_files/amr_library.txt"
+				     --output generated_files/amr_library.txt \
+						 --padding inputs/additional/padding.yml"
 
 optimize_amr_library:
-	$(MAKE) optimizer ARGS="--include inputs/amr/full_guide_set/all_ordered_guides.txt --output generated_files/library.txt"
+	$(MAKE) optimizer ARGS="--include inputs/amr/full_guide_set/all_ordered_guides.txt --output generated_files/library.txt --padding inputs/additional/padding.yml"
 
 extract_guides:
 	python extract_guides.py $(ARGS)
