@@ -4,7 +4,10 @@ import json
 
 import build
 from common import *
-from padding import get_gene_to_padding
+from padding import (
+    get_gene_to_padding,
+    set_to_none_if_padding_not_provided
+)
 
 
 def parse_args():
@@ -17,8 +20,8 @@ def parse_args():
                         nargs='+',)
     parser.add_argument("--padding",
                         metavar="file",
-                        type=argparse.FileType("r"),
-                        default=build.padding_input_path)
+                        type=argparse.FileType("r")
+                        )
     parser.add_argument("--library",
                         metavar="file",
                         type=argparse.FileType("r"),
@@ -29,8 +32,8 @@ def parse_args():
 
 def main():
     args = parse_args()
-    
-    gene_to_padding = get_gene_to_padding(args.padding.name)
+    padding_file = set_to_none_if_padding_not_provided(args.padding)
+    gene_to_padding = get_gene_to_padding(padding_file)
 
     library = None
     if args.library:

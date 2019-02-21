@@ -6,7 +6,6 @@ import os
 from collections import defaultdict
 
 import networkx
-
 from gurobipy import (
     GRB,
     Model,
@@ -18,7 +17,10 @@ from common import (
     Component,
     Gene
 )
-from padding import get_gene_to_padding
+from padding import (
+    get_gene_to_padding,
+    set_to_none_if_padding_not_provided
+)
 
 
 def set_required_value_for_guides(guide_vars, m, guides, value):
@@ -262,4 +264,5 @@ def main(include, exclude, output, padding=None):
 
 if __name__ == "__main__":
     args= parse_args()
-    main(include=args.include, exclude=args.exclude, output=args.output, padding=args.padding.name)
+    padding_file = set_to_none_if_padding_not_provided(args.padding)
+    main(include=args.include, exclude=args.exclude, output=args.output, padding=padding_file)
