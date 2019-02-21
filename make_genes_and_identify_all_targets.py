@@ -17,7 +17,10 @@ import flash
 import build
 import aro
 from common import MutationIndex
-from padding import get_gene_to_padding
+from padding import (
+    get_gene_to_padding,
+    set_to_none_if_padding_not_provided
+)
 
 
 # It splits large fasta files into individual gene files, naming each output
@@ -458,8 +461,8 @@ def parse_args():
     parser.add_argument("--padding",
                         help="yaml or json file with padding info.",
                         type=argparse.FileType("r"),
-                        metavar="file",
-                        default=build.padding_input_path)
+                        metavar="file"
+                        )
     parser.add_argument("--disable-git",
                         help="Do not add changed files to git.",
                         action='store_true')
@@ -513,6 +516,6 @@ def make_genes_and_identify_all_targets(files,padding=None):
 if __name__ == "__main__":
     args = parse_args()
     input_files= get_files(args)
-
-    retcode = make_genes_and_identify_all_targets(padding=args.padding.name,files=input_files)
+    padding_file = set_to_none_if_padding_not_provided(args.padding)
+    retcode = make_genes_and_identify_all_targets(padding=padding_file, files=input_files)
     sys.exit(retcode)
