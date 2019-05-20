@@ -200,7 +200,6 @@ def parse_args():
                         metavar="file")
     parser.add_argument('--padding',
                         type=argparse.FileType('r'),
-                        default=build.padding_input_path,
                         metavar="file")
     parser.add_argument('--output',
                         type=argparse.FileType('w'),

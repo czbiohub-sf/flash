@@ -32,9 +32,6 @@ genes_dir = "{}/genes".format(gvc_top)
 genes_temp_dir = genes_dir + "_temp"
 all_targets_path = "{}/all_targets.txt".format(target_index_dir)
 ambiguous_targets_path = "{}/ambiguous_targets.txt".format(target_index_dir)
-antibiotics_by_gene_path = "{}/antibiotics_by_gene.txt".format(target_index_dir)
-genes_by_antibiotic_path = "{}/genes_by_antibiotic.txt".format(target_index_dir)
-antibiotics_path = "{}/antibiotics.txt".format(target_index_dir)
 
 # Produced by filter_offtargets.py with input from all_targets_path
 # and using the GO server for offtarget filtering.
@@ -47,8 +44,6 @@ filtered_targets_path = "{}/filtered_targets.txt".format(target_index_dir)
 # Produced by make_gene_index, formerly known as crispr_sites.py.
 gene_index_dir = "{}/gene_index".format(gvc_top)
 gene_index_temp_dir = "{}/gene_index_temp".format(gvc_top)
-
-padding_input_path = "inputs/additional/padding.yml"
 
 
 # It is convenient to track changes with git for the smaller and more human

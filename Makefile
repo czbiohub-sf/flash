@@ -4,25 +4,6 @@ else
 PADDING_ARG := --padding=$(PADDING)
 endif
 
-amr_library: build_gene_files build_indices
-	$(MAKE) optimize_amr_library
-	$(MAKE) extract_guides ARGS="--library generated_files/library.txt \
-				     --genes inputs/amr/full_guide_set/amr_staph_genes.txt \
-				     --max-cuts 10 \
-				     --output generated_files/amr_library.txt \
-						 --padding inputs/additional/padding.yml"
-
-optimize_amr_library:
-	$(MAKE) optimizer ARGS="--include inputs/amr/full_guide_set/all_ordered_guides.txt \
-													--output generated_files/library.txt \
-													--padding inputs/additional/padding.yml"
-
-extract_guides:
-	python extract_guides.py $(ARGS)
-
-build_gene_files:
-	python make_genes_and_identify_all_targets.py --padding inputs/additional/padding.yml
-
 crispr_sites2: crispr_sites2.cpp
 	g++ -O3 --std=c++11 -o crispr_sites2 crispr_sites2.cpp
 
@@ -58,10 +39,10 @@ optimizer:
 test:
 	cd tests && pytest
 	cd tests && ./regression_test.sh inputs/fasta_files/simple_guide_test.fasta \
-											             outputs/expected_simple_guide_test.txt
-	cd tests && ./regression_test.sh	inputs/fasta_files/simple_guide_test_with_padding.fasta	\
-											 						 outputs/expected_simple_guide_test_with_padding.txt \
-																	 tests/inputs/simple_guide_test_padding.yml
+					 outputs/expected_simple_guide_test.txt
+	cd tests && ./regression_test.sh inputs/fasta_files/simple_guide_test_with_padding.fasta \
+					 outputs/expected_simple_guide_test_with_padding.txt \
+					 tests/inputs/simple_guide_test_padding.yml
 
 # make library TARGETS=inputs/additional/colistin.fasta OUTPUT=library.txt
 library:
