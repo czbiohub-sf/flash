@@ -21,7 +21,7 @@ as a mixed integer program optimization. For details, see the [formal descriptio
 The inputs consist of:
 
 * fasta files of genes to be targeted
-* (optional) a list of guides to avoid
+* (optional) a list of guides to exclude
 * (optional) a list of guides to include
 
 The output is:
@@ -69,10 +69,10 @@ For example,
 
 To exclude a set of guides,
 
-`make library_excluding TARGETS=tests/inputs/colistin.fasta OUTPUT=library.txt EXCLUDE=exclude.txt`
+`make library_excluding TARGETS=tests/inputs/colistin.fasta OUTPUT=library.txt EXCLUDE=[exclude.txt]`
 
-To inluce a set of guides,
-`make library_including TARGETS=tests/inputs/colistin.fasta OUTPUT=library.txt INCLUDE=include.txt`
+To incluce a set of guides,
+`make library_including TARGETS=tests/inputs/colistin.fasta OUTPUT=library.txt INCLUDE=[include.txt]`
 
 ## Formatting Genes
 
@@ -196,7 +196,7 @@ make build_indices
 
 This step finds the optimal library of guides for targeting the input genes.
 
-`make optimizer'
+`make optimizer`
 
 To search for guides including a given library, include that library as an additional input.
 To ensure that certain guides are not included in your library, include a list of those guides as an additional input.
