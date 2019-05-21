@@ -207,17 +207,6 @@ To ensure that certain guides are not included in your library, include a list o
 
 `python extract_guides.py [library.txt] [gene_list.txt]`
 
-## Git
-
-For the paper, we keep many of the intermediate files in github for easy versioning.
-All files in 'generated_files/under_version_control' are automatically committed
-when generated. To review what has changed, run `git diff HEAD`.
-
-If you would like to work with a different collection of genes,
-SNPs, or offtargets, we recommend working in a new git branch. (To create a new branch,
-run `git checkout -b BRANCHNAME`).
-
-
 ## AMR Use Case
 
 The files used to generate the full guide set for AMR has been moved to a separate [repository](https://github.com/czbiohub/amr_flash).
