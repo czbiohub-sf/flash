@@ -215,3 +215,9 @@ when generated. To review what has changed, run `git diff HEAD`.
 If you would like to work with a different collection of genes,
 SNPs, or offtargets, we recommend working in a new git branch. (To create a new branch,
 run `git checkout -b BRANCHNAME`).
+
+
+## AMR Use Case
+
+The files used to generate the full guide set for AMR has been moved to a separate [repository](https://github.com/czbiohub/amr_flash).
+Currently the repository includes the inputs used for full guide generation, but will be updated to allow for the creation of AMR libraries from CARD and Refinder inputs.
