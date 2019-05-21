@@ -35,7 +35,6 @@ class FastaHeader(object):
         self.header = header
         self.gene_name = gene_name
 
-        self.resistance = None
         self.mutation_ranges = []
 
         self.header_parts = str(self.header).split("|")
@@ -43,8 +42,6 @@ class FastaHeader(object):
 
     def parse_header(self):
         for part in self.header_parts:
-            if part.startswith("flash_resistance:"):
-                self.resistance = part.split(':')[1].split(',')
             if part.startswith("flash_mutation_ranges:"):
                 self.mutation_ranges = []
                 for rstr in part.split('flash_mutation_ranges:')[1].split(','):
@@ -67,8 +64,6 @@ class Gene(object):
             self.padding = (len(padding.prefix), len(padding.suffix))
         else:
             self.padding = None
-
-        self.resistance = None
 
         self.load_fasta()
 
@@ -103,7 +98,6 @@ class Gene(object):
             # (except all on one line)
             #
             fasta_header = FastaHeader(record.description, self.name)
-            self.resistance = fasta_header.resistance
             self.mutation_ranges = fasta_header.mutation_ranges
             self.seq = record.seq
         except FileNotFoundError:
