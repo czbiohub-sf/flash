@@ -65,14 +65,19 @@ the human genome and a reference _E. Coli_ strain, run
 
 For example,
 
-`make library TARGETS=tests/inputs/colistin.fasta OUTPUT=colistin_library.txt`
+`make library TARGETS=examples/colistin/genes.fasta OUTPUT=library.txt`
 
 To exclude a set of guides,
 
-`make library_excluding TARGETS=tests/inputs/colistin.fasta OUTPUT=library.txt EXCLUDE=[exclude.txt]`
+`make library_excluding TARGETS=examples/colistin/genes.fasta OUTPUT=library.txt EXCLUDE=examples/colistin/exclude.txt`
 
 To incluce a set of guides,
-`make library_including TARGETS=tests/inputs/colistin.fasta OUTPUT=library.txt INCLUDE=[include.txt]`
+
+`make library_including TARGETS=examples/colistin/genes.fasta OUTPUT=library.txt INCLUDE=examples/colistin/include.txt`
+
+To include padding for input genes provide a yaml as follows:
+
+`make library TARGETS=examples/colistin/genes.fasta PADDING=examples/colistin/padding.yml OUTPUT=library.txt`
 
 ## Formatting Genes
 
@@ -150,14 +155,16 @@ the locations for the SNPs accordingly).
 
 To inspect a given gene--its list of potential
 CRISPR cut sites, its SNPs, and the cuts made by a given library--run the
-`display_genes.py` script:
+`display_genes.py` script.
 
-`python display_genes.py nalC__NC_002516__ARO_3000818 mecA__AB033763__beta_lactamase [--library library.txt]`
+For example, after running one of the examples for creating a library:
+
+`python display_genes.py MCR-1 MCR-2 MCR-3 MCR-4 --library library.txt`
 
 ## Creating a bed file of the guides
 To generate a bed file marking the locations a guide library would hybridize in a set of genes run:
 
-`python generate_bed_file.py --input-fasta INPUT_FASTA.fa --library LIBRARY.txt --output OUTPUT.bed`
+`python generate_bed_file.py --input-fasta examples/colistin/genes.fasta --library library.txt --output colistin.bed`
 
 ## Additional details about the build stages
 
