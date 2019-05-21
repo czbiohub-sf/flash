@@ -455,9 +455,6 @@ def parse_args():
                         help="Fasta file containing target genes.",
                         type=argparse.FileType("r"),
                         metavar="file")
-    parser.add_argument("--disable-git",
-                        help="Do not add changed files to git.",
-                        action='store_true')
 
     return parser.parse_args()
 
