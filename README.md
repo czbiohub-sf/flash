@@ -21,7 +21,8 @@ as a mixed integer program optimization. For details, see the [formal descriptio
 The inputs consist of:
 
 * fasta files of genes to be targeted
-* fasta files of genes to be avoided
+* (optional) a list of guides to avoid
+* (optional) a list of guides to include
 
 The output is:
 
@@ -68,10 +69,10 @@ For example,
 
 To exclude a set of guides,
 
-`make library_excluding TARGETS=inputs/additional/colistin.fasta OUTPUT=library.txt EXCLUDE=exclude.txt`
+`make library_excluding TARGETS=tests/inputs/colistin.fasta OUTPUT=library.txt EXCLUDE=exclude.txt`
 
-To inluce a s set of guides,
-`make library_including TARGETS=inputs/additional/colistin.fasta OUTPUT=library.txt INCLUDE=include.txt`
+To inluce a set of guides,
+`make library_including TARGETS=tests/inputs/colistin.fasta OUTPUT=library.txt INCLUDE=include.txt`
 
 ## Formatting Genes
 
