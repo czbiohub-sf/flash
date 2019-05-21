@@ -73,20 +73,6 @@ To exclude a set of guides,
 To inluce a s set of guides,
 `make library_including TARGETS=inputs/additional/colistin.fasta OUTPUT=library.txt INCLUDE=include.txt`
 
-### Creating the AMR library
-
-This constructs a set of guides for the AMR gene set.
-The genes and CARD database used are updated from the set used in the paper.
-See the top of the README for a link to the details for the guide set from the paper.
-After installing the prerequisites below, run
-
-`make amr_library`.
-
-This will produce 2 files in `generated_files/untracked`:
-
-* `library.txt` (all optimized guides for the full AMR gene set)
-* `amr_library.txt` (optimized guides restricted to the 127 genes used in the paper)
-
 ## Formatting Genes
 
 Input genes to FLASHit should be placed in one or more fasta files. If multiple
@@ -157,10 +143,7 @@ mutations cannot be captured in a fragment. This happens most often for SNPs
 near the end of genes, when there is no legal target between the SNP and
 the end of the gene. If the neighboring genomic context is known,
 it can be added by hand by pre/post-pending sequence to the gene (and adjusting
-the locations for the SNPs accordingly). We organize this through
-the use of padding in the case of the AMR guide set:
-the file `padding.json` contains the additional
-sequence for those genes requiring it.
+the locations for the SNPs accordingly).
 
 ## Visualization
 
@@ -232,68 +215,3 @@ when generated. To review what has changed, run `git diff HEAD`.
 If you would like to work with a different collection of genes,
 SNPs, or offtargets, we recommend working in a new git branch. (To create a new branch,
 run `git checkout -b BRANCHNAME`).
-
-## AMR Use Case
-
-FLASHit has been used to design guides to target antimicrobial resistance (AMR)
-genes. Those genes were gathered from:
-
-1) The Comprehensive Antibiotic Resistance Database ([CARD](https://card.mcmaster.ca/)) from McMaster University.
-Those genes are in `inputs/card`.
-2) [Resfinder](https://cge.cbs.dtu.dk/services/ResFinder/) from the Center for Genomic Epidemiology.
-Those genes are in `inputs/resfinder`.
-3) Additional resistance genes gathered from the literature.
-Those genes are in `inputs/additional`.
-
-AMR genes in the FLASH pipeline are canonically named with unique keys
-that look like this
-
-	GES-11__FJ854362__ARO_3002340
-	ermD__M29832__macrolide
-	fdg2__NC_000962.3__delamanid_additional
-
-Each such key consists of 3 fields separated by double underscore.
-
-The first field is a gene name, in the above example GES-11 or ermD or fdg2.
-
-The second field is a LOCUS or accession number of some sort.
-
-The third field is either
-
-   -- an ARO number for CARD genes, or
-
-   -- a Resfinder file name (usually an antibiotic name) for Resfinder genes, or
-
-   -- a tag usually consisting of an antibiotic name and the word "additional",
-	  for genes coming from the `inputs/additional/*.fasta` files
-
- These keys are inferred for genes from CARD and Resfinder, or user-supplied
- for genes from inputs/additional.   The rules are strictly enforced, so if
- you are adding manually a gene under inputs/additional, and you neglect to
- specify a valid unique key or resistance tag, your gene will be rejected.
-
- Here is an example.  Suppose you want to add the gene
-
- >NC_000962.3:490783-491793_fdg1 Mycobacterium tuberculosis H37Rv, complete genome
-GTGGCTGAACTGAAGCTAGGTTACAAAGCATCGGCCGAACAATTCGCACCGCGCGAGCTCGTCGAACTAG
-CCGTCGCCGCCGAAGCCCACGGCATGGACAGCGCGACCGTCAGCGACCATTTTCAGCCTTGGCGCCACCA
-...
-
-and you have the above in file inputs/additional/myantibiotic.fasta.  It will
-be rejected unless you extend the header with two more tags, like so
-
->NC_000962.3:490783-491793_fdg1 Mycobacterium tuberculosis H37Rv, complete genome|flash_key:fdg1__NC_000962.3__myantibiotic_additional|flash_resistance:myantibiotic
-GTGGCTGAACTGAAGCTAGGTTACAAAGCATCGGCCGAACAATTCGCACCGCGCGAGCTCGTCGAACTAG
-CCGTCGCCGCCGAAGCCCACGGCATGGACAGCGCGACCGTCAGCGACCATTTTCAGCCTTGGCGCCACCA
-...
-
-"myantibiotic" should be replaced with the specific antibiotic that
-this gene confers resistance to, and should match the file name as
-well as the flash_resistance key added to the header above.
-
-Note the addition of the flash_key with value
-
-	fdg1__NC_000962.3__myantibiotic_additional
-
-where again myantibiotic should be replaced with the name of the specific
-antibiotic for this gene.
