@@ -133,13 +133,6 @@ class Gene(object):
         else:
             padded_mutation_ranges = []
             for m, ran in self.mutation_ranges:
-                # If we have added sequence of length p before the official start of the
-                # gene as padding, then the location of the mutation in self.seq is p
-                # after where it would be in the unpadded gene.
-                #
-                # TODO:  Move all this processing to make_genes_and_identify_targets.py
-                # and store the results in header metadata that can be loaded above.
-                # That way more of the intermediate results can be reviewed and tracked.
                 p = self.padding[0]
                 padded_range = range(ran.start+p, ran.stop+p, ran.step)
                 padded_mutation_ranges.append((m, padded_range))
