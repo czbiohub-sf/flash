@@ -51,7 +51,7 @@ def output(offtargets_output, results):
             for target_response in r.text.split('\n'):
                 if target_response and target_response[0] in ('A', 'C', 'G', 'T'):
                     words = target_response.split()
-                    assert len(words) == 2
+                    assert len(words) == 2, words
                     target, boolean = words
                     assert len(target) == 20
                     assert boolean in ('false', 'true')
