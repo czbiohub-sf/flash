@@ -16,6 +16,7 @@ IDEAL_CUTOFF = 200
 OKAY_CUTOFF = 301
 LONG_CUTOFF = 501
 
+
 Target = namedtuple('Target', ['guide', 'cut'])
 
 
@@ -34,8 +35,6 @@ class FastaHeader(object):
         self.header = header
         self.gene_name = gene_name
 
-        self.padding = None
-        self.resistance = None
         self.mutation_ranges = []
 
         self.header_parts = str(self.header).split("|")
@@ -43,11 +42,6 @@ class FastaHeader(object):
 
     def parse_header(self):
         for part in self.header_parts:
-            if part.startswith("flash_padding:"):
-                prefix_str, suffix_str = part.split(':')[1].split('_')
-                self.padding = (int(prefix_str), int(suffix_str))
-            if part.startswith("flash_resistance:"):
-                self.resistance = part.split(':')[1].split(',')
             if part.startswith("flash_mutation_ranges:"):
                 self.mutation_ranges = []
                 for rstr in part.split('flash_mutation_ranges:')[1].split(','):
@@ -60,15 +54,16 @@ class FastaHeader(object):
 
 
 class Gene(object):
-    def __init__(self, name):
-
+    def __init__(self, name, padding=None, mutation_ranges=[]):
         self.name = name
         self.seq = None
         self.presence_absence = None
-        self.mutation_ranges = []
+        self.mutation_ranges = mutation_ranges
 
-        self.padding = None
-        self.resistance = None
+        if padding:
+            self.padding = (len(padding.prefix), len(padding.suffix))
+        else:
+            self.padding = None
 
         self.load_fasta()
 
@@ -103,20 +98,12 @@ class Gene(object):
             # (except all on one line)
             #
             fasta_header = FastaHeader(record.description, self.name)
-            self.padding = fasta_header.padding
-            self.resistance = fasta_header.resistance
             self.mutation_ranges = fasta_header.mutation_ranges
             self.seq = record.seq
         except FileNotFoundError:
             print(self.name, " is missing a fasta file.")
 
-    def grants_resistance_to(self, antibiotic):
-        if self.resistance and any(antibiotic in res for res in self.resistance):
-            return True
-        else:
-            return False
-
-    def load_targets(self, suffix):
+    def load_targets(self, suffix="dna_good_5_9_18.txt"):
         "Typical suffix is dna_good_5_9_18.txt"
         try:
             f = open(
@@ -146,13 +133,6 @@ class Gene(object):
         else:
             padded_mutation_ranges = []
             for m, ran in self.mutation_ranges:
-                # If we have added sequence of length p before the official start of the
-                # gene as padding, then the location of the mutation in self.seq is p
-                # after where it would be in the unpadded gene.
-                #
-                # TODO:  Move all this processing to make_genes_and_identify_targets.py
-                # and store the results in header metadata that can be loaded above.
-                # That way more of the intermediate results can be reviewed and tracked.
                 p = self.padding[0]
                 padded_range = range(ran.start+p, ran.stop+p, ran.step)
                 padded_mutation_ranges.append((m, padded_range))
@@ -219,7 +199,6 @@ class Gene(object):
         return self.targets[-1].cut - self.targets[0].cut
 
     def stats(self):
-
         short_fragments = 0
         ideal_fragments = 0
         okay_fragments = 0
@@ -248,7 +227,6 @@ class Gene(object):
         }
 
     def display_gene_targets(self):
-
         arr = []
         for i in range(len(self.seq)):
             arr.append(["white", self.seq[i]])
@@ -277,7 +255,6 @@ class Gene(object):
             sys.stdout.write(color(char, bg = col))
         sys.stdout.flush()
         print()
-        return 1
 
     def display_gene_cuts(self):
         if self.cuts is None or self.fragments is None:
@@ -314,7 +291,6 @@ class Gene(object):
             sys.stdout.write(color(char, bg=col))
         sys.stdout.flush()
         print()
-        return 1
 
     def trim_library(self, n_cuts):
         # Trim the library to the extent possible,
@@ -334,16 +310,8 @@ class Gene(object):
 
 
 class MutationIndex(object):
-    def __init__(self, snp_file=None):
-        if snp_file == None:
-            snp_file = 'inputs/card/SNPs.txt'
-        mutations = {}
-        for row in csv.DictReader(open(snp_file), delimiter="\t"):
-            if row['Accession'] and row['Mutations']:
-                a = row['Accession']
-                m = [s.strip() for s in row['Mutations'].split(',')]
-                mutations[a] = mutations.get(a, []) + m
-        self.mutations = mutations
+    def __init__(self):
+        self.mutations = {}
 
     @staticmethod
     def parse_mutation(m):
@@ -374,14 +342,3 @@ class MutationIndex(object):
                     else:
                         print("Mutation not parsed: ", m)
                         return None
-
-    def mutation_ranges(self, aro):
-        if str(aro) in self.mutations:
-            ret = []
-            for m in self.mutations[str(aro)]:
-                r = self.parse_mutation(m)
-                if r:
-                    ret.append((m, r))
-            return ret
-        else:
-            return []

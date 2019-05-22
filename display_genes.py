@@ -1,7 +1,13 @@
 import argparse
 import sys
 import json
+
+import build
 from common import *
+from padding import (
+    get_gene_to_padding,
+    set_to_none_if_padding_not_provided
+)
 
 
 def parse_args():
@@ -12,7 +18,10 @@ def parse_args():
                         help="flash_key of gene to be displayed.",
                         type=str,
                         nargs='+',)
-
+    parser.add_argument("--padding",
+                        metavar="file",
+                        type=argparse.FileType("r")
+                        )
     parser.add_argument("--library",
                         metavar="file",
                         type=argparse.FileType("r"),
@@ -23,6 +32,8 @@ def parse_args():
 
 def main():
     args = parse_args()
+    padding_file = set_to_none_if_padding_not_provided(args.padding)
+    gene_to_padding = get_gene_to_padding(padding_file)
 
     library = None
     if args.library:
@@ -30,13 +41,11 @@ def main():
         library = read_file(args.library)
 
     for gene_key in args.genes:
-        g = Gene(gene_key)
+        padding = gene_to_padding.get(gene_key)
+        g = Gene(gene_key, padding)
 
-        if g.padding:
-            with open('inputs/additional/padding.json', 'r') as fp:
-                padding_seqs = json.load(fp)
-            if g.name in padding_seqs:
-                g.verify_padding(padding_seqs[g.name])
+        if padding:
+            g.verify_padding(padding)
 
         g.load_targets("dna_good_5_9_18.txt")
 

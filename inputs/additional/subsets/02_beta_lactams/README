@@ -1,3 +1,0 @@
-cd generated_files/under_version_control/genes
-
-grep -i beta-lactam * | grep flash_dna_key | awk -F'flash_dna_key:' '{print $2}' | awk -F'|' '{print $1}' | sort -f | pbcopy
