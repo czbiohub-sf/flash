@@ -21,7 +21,8 @@ as a mixed integer program optimization. For details, see the [formal descriptio
 The inputs consist of:
 
 * fasta files of genes to be targeted
-* fasta files of genes to be avoided
+* (optional) a list of guides to exclude
+* (optional) a list of guides to include
 
 The output is:
 
@@ -64,25 +65,19 @@ the human genome and a reference _E. Coli_ strain, run
 
 For example,
 
-`make library TARGETS=tests/inputs/colistin.fasta OUTPUT=colistin_library.txt`
+`make library TARGETS=examples/colistin/genes.fasta OUTPUT=library.txt`
 
 To exclude a set of guides,
 
-`make library_excluding TARGETS=inputs/additional/colistin.fasta OUTPUT=library.txt EXCLUDE=exclude.txt`
+`make library_excluding TARGETS=examples/colistin/genes.fasta OUTPUT=library.txt EXCLUDE=examples/colistin/exclude.txt`
 
-### Creating the AMR library
+To incluce a set of guides,
 
-This constructs a set of guides for the AMR gene set.
-The genes and CARD database used are updated from the set used in the paper.
-See the top of the README for a link to the details for the guide set from the paper.
-After installing the prerequisites below, run
+`make library_including TARGETS=examples/colistin/genes.fasta OUTPUT=library.txt INCLUDE=examples/colistin/include.txt`
 
-`make amr_library`.
+To include padding for input genes provide a yaml as follows:
 
-This will produce 2 files in `generated_files/untracked`:
-
-* `library.txt` (all optimized guides for the full AMR gene set)
-* `amr_library.txt` (optimized guides restricted to the 127 genes used in the paper)
+`make library TARGETS=examples/colistin/genes.fasta PADDING=examples/colistin/padding.yml OUTPUT=library.txt`
 
 ## Formatting Genes
 
@@ -154,23 +149,22 @@ mutations cannot be captured in a fragment. This happens most often for SNPs
 near the end of genes, when there is no legal target between the SNP and
 the end of the gene. If the neighboring genomic context is known,
 it can be added by hand by pre/post-pending sequence to the gene (and adjusting
-the locations for the SNPs accordingly). We organize this through
-the use of padding in the case of the AMR guide set:
-the file `padding.json` contains the additional
-sequence for those genes requiring it.
+the locations for the SNPs accordingly).
 
 ## Visualization
 
 To inspect a given gene--its list of potential
 CRISPR cut sites, its SNPs, and the cuts made by a given library--run the
-`display_genes.py` script:
+`display_genes.py` script.
 
-`python display_genes.py nalC__NC_002516__ARO_3000818 mecA__AB033763__beta_lactamase [--library library.txt]`
+For example, after running one of the examples for creating a library:
+
+`python display_genes.py MCR-1 MCR-2 MCR-3 MCR-4 --library library.txt`
 
 ## Creating a bed file of the guides
 To generate a bed file marking the locations a guide library would hybridize in a set of genes run:
 
-`python generate_bed_file.py --input-fasta INPUT_FASTA.fa --library LIBRARY.txt --output OUTPUT.bed`
+`python generate_bed_file.py --input-fasta examples/colistin/genes.fasta --library library.txt --output colistin.bed`
 
 ## Additional details about the build stages
 
@@ -209,7 +203,7 @@ make build_indices
 
 This step finds the optimal library of guides for targeting the input genes.
 
-`make optimizer'
+`make optimizer`
 
 To search for guides including a given library, include that library as an additional input.
 To ensure that certain guides are not included in your library, include a list of those guides as an additional input.
@@ -220,77 +214,7 @@ To ensure that certain guides are not included in your library, include a list o
 
 `python extract_guides.py [library.txt] [gene_list.txt]`
 
-## Git
-
-For the paper, we keep many of the intermediate files in github for easy versioning.
-All files in 'generated_files/under_version_control' are automatically committed
-when generated. To review what has changed, run `git diff HEAD`.
-
-If you would like to work with a different collection of genes,
-SNPs, or offtargets, we recommend working in a new git branch. (To create a new branch,
-run `git checkout -b BRANCHNAME`).
-
 ## AMR Use Case
 
-FLASHit has been used to design guides to target antimicrobial resistance (AMR)
-genes. Those genes were gathered from:
-
-1) The Comprehensive Antibiotic Resistance Database ([CARD](https://card.mcmaster.ca/)) from McMaster University.
-Those genes are in `inputs/card`.
-2) [Resfinder](https://cge.cbs.dtu.dk/services/ResFinder/) from the Center for Genomic Epidemiology.
-Those genes are in `inputs/resfinder`.
-3) Additional resistance genes gathered from the literature.
-Those genes are in `inputs/additional`.
-
-AMR genes in the FLASH pipeline are canonically named with unique keys
-that look like this
-
-	GES-11__FJ854362__ARO_3002340
-	ermD__M29832__macrolide
-	fdg2__NC_000962.3__delamanid_additional
-
-Each such key consists of 3 fields separated by double underscore.
-
-The first field is a gene name, in the above example GES-11 or ermD or fdg2.
-
-The second field is a LOCUS or accession number of some sort.
-
-The third field is either
-
-   -- an ARO number for CARD genes, or
-
-   -- a Resfinder file name (usually an antibiotic name) for Resfinder genes, or
-
-   -- a tag usually consisting of an antibiotic name and the word "additional",
-	  for genes coming from the `inputs/additional/*.fasta` files
-
- These keys are inferred for genes from CARD and Resfinder, or user-supplied
- for genes from inputs/additional.   The rules are strictly enforced, so if
- you are adding manually a gene under inputs/additional, and you neglect to
- specify a valid unique key or resistance tag, your gene will be rejected.
-
- Here is an example.  Suppose you want to add the gene
-
- >NC_000962.3:490783-491793_fdg1 Mycobacterium tuberculosis H37Rv, complete genome
-GTGGCTGAACTGAAGCTAGGTTACAAAGCATCGGCCGAACAATTCGCACCGCGCGAGCTCGTCGAACTAG
-CCGTCGCCGCCGAAGCCCACGGCATGGACAGCGCGACCGTCAGCGACCATTTTCAGCCTTGGCGCCACCA
-...
-
-and you have the above in file inputs/additional/myantibiotic.fasta.  It will
-be rejected unless you extend the header with two more tags, like so
-
->NC_000962.3:490783-491793_fdg1 Mycobacterium tuberculosis H37Rv, complete genome|flash_key:fdg1__NC_000962.3__myantibiotic_additional|flash_resistance:myantibiotic
-GTGGCTGAACTGAAGCTAGGTTACAAAGCATCGGCCGAACAATTCGCACCGCGCGAGCTCGTCGAACTAG
-CCGTCGCCGCCGAAGCCCACGGCATGGACAGCGCGACCGTCAGCGACCATTTTCAGCCTTGGCGCCACCA
-...
-
-"myantibiotic" should be replaced with the specific antibiotic that
-this gene confers resistance to, and should match the file name as
-well as the flash_resistance key added to the header above.
-
-Note the addition of the flash_key with value
-
-	fdg1__NC_000962.3__myantibiotic_additional
-
-where again myantibiotic should be replaced with the name of the specific
-antibiotic for this gene.
+The files used to generate the full guide set for AMR has been moved to a separate [repository](https://github.com/czbiohub/amr_flash).
+Currently the repository includes the inputs used for full guide generation, but will be updated to allow for the creation of AMR libraries from CARD and Refinder inputs.
