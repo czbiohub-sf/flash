@@ -278,8 +278,7 @@ def parse_args():
     parser.add_argument("--padding",
                         help="yaml or json file with padding info.",
                         type=argparse.FileType("r"),
-                        metavar="file"
-                        )
+                        metavar="file")
     return parser.parse_args()
 
 
