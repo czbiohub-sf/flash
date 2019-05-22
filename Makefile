@@ -44,13 +44,11 @@ test:
 					 outputs/expected_simple_guide_test_with_padding.txt \
 					 tests/inputs/simple_guide_test_padding.yml
 
-# make library TARGETS=inputs/additional/colistin.fasta OUTPUT=library.txt
 library:
 	python make_genes_and_identify_all_targets.py --targets=$(TARGETS) $(PADDING_ARG)
 	$(MAKE) build_indices
 	$(MAKE) optimizer ARGS="--output $(OUTPUT) $(PADDING_ARG)"
 
-# make library_excluding TARGETS=inputs/additional/colistin.fasta OUTPUT=library.txt EXCLUDE=exclude.txt
 library_excluding:
 	python make_genes_and_identify_all_targets.py --targets=$(TARGETS) $(PADDING_ARG)
 	$(MAKE) build_indices
