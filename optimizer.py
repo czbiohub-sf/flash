@@ -6,11 +6,7 @@ import os
 from collections import defaultdict
 
 import networkx
-from gurobipy import (
-    GRB,
-    Model,
-    quicksum
-)
+from ortools.linear_solver import pywraplp
 
 import build
 from common import (
@@ -23,28 +19,30 @@ from padding import (
 )
 
 
-def set_required_value_for_guides(guide_vars, m, guides, value):
+def set_required_value_for_guides(guide_vars, solver, guides, value):
     for guide in guides:
         if guide in guide_vars:
-            m.addConstr(guide_vars[guide], GRB.EQUAL, value)
+            solver.Add(guide_vars[guide] == value)
 
 
 def optimize(genes, required_guides=[], excluded_guides=[], MIN_FRAGMENT_SIZE=200,
              verbose=False):
     print("optimizing %d genes starting with %s" % (len(genes), genes[0].name))
 
-    m = Model()
+    solver = pywraplp.Solver('flash-it-mip',
+                             pywraplp.Solver.CBC_MIXED_INTEGER_PROGRAMMING)
 
     guide_vars = {}
 
     for g in genes:
         for t in g.targets:
             if t.guide not in guide_vars:
-                guide_vars[t.guide] = m.addVar(vtype=GRB.BINARY, name=t.guide)
+                guide_vars[t.guide] = solver.BoolVar(t.guide)
+
 
     # Set required and excluded guides.
-    set_required_value_for_guides(guide_vars, m, required_guides, 1)
-    set_required_value_for_guides(guide_vars, m, excluded_guides, 0)
+    set_required_value_for_guides(guide_vars, solver, required_guides, 1)
+    set_required_value_for_guides(guide_vars, solver, excluded_guides, 0)
 
     impossible_snps = []
 
@@ -63,32 +61,27 @@ def optimize(genes, required_guides=[], excluded_guides=[], MIN_FRAGMENT_SIZE=20
 
         if longest_fragment_possible > MIN_FRAGMENT_SIZE:
             # At least 2 cuts
-            m.addConstr(quicksum(guide_vars[t.guide] for t in g.targets),
-                        GRB.GREATER_EQUAL, 2)
+            solver.Add(sum([guide_vars[t.guide] for t in g.targets]) >= 2)
 
             # No two cuts within 200 of each other
             for t in g.targets:
                 for t2 in targets_in_range(g.targets, range(t.cut, t.cut + MIN_FRAGMENT_SIZE)):
                     if t != t2:
-                        m.addConstr(quicksum([guide_vars[t.guide], guide_vars[t2.guide]]),
-                                    GRB.LESS_EQUAL, 1)
+                        solver.Add(sum([guide_vars[t.guide], guide_vars[t2.guide]]) <= 1)
         else:
             if longest_fragment_possible > 100:
                 print(g.name, " is only ", longest_fragment_possible, " long.")
                 print("Insisting on using longest possible cut.")
                 # use both ends
-                m.addConstr(quicksum([guide_vars[g.targets[0].guide],
-                                      guide_vars[g.targets[-1].guide]]),
-                            GRB.GREATER_EQUAL, 2)
+                solver.Add(sum([guide_vars[g.targets[0].guide],
+                                guide_vars[g.targets[-1].guide]]) >= 2)
                 # exclude middle
-                m.addConstr(quicksum(guide_vars[t.guide] for t in g.targets[1:-1]),
-                            GRB.LESS_EQUAL, 0)
+                solver.Add(sum([guide_vars[t.guide] for t in g.targets[1:-1]]) == 0)
             else:
                 print(g.name, " is only ", longest_fragment_possible, " long.")
                 print("Insisting on using a single cut.")
                 # Exactly one cut
-                m.addConstr(quicksum(guide_vars[t.guide] for t in g.targets),
-                            GRB.EQUAL, 1)
+                solver.Add(sum([guide_vars[t.guide] for t in g.targets]) == 1)
 
         # Cover SNPs
         for mutation, snp_range in g.get_mutation_ranges():
@@ -100,51 +93,47 @@ def optimize(genes, required_guides=[], excluded_guides=[], MIN_FRAGMENT_SIZE=20
             for r in ranges:
                 targets = targets_in_range(g.targets, r)
                 if len(targets) > 0:
-                    m.addConstr(quicksum(guide_vars[t.guide] for t in targets),
-                                GRB.GREATER_EQUAL, 1)
+                    solver.Add(sum([guide_vars[t.guide] for t in targets]) >= 1)
                 else:
                     print("Impossible SNP in " + g.name + " " + str(snp_range))
                     impossible_snps.append((g, mutation, snp_range))
 
                     # Force failure
-                    m.addConstr(quicksum(guide_vars[t.guide] for t in targets),
-                                GRB.GREATER_EQUAL, 1)
+                    solver.Add(sum([guide_vars[t.guide] for t in targets]) >= 1)
 
         # Exclude guides that overlap SNPs
         for t in g.targets:
             if g.target_overlaps_mutation(t):
-                m.addConstr(guide_vars[t.guide], GRB.EQUAL, 0)
+                solver.Add(guide_vars[t.guide] == 0)
 
     guide_freq = defaultdict(int)
     for g in genes:
         for guide, cut in g.targets:
             guide_freq[guide] += 1
 
-    m.setObjective(
-        quicksum(
-            guide_vars.values())-1.1*quicksum([v * guide_freq[g] for g, v in guide_vars.items()]),
-        GRB.MINIMIZE
+    solver.Minimize(
+        sum(guide_vars.values()) - \
+        1.1 * sum([v * guide_freq[g] for g, v in guide_vars.items()])
     )
 
-    if not verbose:
-        m.Params.LogToConsole = 0
-    m.update()
-    print('Done building model')
-    m.optimize()
+    result_status = solver.Solve()
+
+    print('Solution:')
+    print('Objective value = ', solver.Objective().Value())
 
     library = []
 
-    if m.Status in (GRB.Status.INF_OR_UNBD, GRB.Status.INFEASIBLE, GRB.Status.UNBOUNDED):
+    if result_status == pywraplp.Solver.OPTIMAL:
+        for guide, var in guide_vars.items():
+            if var.solution_value() == 1:
+                library.append(guide)
+    elif result_status in (pywraplp.Solver.UNBOUNDED, pywraplp.Solver.INFEASIBLE):
         print('The model cannot be solved because it is infeasible or unbounded')
-    elif m.Status == GRB.Status.SUBOPTIMAL:
-        print('The model may have a suboptimal solution.')
     else:
-        for var in m.getVars():
-            if var.X == 1.0:
-                library.append(var.VarName)
+        print('The model could not be optimally solved, result status: {}.', result_status)
 
     print("Library Size: ", len(library))
-    return m, genes, library, impossible_snps
+    return solver, genes, library, impossible_snps
 
 
 def get_guides_from_file_or_empty(f):
