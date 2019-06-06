@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-import subprocess
 import sys
 import traceback
 import time
 import requests
+import glob
 
 
 # For given radius c5_c10_c20 around a target we can determine if there are
@@ -46,14 +46,15 @@ gene_index_dir = "{}/gene_index".format(gvc_top)
 gene_index_temp_dir = "{}/gene_index_temp".format(gvc_top)
 
 
-# It is convenient to track changes with git for the smaller and more human
-# readable generated files.
-#
-# When files are (re)generated, the build process presents a git status
-# report showing which, if any, of the generated files have changed.
-#
-# The changes are automatically added to the git index, i.e., to the
-# user's pending commit.
+def get_fastas(path_to_fastas=genes_dir):
+    gene_files = glob.glob('{}/*.fasta'.format(path_to_fastas))
+
+    if not gene_files:
+        raise FileNotFoundError(
+            "Failed to find fastas at provided path: {}"
+            .format(path_to_fastas))
+
+    return gene_files
 
 
 def fetch_with_retries(targets, c5, c10, c20, timeout=300, max_response_time=600):

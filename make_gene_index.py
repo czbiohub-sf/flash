@@ -1,12 +1,13 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3\
 
 from Bio import SeqIO
-import os, glob, sys, time
+import os, sys, time
 import threading, traceback, subprocess
 from multiprocessing import Pool, cpu_count
 from collections import defaultdict
 import flash, target_index, build
 from multiprocessing import Pool, cpu_count
+from functools import partial
 
 
 def goodness_level(target, tags,
@@ -35,12 +36,12 @@ def goodness_level(target, tags,
     return 0
 
 
-def index_gene(output_temp_dir, input_file, filtered_targets, ambiguous_targets):
+def index_gene(output_temp_dir, filtered_targets, ambiguous_targets, input_file):
     gene_filename = input_file.split("/")[-1].rsplit(".", 1)[0]
     output_gene_dir = output_temp_dir + "/" + gene_filename
     os.makedirs(output_gene_dir)  # should not exist
     records = list(SeqIO.parse(input_file, "fasta"))
-    assert len(records) == 1
+    assert len(records) == 1, "More than one record found for: {}".format(gene_filename)
     str_desc = str(records[0].description)
     str_seq = str(records[0].seq)
     targets = []
@@ -72,38 +73,34 @@ def index_gene(output_temp_dir, input_file, filtered_targets, ambiguous_targets)
                 file[j].write("{}\t{}\n".format(pos, dir))
 
 
-def index_all(output_temp_dir, gene_files, filtered_targets, ambiguous_targets):
-    for input_file in gene_files:
-        index_gene(output_temp_dir, input_file, filtered_targets, ambiguous_targets)
+def index_genes(output_dir, filtered_targets, ambiguous_targets, gene_files):
+    gene_indexer = partial(index_gene,
+                           output_dir,
+                           filtered_targets,
+                           ambiguous_targets)
+    
+    num_workers = min(cpu_count(), 8)  # there is probably a limit to what the filesystem can handle
+    with Pool(num_workers) as p:
+        chunksize = max(1, int(len(gene_files)/num_workers))
+        p.map(gene_indexer, gene_files, chunksize=chunksize)
 
 
 def rebuild_gene_index():
-    t = time.time()
-    gene_files = glob.glob('{}/*.fasta'.format(build.genes_dir))
-    if not gene_files or not os.path.exists(build.filtered_targets_path):
-        print("Could not find input files.")
-        return -2
+    gene_files = build.get_fastas()
     output_dir = build.gene_index_dir
     output_temp_dir = build.gene_index_temp_dir
+
     subprocess.check_call("rm -rf {}".format(output_temp_dir).split())
     subprocess.check_call("rm -rf {}".format(output_dir).split())
     os.makedirs(output_temp_dir)
+
     filtered_targets = target_index.read_tagged_targets(build.filtered_targets_path)
     ambiguous_targets = target_index.read_tagged_targets(build.ambiguous_targets_path)
-    # index_all(output_temp_dir, gene_files, filtered_targets, ambiguous_targets)
-    num_subprocs = min(cpu_count(), 8)  # there is probably a limit to what the filesystem can handle
-    with Pool(num_subprocs) as p:
-        size = int((len(gene_files) + num_subprocs - 1) / num_subprocs)
-        # Pool.starmap requires Python3.3+
-        p.starmap(index_all,
-            [(output_temp_dir, gene_files[index : index + size], filtered_targets, ambiguous_targets)
-             for index in range(0, len(gene_files), size)])
-    print("Moving {} to {}.".format(output_temp_dir, output_dir))
+
+    index_genes(output_temp_dir, filtered_targets, ambiguous_targets, gene_files)
+
     subprocess.check_call(["/bin/mv", output_temp_dir, output_dir])
-    print("Completed rebuild_gene_index in {:3.1f} seconds.".format(time.time() - t))
-    return 0
 
 
 if __name__ == "__main__":
-    retcode = rebuild_gene_index()
-    sys.exit(retcode)
+    rebuild_gene_index()
